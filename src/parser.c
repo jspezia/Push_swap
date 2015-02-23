@@ -14,7 +14,7 @@ static t_bool		already_exists_in_stack(t_dlist *stack, int nb)
 	return (FALSE);
 }
 
-void				fill_stack(t_dlist *stack, char *av[])
+static void			fill_stack(t_dlist *stack, char *av[])
 {
 	int		*nb;
 
@@ -27,4 +27,17 @@ void				fill_stack(t_dlist *stack, char *av[])
 		dlist_push_back(stack, nb);
 		av++;
 	}
+}
+
+void				parse(t_ps *ps, char *av[])
+{
+	while (*av && *av[0] == '-')
+	{
+		if (!(ft_strcmp(*av, "-v")))
+			ps->options |= OPT_VERBOSE;
+		else if (!(ft_strcmp(*av, "-c")))
+			ps->options |= OPT_COLOR;
+		av++;
+	}
+	fill_stack(ps->stack_a, av);
 }

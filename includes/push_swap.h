@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/23 14:49:56 by jspezia           #+#    #+#             */
-/*   Updated: 2015/02/23 19:11:07 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/02/23 19:50:40 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,17 @@
 
 #include <stdio.h> //
 
+enum				opts
+{
+	OPT_VERBOSE = 1 << 0,
+	OPT_COLOR = 1 << 1
+};
+
 typedef	struct		s_ps
 {
 	t_dlist		*stack_a;
 	t_dlist		*stack_b;
+	char		options;
 }					t_ps;
 
 typedef struct		s_op
@@ -48,13 +55,8 @@ void		rrb(t_ps *ps);
 void		rrr(t_ps *ps);
 
 /*
-**		print.c
-*/
-void		ft_print_dlist(t_dlist *dlist);
-
-/*
 **		parser.c
 */
-void		fill_stack(t_dlist *stack, char *av[]);
+void		parse(t_ps *ps, char *av[]);
 
 #endif

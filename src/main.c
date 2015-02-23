@@ -78,7 +78,7 @@ int				main(int ac, char *av[])
 		error_msg_exit("./push_swap <int> <int> <...>");
 	ps.stack_a = dlist_create();
 	ps.stack_b = dlist_create();
-	fill_stack(ps.stack_a, ++av);
+	parse(&ps, ++av);
 	test_ops(ops, &ps); //
 	return (0);
 }
