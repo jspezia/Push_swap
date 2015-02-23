@@ -2,24 +2,13 @@
 
 static void		swap(t_dlist *stack)
 {
-	t_dlist_node	*node1;
-	t_dlist_node	*node2;
-	t_dlist_node	*node3;
+	void	*swap;
 
 	if (stack->count < 2)
 		return ;
-	node1 = stack->first;
-	node2 = node1->next;
-	node3 = node2->next;
-	if (node3)
-		node3->prev = node1;
-	else
-		stack->last = node1;
-	node1->next =  node3;
-	node1->prev = node2;
-	node2->next = node1;
-	node2->prev = NULL;
-	stack->first = node2;
+	swap = stack->first->value;
+	stack->first->value = stack->first->next->value;
+	stack->first->next->value = swap;
 }
 
 void			sa(t_ps *ps)
