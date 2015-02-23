@@ -1,18 +1,6 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/23 14:40:09 by jspezia           #+#    #+#             */
-/*   Updated: 2015/02/23 18:02:54 by ycribier         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "push_swap.h"
 
-void		swap(t_dlist *stack)
+static void		swap(t_dlist *stack)
 {
 	t_dlist_node	*node1;
 	t_dlist_node	*node2;
@@ -34,21 +22,18 @@ void		swap(t_dlist *stack)
 	stack->first = node2;
 }
 
-void		push(t_dlist *stack_1, t_dlist *stack_2)
+void			sa(t_ps *ps)
 {
-	if (stack_2->count)
-		dlist_push_front(stack_1, dlist_pop_front(stack_2));
+	swap(ps->stack_a);
 }
 
-void		rotate(t_dlist *stack)
+void			sb(t_ps *ps)
 {
-	if (stack->count)
-		dlist_push_back(stack, dlist_pop_front(stack));
+	swap(ps->stack_b);
 }
 
-void		reverse(t_dlist *stack)
+void			ss(t_ps *ps)
 {
-	if (stack->count)
-		dlist_push_front(stack, dlist_pop_back(stack));
+	swap(ps->stack_a);
+	swap(ps->stack_b);
 }
-

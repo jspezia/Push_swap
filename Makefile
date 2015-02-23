@@ -4,10 +4,12 @@ NAME			=	push_swap
 LIB				=	libft/libft.a
 LIB_PATH		=	libft/
 INCLUDES		=	-I $(LIB_PATH)./includes -I ./includes
-SRCS			=	src/main.c			\
-					src/print.c			\
-					src/swap.c			\
-					src/parser.c
+SRCS			=	src/main.c				\
+					src/parser.c			\
+					src/swap.c				\
+					src/push.c				\
+					src/rotate.c			\
+					src/reverse.c
 OBJS			=	$(SRCS:src/%.c=obj/%.o)
 
 # COLORS
