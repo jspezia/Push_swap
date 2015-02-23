@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/11/20 20:09:01 by jspezia           #+#    #+#             */
-/*   Updated: 2015/02/23 13:47:56 by jspezia          ###   ########.fr       */
+/*   Updated: 2015/02/23 18:14:43 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -148,6 +148,7 @@ void				free_ntab(char ***tab, int n);
 /*
 **				Error
 */
+void				ft_perror(const char *msg);
 void				error_msg(char *message);
 void				error_msg_exit(char *message);
 

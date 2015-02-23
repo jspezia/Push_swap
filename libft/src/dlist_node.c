@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dlist_node.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/23 10:32:24 by jspezia           #+#    #+#             */
-/*   Updated: 2015/02/23 11:25:10 by jspezia          ###   ########.fr       */
+/*   Created: 2014/01/07 15:23:56 by ycribier          #+#    #+#             */
+/*   Updated: 2015/02/23 18:15:49 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	dlist_push_back(t_dlist *dlist, void *value)
 	node = malloc(sizeof(t_dlist_node));
 	if (!node)
 	{
-		error_msg("dlist push_back malloc fail");
+		ft_perror(NULL);
 		return ;
 	}
 	node->value = value;
@@ -53,13 +53,15 @@ void	dlist_push_front(t_dlist *dlist, void *value)
 {
 	t_dlist_node		*node;
 
-	node = malloc(sizeof(t_dlist_node));
+	node = ft_memalloc(sizeof(t_dlist_node));
 	if (!node)
 	{
-		error_msg("dlist push_front malloc fail");
+		ft_perror(NULL);
 		return ;
 	}
 	node->value = value;
+	node->prev = NULL;
+	node->next = NULL;
 	if (dlist->first == NULL)
 	{
 		dlist->first = node;
