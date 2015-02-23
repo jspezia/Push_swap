@@ -6,7 +6,7 @@
 /*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/23 14:49:56 by jspezia           #+#    #+#             */
-/*   Updated: 2015/02/23 16:14:32 by jspezia          ###   ########.fr       */
+/*   Updated: 2015/02/23 16:19:56 by jspezia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ typedef struct		s_list_ps
 	t_dlist		*b;
 }					t_list_ps;
 
-void		sa(t_dlist *dlist);
+void		sa(t_list_ps *dlist);
 
 /*
 **		print.c

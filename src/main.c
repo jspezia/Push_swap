@@ -7,9 +7,8 @@
 void			exemples(t_list_ps *list)
 {
 	ft_print_dlist2(list);
-	sa(list->a);
+	sa(list);
 	ft_print_dlist2(list);
-	ft_putendl("ok");
 }
 
 int				main(int ac, char **av)
