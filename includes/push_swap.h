@@ -79,6 +79,7 @@ enum
 };
 
 t_bool			is_sort(t_dlist *stack);
+int				find_min(t_dlist_node *node);
 
 /*
 **		parser.c
@@ -96,6 +97,7 @@ void			display_stacks(t_ps *ps);
 **		bubble_sort.c
 */
 void			bubble_sort(t_op ops[11], t_ps *ps);
+void			fifty_fifty(t_op ops[11], t_ps *ps);
 
 
 #endif

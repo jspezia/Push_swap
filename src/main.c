@@ -58,6 +58,6 @@ int				main(int ac, char *av[])
 	if (ps.options & OPT_INTERACTIVE)
 		interactive_mode(ops, &ps);
 	else
-		bubble_sort(ops, &ps);
+		fifty_fifty(ops, &ps);
 	return (0);
 }
