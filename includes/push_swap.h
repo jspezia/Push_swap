@@ -115,7 +115,7 @@ void			interactive_mode(t_op ops[OPS_LEN], t_ps *ps);
 **		resolve.c
 */
 t_bool			is_resolved(t_ps *ps);
-int				find_min(t_dlist_node *node);
+int				find_min(t_dlist *stack);
 void			resolve(t_op ops[OPS_LEN], t_ps *ps, t_algo *algo);
 void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps);
 

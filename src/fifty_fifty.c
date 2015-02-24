@@ -22,9 +22,8 @@ void			fifty_fifty(t_op ops[OPS_LEN], t_ps *ps)
 	int				min_b;
 
 	fill_stack_b(ops, ps);
-
-	min_a = find_min(ps->stack_a->first);
-	min_b = find_min(ps->stack_b->first);
+	min_a = ps->stack_a->first ? find_min(ps->stack_a) : 0;
+	min_b = ps->stack_b->first ? find_min(ps->stack_b) : 0;
 	while (!is_stack_sorted(ps->stack_b))
 	{
 		node_a = FIRST(ps->stack_a);
@@ -91,7 +90,7 @@ void			fifty_fifty(t_op ops[OPS_LEN], t_ps *ps)
 		{
 			call_op(RA, ops, ps);
 			node_a = FIRST(ps->stack_a);
-			min_a = find_min(ps->stack_a->first);
+			min_a = find_min(ps->stack_a);
 			if (NEXT_VAL(node_a) == min_a && !(CURR_VAL(node_a) > CURR_VAL(node_b)))
 			{
 				while (node_b)
