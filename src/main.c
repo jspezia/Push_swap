@@ -15,8 +15,6 @@ void			interactive_mode(t_op ops[11], t_ps *ps)
 		while (*tab)
 		{
 			i = 0;
-			g_last1 = NULL;
-			g_last2 = NULL;
 			while (i < 11)
 			{
 				if (!(strcmp(*tab, ops[i].name)))
@@ -49,6 +47,11 @@ int				main(int ac, char *av[])
 		{"rrb", &rrb},
 		{"rrr", &rrr}
 	};
+	t_algo		algos[2] =
+	{
+		{"bbs", &bubble_sort},
+		{"ff", &fifty_fifty}
+	};
 
 	if (ac == 1)
 		error_msg_exit("./push_swap <int> <int> <...>");
@@ -58,6 +61,6 @@ int				main(int ac, char *av[])
 	if (ps.options & OPT_INTERACTIVE)
 		interactive_mode(ops, &ps);
 	else
-		fifty_fifty(ops, &ps);
+		resolve(ops, &ps, &algos[1]);
 	return (0);
 }

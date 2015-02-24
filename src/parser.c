@@ -33,11 +33,10 @@ static void			recover_options(t_ps *ps, char *av)
 		ps->options |= OPT_COLOR;
 	else if (!(ft_strcmp(av, "-i")))
 		ps->options |= OPT_INTERACTIVE;
+	else if (!(ft_strcmp(av, "-t")))
+		ps->options |= OPT_TIME;
 	else
-	{
-		ft_putstr(av);
-		ft_putendl(": invalid option");
-	}
+		ft_printf("%s: invalid option\n", av);
 }
 
 void				parse(t_ps *ps, int ac, char *av[])
@@ -47,7 +46,7 @@ void				parse(t_ps *ps, int ac, char *av[])
 	i = 0;
 	while (i < ac)
 	{
-		if (av[i][0] == '-')
+		if (av[i][0] == '-' && !ft_isdigit(av[i][1]))
 			recover_options(ps, av[i]);
 		else
 			fill_stack(ps->stack_a, av[i]);

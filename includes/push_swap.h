@@ -28,11 +28,16 @@ enum				opts
 {
 	OPT_VERBOSE = 1 << 0,
 	OPT_COLOR = 1 << 1,
-	OPT_INTERACTIVE = 1 << 2
+	OPT_INTERACTIVE = 1 << 2,
+	OPT_TIME = 1 << 3
 };
 
-void		*g_last1;
-void		*g_last2;
+# define MAX_OPS	1000000
+
+# define CURR_VAL(X)	(*(int *)X->value)
+# define NEXT_VAL(X)	(*(int *)X->next->value)
+# define PREV_VAL(X)	(*(int *)X->prev->value)
+
 int			g_total_ops;
 
 typedef	struct		s_ps
@@ -40,6 +45,7 @@ typedef	struct		s_ps
 	t_dlist		*stack_a;
 	t_dlist		*stack_b;
 	char		options;
+	int			total_ops;
 }					t_ps;
 
 typedef struct		s_op
@@ -47,6 +53,13 @@ typedef struct		s_op
 	char		*name;
 	void		(*f)(t_ps *ps);
 }					t_op;
+
+typedef struct		s_algo
+{
+	char		*name;
+	void		(*f)(t_op ops[11], t_ps *ps);
+}					t_algo;
+
 
 /*
 **		ops
@@ -80,6 +93,7 @@ enum
 
 t_bool			is_sort(t_dlist *stack);
 int				find_min(t_dlist_node *node);
+void			resolve(t_op ops[11], t_ps *ps, t_algo *algo);
 
 /*
 **		parser.c

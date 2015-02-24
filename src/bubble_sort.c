@@ -3,18 +3,36 @@
 
 t_bool			is_sort(t_dlist *stack)
 {
-	t_dlist_node	*node;
+	t_dlist_node	*cursor;
 	int				nb1;
 	int				nb2;
 
-	node = stack->first;
-	while (node && node->next)
+	cursor = stack->first;
+	while (cursor && cursor->next)
 	{
-		nb1 = *(int *)node->value;
-		nb2 = *(int *)node->next->value;
+		nb1 = CURR_VAL(cursor);
+		nb2 = NEXT_VAL(cursor);
 		if (nb1 > nb2)
 			return (FALSE);
-		node = node->next;
+		cursor = cursor->next;
+	}
+	return (TRUE);
+}
+
+t_bool			is_sort2(t_dlist *stack)
+{
+	t_dlist_node	*cursor;
+	int				nb1;
+	int				nb2;
+
+	cursor = stack->first;
+	while (cursor && cursor->next)
+	{
+		nb1 = CURR_VAL(cursor);
+		nb2 = NEXT_VAL(cursor);
+		if (nb1 < nb2)
+			return (FALSE);
+		cursor = cursor->next;
 	}
 	return (TRUE);
 }
@@ -25,7 +43,19 @@ void			call_op(int op, t_op ops[11], t_ps *ps)
 	ops[op].f(ps);
 	display_stacks(ps);
 	g_total_ops++;
-	// sleep(1);
+	if (ps->options & OPT_TIME)
+		sleep(1);
+}
+
+void			resolve(t_op ops[11], t_ps *ps, t_algo *algo)
+{
+	g_total_ops = 0;
+
+	algo->f(ops, ps);
+	if (g_total_ops == MAX_OPS)
+		ft_putendl("KO -- MAX_OPS");
+	else
+		ft_printf("Sorted in "C(GREEN)"%d"C(NO)" ops!\n", g_total_ops);
 }
 
 int				find_min(t_dlist_node *node)
@@ -45,24 +75,20 @@ int				find_min(t_dlist_node *node)
 
 void			bubble_sort(t_op ops[11], t_ps *ps)
 {
-	t_dlist_node	*node_a;
+	t_dlist_node	*cursor;
 	int				min;
 
 	min = find_min(ps->stack_a->first);
-	g_total_ops = 0;
-	while (!is_sort(ps->stack_a))
+	while (!is_sort(ps->stack_a) && g_total_ops < MAX_OPS)
 	{
-		node_a = ps->stack_a->first;
-		if (*((int *)node_a->next->value) == min)
+		cursor = ps->stack_a->first;
+		if (NEXT_VAL(cursor) == min)
 			call_op(RA, ops, ps);
-		else if (*(int *)node_a->value > *(int *)node_a->next->value)
+		else if (CURR_VAL(cursor) > NEXT_VAL(cursor))
 			call_op(SA, ops, ps);
 		else
 			call_op(RA, ops, ps);
 	}
-	ft_putstr("SORTED! ops: ");
-	ft_putnbr(g_total_ops);
-	ft_putendl("!");
 }
 
 
@@ -76,29 +102,29 @@ void			fifty_fifty(t_op ops[11], t_ps *ps)
 
 	g_total_ops = 0;
 	count = 0;
-	while (count != ps->stack_a->count)
+	while (count <= ps->stack_a->count / 2)
 	{
 		call_op(PB, ops, ps);
 		count++;
 	}
 	min_a = find_min(ps->stack_a->first);
 	min_b = find_min(ps->stack_b->first);
-	while (!is_sort(ps->stack_b))
+	while (!is_sort2(ps->stack_b))
 	{
 		node_a = ps->stack_a->first;
 		node_b = ps->stack_b->first;
-		if (*((int *)node_a->next->value) == min_a && *((int *)node_a->next->value) == min_b)
+		if (NEXT_VAL(node_a) == min_a && NEXT_VAL(node_b) == min_b)
 			call_op(RR, ops, ps);
-		else if (*((int *)node_a->next->value) == min_a)
+		else if (NEXT_VAL(node_a) == min_a)
 			call_op(RA, ops, ps);
-		else if (*((int *)node_b->next->value) == min_b)
+		else if (NEXT_VAL(node_b) == min_b)
 			call_op(RB, ops, ps);
 		//**********
-		else if (*(int *)node_a->value > *(int *)node_a->next->value && *(int *)node_b->value > *(int *)node_b->next->value)
+		else if (CURR_VAL(node_a) > NEXT_VAL(node_a) && CURR_VAL(node_b) > NEXT_VAL(node_b))
 			call_op(SS, ops, ps);
-		else if (*(int *)node_a->value > *(int *)node_a->next->value)
+		else if (CURR_VAL(node_a) > NEXT_VAL(node_a))
 			call_op(SA, ops, ps);
-		else if (*(int *)node_b->value > *(int *)node_b->next->value)
+		else if (CURR_VAL(node_b) > NEXT_VAL(node_b))
 			call_op(SB, ops, ps);
 		//**********
 		else if (!is_sort(ps->stack_a))
@@ -106,28 +132,28 @@ void			fifty_fifty(t_op ops[11], t_ps *ps)
 		else
 			call_op(RB, ops, ps);
 	}
+	ft_putendl("stack_b sorted !");
 	while (!is_sort(ps->stack_a))
 	{
 		node_a = ps->stack_a->first;
-		if (*((int *)node_a->next->value) == min_a)
+		if (NEXT_VAL(node_a) == min_a)
 			call_op(RA, ops, ps);
-		else if (*(int *)node_a->value > *(int *)node_a->next->value)
+		else if (CURR_VAL(node_a) > NEXT_VAL(node_a))
 			call_op(SA, ops, ps);
 		else
 			call_op(RA, ops, ps);
 	}
+	ft_putendl("stack_a sorted !");
+	node_b = ps->stack_b->first;
 	while (node_b)
 	{
-		node_b = ps->stack_b->first;
 		node_a = ps->stack_a->first;
-		if (*(int *)node_a->value > *(int *)node_b->value)
+		if (CURR_VAL(node_a) > CURR_VAL(node_b))
 			call_op(PA, ops, ps);
 		else
 			call_op(RA, ops, ps);
+		node_b = ps->stack_b->first;
 	}
-	ft_putstr("SORTED! ops: ");
-	ft_putnbr(g_total_ops);
-	ft_putendl("!");
 }
 
 
