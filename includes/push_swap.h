@@ -33,12 +33,11 @@ enum				opts
 };
 
 # define MAX_OPS	1000000
+# define OP_SLEEP	1
 
 # define CURR_VAL(X)	(*(int *)X->value)
 # define NEXT_VAL(X)	(*(int *)X->next->value)
 # define PREV_VAL(X)	(*(int *)X->prev->value)
-
-int			g_total_ops;
 
 typedef	struct		s_ps
 {
@@ -48,33 +47,14 @@ typedef	struct		s_ps
 	int			total_ops;
 }					t_ps;
 
+/*
+**		ops
+*/
 typedef struct		s_op
 {
 	char		*name;
 	void		(*f)(t_ps *ps);
 }					t_op;
-
-typedef struct		s_algo
-{
-	char		*name;
-	void		(*f)(t_op ops[11], t_ps *ps);
-}					t_algo;
-
-
-/*
-**		ops
-*/
-void			sa(t_ps *ps);
-void			sb(t_ps *ps);
-void			ss(t_ps *ps);
-void			pa(t_ps *ps);
-void			pb(t_ps *ps);
-void			ra(t_ps *ps);
-void			rb(t_ps *ps);
-void			rr(t_ps *ps);
-void			rra(t_ps *ps);
-void			rrb(t_ps *ps);
-void			rrr(t_ps *ps);
 
 enum
 {
@@ -88,11 +68,48 @@ enum
 	RR,
 	RRA,
 	RRB,
-	RRR
+	RRR,
+	OPS_LEN
 };
 
+void			sa(t_ps *ps);
+void			sb(t_ps *ps);
+void			ss(t_ps *ps);
+void			pa(t_ps *ps);
+void			pb(t_ps *ps);
+void			ra(t_ps *ps);
+void			rb(t_ps *ps);
+void			rr(t_ps *ps);
+void			rra(t_ps *ps);
+void			rrb(t_ps *ps);
+void			rrr(t_ps *ps);
+
+/*
+**		algos
+*/
+typedef struct		s_algo
+{
+	char		*name;
+	void		(*f)(t_op ops[OPS_LEN], t_ps *ps);
+}					t_algo;
+
+enum
+{
+	BBS,
+	// FF,
+	IM,
+	ALGOS_LEN
+};
+
+void			bubble_sort(t_op ops[OPS_LEN], t_ps *ps);
+void			interactive_mode(t_op ops[OPS_LEN], t_ps *ps);
+
+/*
+**		resolve.c
+*/
 t_bool			is_sort(t_dlist *stack);
-void			resolve(t_op ops[11], t_ps *ps, t_algo *algo);
+void			resolve(t_op ops[OPS_LEN], t_ps *ps, t_algo *algo);
+void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps);
 
 /*
 **		parser.c
@@ -104,12 +121,5 @@ void			parse(t_ps *ps, int ac, char *av[]);
 */
 void			print_stack(t_dlist *dlist);
 void			display_stacks(t_ps *ps);
-
-
-/*
-**		bubble_sort.c
-*/
-void			bubble_sort(t_op ops[11], t_ps *ps);
-
 
 #endif
