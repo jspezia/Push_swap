@@ -4,13 +4,16 @@ NAME			=	push_swap
 LIB				=	libft/libft.a
 LIB_PATH		=	libft/
 INCLUDES		=	-I $(LIB_PATH)./includes -I ./includes
-SRCS			=	src/main.c				\
-					src/parser.c			\
-					src/print.c				\
-					src/swap.c				\
-					src/push.c				\
-					src/rotate.c			\
-					src/reverse.c			\
+SRCS			=	src/main.c									\
+					src/parser.c								\
+					src/resolve.c								\
+					src/print.c									\
+					src/swap.c									\
+					src/push.c									\
+					src/rotate.c								\
+					src/reverse.c								\
+					src/interactive_mode.c						\
+					src/fifty_fifty.c							\
 					src/bubble_sort.c
 OBJS			=	$(SRCS:src/%.c=obj/%.o)
 
