@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static t_bool		already_exists_in_stack(t_dlist *stack, int nb)
+static t_bool	already_exists_in_stack(t_dlist *stack, int nb)
 {
 	t_dlist_node	*cursor;
 
@@ -14,7 +14,7 @@ static t_bool		already_exists_in_stack(t_dlist *stack, int nb)
 	return (FALSE);
 }
 
-static void			fill_stack(t_dlist *stack, char *av)
+static void		fill_stack(t_dlist *stack, char *av)
 {
 	int		*nb;
 
@@ -25,9 +25,32 @@ static void			fill_stack(t_dlist *stack, char *av)
 	dlist_push_back(stack, nb);
 }
 
-static void			set_options(t_ps *ps, char opt)
+static void		set_algo(t_ps *ps, t_algo algos[ALGOS_LEN], char *optarg)
 {
-	if (opt == 'v')
+	int		i;
+
+	i = 0;
+	while (i < ALGOS_LEN)
+	{
+		if (!ft_strcmp(optarg, algos[i].name))
+		{
+			ps->algo = i;
+			if (i == IM)
+				ps->options |= OPT_INTERACTIVE;
+			ps->options |= OPT_ALGO;
+			return ;
+		}
+		i++;
+	}
+	ft_printf("-%c [%s]: invalid argument\n", optopt, optarg);
+	exit(-1);
+}
+
+static void		set_options(t_ps *ps, t_algo algos[ALGOS_LEN], char opt)
+{
+	if (opt == 'a')
+		set_algo(ps, algos, optarg);
+	else if (opt == 'v')
 		ps->options |= OPT_VERBOSE;
 	else if (opt == 'c')
 		ps->options |= OPT_COLOR;
@@ -36,7 +59,7 @@ static void			set_options(t_ps *ps, char opt)
 	else if (opt == 't')
 	{
 		ps->options |= OPT_TIME;
-		if (!ft_str_isint(optarg))
+		if (!ft_str_isint(optarg) || ft_atoi(optarg) < 0)
 			error_msg_exit("-t: invalid argument");
 		ps->op_sleep = ft_atoi(optarg);
 	}
@@ -49,15 +72,15 @@ static void			set_options(t_ps *ps, char opt)
 	}
 }
 
-void				parse(t_ps *ps, int ac, char *av[])
+void			parse(t_ps *ps, t_algo algos[ALGOS_LEN], int ac, char *av[])
 {
 	int		opt;
 	int		i;
 
 	opterr = 0;
-	while ((opt = getopt(ac, av, "vcit:")) != -1)
+	while ((opt = getopt(ac, av, "vcit:a:")) != -1)
 	{
-		set_options(ps, opt);
+		set_options(ps, algos, opt);
 	}
 	i = optind;
 	while (i < ac)
