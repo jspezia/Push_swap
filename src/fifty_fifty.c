@@ -45,7 +45,10 @@ void			fifty_fifty(t_op ops[OPS_LEN], t_ps *ps)
 		}
 		else
 		{
-			call_op(RB, ops, ps);
+			// if (!is_stack_sorted(ps->stack_a))
+			// 	call_op(RR, ops, ps);
+			// else
+				call_op(RB, ops, ps);
 		}
 		// node_a = FIRST(ps->stack_a);
 		// node_b = FIRST(ps->stack_b);
