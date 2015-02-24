@@ -37,6 +37,8 @@ void				parse(t_ps *ps, char *av[])
 			ps->options |= OPT_VERBOSE;
 		else if (!(ft_strcmp(*av, "-c")))
 			ps->options |= OPT_COLOR;
+		else if (!(ft_strcmp(*av, "-i")))
+			ps->options |= OPT_INTERACTIVE;
 		av++;
 	}
 	fill_stack(ps->stack_a, av);

@@ -79,6 +79,9 @@ int				main(int ac, char *av[])
 	ps.stack_a = dlist_create();
 	ps.stack_b = dlist_create();
 	parse(&ps, ++av);
-	test_ops(ops, &ps); //
+	if (ps.options & OPT_INTERACTIVE)
+		test_ops(ops, &ps); //
+	//else
+	//	algo();
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/23 14:49:56 by jspezia           #+#    #+#             */
-/*   Updated: 2015/02/23 19:50:40 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/02/24 10:39:53 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@
 enum				opts
 {
 	OPT_VERBOSE = 1 << 0,
-	OPT_COLOR = 1 << 1
+	OPT_COLOR = 1 << 1,
+	OPT_INTERACTIVE = 1 << 2
 };
 
 typedef	struct		s_ps
