@@ -8,7 +8,7 @@ void			interactive_mode(t_op ops[OPS_LEN], t_ps *ps)
 	int		i;
 
 	line = NULL;
-	while (!is_sort(ps->stack_a) && get_next_line(1, &line) == 1)
+	while (!is_resolved(ps) && get_next_line(1, &line) == 1)
 	{
 		tab = ft_strsplit(line, ' ');
 		tmp = tab;

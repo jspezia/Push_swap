@@ -1,39 +1,8 @@
 #include "push_swap.h"
 
-t_bool			is_sort(t_dlist *stack)
+t_bool			is_resolved(t_ps *ps)
 {
-	t_dlist_node	*cursor;
-	int				nb1;
-	int				nb2;
-
-	cursor = stack->first;
-	while (cursor && cursor->next)
-	{
-		nb1 = CURR_VAL(cursor);
-		nb2 = NEXT_VAL(cursor);
-		if (nb1 > nb2)
-			return (FALSE);
-		cursor = cursor->next;
-	}
-	return (TRUE);
-}
-
-t_bool			is_sort2(t_dlist *stack)
-{
-	t_dlist_node	*cursor;
-	int				nb1;
-	int				nb2;
-
-	cursor = stack->first;
-	while (cursor && cursor->next)
-	{
-		nb1 = CURR_VAL(cursor);
-		nb2 = NEXT_VAL(cursor);
-		if (nb1 < nb2)
-			return (FALSE);
-		cursor = cursor->next;
-	}
-	return (TRUE);
+	return ((!ps->stack_b->count) && is_stack_sorted(ps->stack_a));
 }
 
 int				find_min(t_dlist_node *node)

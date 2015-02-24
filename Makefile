@@ -7,6 +7,7 @@ INCLUDES		=	-I $(LIB_PATH)./includes -I ./includes
 SRCS			=	src/main.c									\
 					src/parser.c								\
 					src/resolve.c								\
+					src/check_sort.c							\
 					src/print.c									\
 					src/swap.c									\
 					src/push.c									\

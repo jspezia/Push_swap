@@ -35,6 +35,9 @@ enum				opts
 # define MAX_OPS	1000000
 # define OP_SLEEP	1
 
+# define FIRST(X)		(X->first)
+# define LAST(X)		(X->last)
+# define COUNT(X)		(X->count)
 # define CURR_VAL(X)	(*(int *)X->value)
 # define NEXT_VAL(X)	(*(int *)X->next->value)
 # define PREV_VAL(X)	(*(int *)X->prev->value)
@@ -108,11 +111,16 @@ void			interactive_mode(t_op ops[OPS_LEN], t_ps *ps);
 /*
 **		resolve.c
 */
-t_bool			is_sort(t_dlist *stack);
-t_bool			is_sort2(t_dlist *stack);
+t_bool			is_resolved(t_ps *ps);
 int				find_min(t_dlist_node *node);
 void			resolve(t_op ops[OPS_LEN], t_ps *ps, t_algo *algo);
 void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps);
+
+/*
+**		check_sort.c
+*/
+t_bool			is_stack_sorted(t_dlist *stack);
+t_bool			is_stack_reverse_sorted(t_dlist *stack);
 
 /*
 **		parser.c

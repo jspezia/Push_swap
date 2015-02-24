@@ -6,7 +6,7 @@ void			bubble_sort(t_op ops[OPS_LEN], t_ps *ps)
 	int				min;
 
 	min = find_min(ps->stack_a->first);
-	while (!is_sort(ps->stack_a) && ps->total_ops < MAX_OPS)
+	while (!is_resolved(ps) && ps->total_ops < MAX_OPS)
 	{
 		cursor = ps->stack_a->first;
 		if (NEXT_VAL(cursor) == min)
