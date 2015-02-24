@@ -8,14 +8,15 @@ void			interactive_mode(t_op ops[11], t_ps *ps)
 	char	**tmp;
 
 	line = NULL;
-	while (get_next_line(1, &line) == 1)
+	while (!is_sort(ps->stack_a) && get_next_line(1, &line) == 1)
 	{
 		tab = ft_strsplit(line, ' ');
 		tmp = tab;
 		while (*tab)
 		{
 			i = 0;
-			g_last1 = g_last2 = NULL;
+			g_last1 = NULL;
+			g_last2 = NULL;
 			while (i < 11)
 			{
 				if (!(strcmp(*tab, ops[i].name)))
@@ -28,6 +29,8 @@ void			interactive_mode(t_op ops[11], t_ps *ps)
 		free(line);
 		free_tab(&tmp);
 	}
+	ft_putendl("SORTED");
+	display_stacks(ps);
 }
 
 int				main(int ac, char *av[])
@@ -55,7 +58,7 @@ int				main(int ac, char *av[])
 	parse(&ps, --ac, ++av);
 	if (ps.options & OPT_INTERACTIVE)
 		interactive_mode(ops, &ps);
-	//else
-	//	algo();
+	else
+		bubble_sort(ops, &ps);
 	return (0);
 }

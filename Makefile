@@ -10,7 +10,8 @@ SRCS			=	src/main.c				\
 					src/swap.c				\
 					src/push.c				\
 					src/rotate.c			\
-					src/reverse.c
+					src/reverse.c			\
+					src/bubble_sort.c
 OBJS			=	$(SRCS:src/%.c=obj/%.o)
 
 # COLORS

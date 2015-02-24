@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   push_swap.h                                        :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2015/02/23 14:49:56 by jspezia           #+#    #+#             */
-/*   Updated: 2015/02/24 11:49:59 by ycribier         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
@@ -45,6 +33,7 @@ enum				opts
 
 void		*g_last1;
 void		*g_last2;
+int			g_total_ops;
 
 typedef	struct		s_ps
 {
@@ -74,6 +63,25 @@ void			rra(t_ps *ps);
 void			rrb(t_ps *ps);
 void			rrr(t_ps *ps);
 
+enum
+{
+	SA,
+	SB,
+	SS,
+	PA,
+	PB,
+	RA,
+	RB,
+	RR,
+	RRA,
+	RRB,
+	RRR
+};
+
+t_bool			is_sort(t_dlist *stack);
+int				sorted(t_dlist *stack);
+
+
 /*
 **		parser.c
 */
@@ -84,6 +92,12 @@ void			parse(t_ps *ps, int ac, char *av[]);
 */
 void			print_stack(t_dlist *dlist);
 void			display_stacks(t_ps *ps);
+
+
+/*
+**		bubble_sort.c
+*/
+void			bubble_sort(t_op ops[11], t_ps *ps);
 
 
 #endif

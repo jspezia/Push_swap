@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dlist_node.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2014/01/07 15:23:56 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/23 18:57:51 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/02/24 13:18:17 by jspezia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	dlist_push_back(t_dlist *dlist, void *value)
 {
 	t_dlist_node		*node;
 
-	node = malloc(sizeof(t_dlist_node));
+	node = ft_memalloc(sizeof(t_dlist_node));
 	if (!node)
 	{
 		ft_perror(NULL);
@@ -35,6 +35,7 @@ void	dlist_push_back(t_dlist *dlist, void *value)
 		dlist->last->next = node;
 		node->prev = dlist->last;
 		dlist->last = node;
+		node->next = NULL;
 	}
 	dlist->count++;
 }
