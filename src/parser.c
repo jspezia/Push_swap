@@ -7,7 +7,7 @@ static t_bool		already_exists_in_stack(t_dlist *stack, int nb)
 	cursor = stack->first;
 	while (cursor)
 	{
-		if ((*(int *)cursor->value) == nb)
+		if (CURR_VAL(cursor) == nb)
 			return (TRUE);
 		cursor = cursor->next;
 	}
