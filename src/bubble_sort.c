@@ -7,35 +7,16 @@ t_bool			is_sort(t_dlist *stack)
 	int				nb1;
 	int				nb2;
 
-
 	node = stack->first;
-	printf("first: %d\n", *(int *)stack->first->value);
 	while (node && node->next)
 	{
 		nb1 = *(int *)node->value;
 		nb2 = *(int *)node->next->value;
 		if (nb1 > nb2)
-		{
-			printf("%d(%p) > %d(%p)\n", nb1, &nb1, nb2, &nb2);
 			return (FALSE);
-		}
 		node = node->next;
 	}
 	return (TRUE);
-}
-
-int				sorted(t_dlist *stack)
-{
-	t_dlist_node	*cursor;
-
-	cursor = stack->first;
-	while (cursor)
-	{
-		printf("%d ", *(int *)cursor->value);
-		cursor = cursor->next;
-	}
-	printf("\n");
-	return (0);
 }
 
 void			call_op(int op, t_op ops[11], t_ps *ps)
@@ -44,7 +25,7 @@ void			call_op(int op, t_op ops[11], t_ps *ps)
 	ops[op].f(ps);
 	display_stacks(ps);
 	g_total_ops++;
-	sleep(1);
+	// sleep(1);
 }
 
 void			bubble_sort(t_op ops[11], t_ps *ps)

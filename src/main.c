@@ -30,7 +30,6 @@ void			interactive_mode(t_op ops[11], t_ps *ps)
 		free_tab(&tmp);
 	}
 	ft_putendl("SORTED");
-	display_stacks(ps);
 }
 
 int				main(int ac, char *av[])

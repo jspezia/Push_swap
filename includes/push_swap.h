@@ -79,8 +79,6 @@ enum
 };
 
 t_bool			is_sort(t_dlist *stack);
-int				sorted(t_dlist *stack);
-
 
 /*
 **		parser.c
