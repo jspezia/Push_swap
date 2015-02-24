@@ -1,4 +1,4 @@
-CC				=	gcc -O2
+CC				=	gcc -O2 -g
 FLAGS			=	-Wall -Wextra -Werror
 NAME			=	push_swap
 LIB				=	libft/libft.a

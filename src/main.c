@@ -32,6 +32,6 @@ int				main(int ac, char *av[])
 	if (ps.options & OPT_INTERACTIVE)
 		resolve(ops, &ps, &algos[IM]);
 	else
-		resolve(ops, &ps, &algos[BBS]);
+		resolve(ops, &ps, &algos[FF]);
 	return (0);
 }
