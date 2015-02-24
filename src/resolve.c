@@ -22,6 +22,8 @@ int				find_min(t_dlist_node *node)
 
 void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 {
+	if (ps->options & OPT_TIME)
+		sleep(ps->op_sleep);
 	ops[op].f(ps);
 	ps->total_ops++;
 	if (ps->options & OPT_VERBOSE)
@@ -30,8 +32,6 @@ void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 			ft_putendl(ops[op].name);
 		display_stacks(ps);
 	}
-	if (ps->options & OPT_TIME)
-		sleep(ps->op_sleep);
 }
 
 void			resolve(t_op ops[OPS_LEN], t_ps *ps, t_algo *algo)

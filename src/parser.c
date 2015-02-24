@@ -69,6 +69,7 @@ static void		set_options(t_ps *ps, t_algo algos[ALGOS_LEN], char opt)
 			ft_printf("Option -%c requires an argument.\n", optopt);
 		else
 			ft_printf("Unknown option `-%c'.\n", optopt);
+		exit(-1);
 	}
 }
 
@@ -83,6 +84,8 @@ void			parse(t_ps *ps, t_algo algos[ALGOS_LEN], int ac, char *av[])
 		set_options(ps, algos, opt);
 	}
 	i = optind;
+	if (i == ac)
+		error_msg_exit("Empty stack!");
 	while (i < ac)
 	{
 		fill_stack(ps->stack_a, av[i]);
