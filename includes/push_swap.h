@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/23 14:49:56 by jspezia           #+#    #+#             */
-/*   Updated: 2015/02/24 10:39:53 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/02/24 11:36:55 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,6 @@ void		rrr(t_ps *ps);
 /*
 **		parser.c
 */
-void		parse(t_ps *ps, char *av[]);
+void		parse(t_ps *ps, int ac, char *av[]);
 
 #endif

@@ -14,32 +14,43 @@ static t_bool		already_exists_in_stack(t_dlist *stack, int nb)
 	return (FALSE);
 }
 
-static void			fill_stack(t_dlist *stack, char *av[])
+static void			fill_stack(t_dlist *stack, char *av)
 {
 	int		*nb;
 
-	while (*av)
+	if (!ft_str_isint(av) || already_exists_in_stack(stack, ft_atoi(av)))
+		error_msg_exit("Error");
+	nb = (int *)malloc(sizeof(int));
+	*nb = ft_atoi(av);
+	dlist_push_back(stack, nb);
+}
+
+static void			recover_options(t_ps *ps, char *av)
+{
+	if (!(ft_strcmp(av, "-v")))
+		ps->options |= OPT_VERBOSE;
+	else if (!(ft_strcmp(av, "-c")))
+		ps->options |= OPT_COLOR;
+	else if (!(ft_strcmp(av, "-i")))
+		ps->options |= OPT_INTERACTIVE;
+	else
 	{
-		if (!ft_str_isint(*av) || already_exists_in_stack(stack, ft_atoi(*av)))
-			error_msg_exit("Error");
-		nb = (int *)malloc(sizeof(int));
-		*nb = ft_atoi(*av);
-		dlist_push_back(stack, nb);
-		av++;
+		ft_putstr(av);
+		ft_putendl(": invalid option");
 	}
 }
 
-void				parse(t_ps *ps, char *av[])
+void				parse(t_ps *ps, int ac, char *av[])
 {
-	while (*av && *av[0] == '-')
+	int		i;
+
+	i = 0;
+	while (i < ac)
 	{
-		if (!(ft_strcmp(*av, "-v")))
-			ps->options |= OPT_VERBOSE;
-		else if (!(ft_strcmp(*av, "-c")))
-			ps->options |= OPT_COLOR;
-		else if (!(ft_strcmp(*av, "-i")))
-			ps->options |= OPT_INTERACTIVE;
-		av++;
+		if (av[i][0] == '-')
+			recover_options(ps, av[i]);
+		else
+			fill_stack(ps->stack_a, av[i]);
+		i++;
 	}
-	fill_stack(ps->stack_a, av);
 }

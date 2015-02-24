@@ -79,7 +79,7 @@ int				main(int ac, char *av[])
 		error_msg_exit("./push_swap <int> <int> <...>");
 	ps.stack_a = dlist_create();
 	ps.stack_b = dlist_create();
-	parse(&ps, ++av);
+	parse(&ps, --ac, ++av);
 	if (ps.options & OPT_INTERACTIVE)
 		interactive_mode(ops, &ps); //
 	//else
