@@ -5,7 +5,7 @@ void			bubble_sort(t_op ops[OPS_LEN], t_ps *ps)
 	t_dlist_node	*cursor;
 	int				min;
 
-	min = find_min(ps->stack_a->first);
+	min = ps->stack_a->first ? find_min(ps->stack_a) : 0;
 	while (!is_resolved(ps) && ps->total_ops < MAX_OPS)
 	{
 		cursor = ps->stack_a->first;

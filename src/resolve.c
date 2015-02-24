@@ -5,11 +5,13 @@ t_bool			is_resolved(t_ps *ps)
 	return ((!ps->stack_b->count) && is_stack_sorted(ps->stack_a));
 }
 
-int				find_min(t_dlist_node *node)
+int				find_min(t_dlist *stack)
 {
-	int		min;
-	int		value;
+	int				min;
+	int				value;
+	t_dlist_node	*node;
 
+	node = stack->first;
 	min = *(int *)node->value;
 	while (node)
 	{
