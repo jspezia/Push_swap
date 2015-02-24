@@ -29,7 +29,8 @@ enum				opts
 	OPT_VERBOSE = 1 << 0,
 	OPT_COLOR = 1 << 1,
 	OPT_INTERACTIVE = 1 << 2,
-	OPT_TIME = 1 << 3
+	OPT_TIME = 1 << 3,
+	OPT_ALGO = 1 << 4
 };
 
 # define MAX_OPS	1000000
@@ -46,6 +47,7 @@ typedef	struct		s_ps
 {
 	t_dlist		*stack_a;
 	t_dlist		*stack_b;
+	int			algo;
 	char		options;
 	int			total_ops;
 	int			op_sleep;
@@ -126,7 +128,7 @@ t_bool			is_stack_reverse_sorted(t_dlist *stack);
 /*
 **		parser.c
 */
-void			parse(t_ps *ps, int ac, char *av[]);
+void			parse(t_ps *ps, t_algo algos[ALGOS_LEN], int ac, char *av[]);
 
 /*
 **		print.c
