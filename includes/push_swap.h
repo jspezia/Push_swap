@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/23 14:49:56 by jspezia           #+#    #+#             */
-/*   Updated: 2015/02/24 11:41:13 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/02/24 11:49:59 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,23 @@
 #include <stdlib.h>
 #include <unistd.h>
 
-#include <stdio.h> //
+#include <stdio.h> // !!!
+
+/*
+**		COLOR
+*/
+# define RED		"31"
+# define GREEN		"32"
+# define YELLOW		"33"
+# define BLUE		"34"
+# define PINK		"35"
+# define GRBL		"36"
+# define GREY		"37"
+# define NO			"0"
+# define C(X)		"\033["X"m"
+# define CC(X)		"\033[3"X"m"
+# define CB(X)		"\x1B[48;1;"X"m"
+# define CBNO		"\x1B[0m"
 
 enum				opts
 {
@@ -26,6 +42,9 @@ enum				opts
 	OPT_COLOR = 1 << 1,
 	OPT_INTERACTIVE = 1 << 2
 };
+
+void		*g_last1;
+void		*g_last2;
 
 typedef	struct		s_ps
 {

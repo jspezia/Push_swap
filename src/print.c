@@ -9,7 +9,14 @@ void			print_stack(t_dlist *dlist)
 	while (cursor)
 	{
 		nb = (int *)cursor->value;
-		ft_putnbr(*nb);
+		if (nb == g_last1 || nb == g_last2)
+		{
+			ft_putstr(C(GREEN));
+			ft_putnbr(*nb);
+			ft_putstr(C(NO));
+		}
+		else
+			ft_putnbr(*nb);
 		ft_putstr(" ");
 		cursor = cursor->prev;
 	}
@@ -18,8 +25,8 @@ void			print_stack(t_dlist *dlist)
 
 void			display_stacks(t_ps *ps)
 {
-	ft_putstr("a: ");
+	ft_putstr(C(RED)"a: "C(NO));
 	print_stack(ps->stack_a);
-	ft_putstr("b: ");
+	ft_putstr(C(BLUE)"b: "C(NO));
 	print_stack(ps->stack_b);
 }

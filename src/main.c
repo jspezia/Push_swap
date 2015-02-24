@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-//--DBG--//
-
 void			interactive_mode(t_op ops[11], t_ps *ps)
 {
 	char	*line;
@@ -17,6 +15,7 @@ void			interactive_mode(t_op ops[11], t_ps *ps)
 		while (*tab)
 		{
 			i = 0;
+			g_last1 = g_last2 = NULL;
 			while (i < 11)
 			{
 				if (!(strcmp(*tab, ops[i].name)))
@@ -30,8 +29,6 @@ void			interactive_mode(t_op ops[11], t_ps *ps)
 		free_tab(&tmp);
 	}
 }
-
-//-------//
 
 int				main(int ac, char *av[])
 {
@@ -57,7 +54,7 @@ int				main(int ac, char *av[])
 	ps.stack_b = dlist_create();
 	parse(&ps, --ac, ++av);
 	if (ps.options & OPT_INTERACTIVE)
-		interactive_mode(ops, &ps); //
+		interactive_mode(ops, &ps);
 	//else
 	//	algo();
 	return (0);

@@ -7,7 +7,9 @@ static void		swap(t_dlist *stack)
 	if (stack->count < 2)
 		return ;
 	swap = stack->first->value;
+	g_last1 = stack->first->value;
 	stack->first->value = stack->first->next->value;
+	g_last2 = stack->first->next->value;
 	stack->first->next->value = swap;
 }
 
