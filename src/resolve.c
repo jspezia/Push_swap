@@ -31,7 +31,7 @@ void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 		display_stacks(ps);
 	}
 	if (ps->options & OPT_TIME)
-		sleep(OP_SLEEP);
+		sleep(ps->op_sleep);
 }
 
 void			resolve(t_op ops[OPS_LEN], t_ps *ps, t_algo *algo)

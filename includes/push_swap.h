@@ -48,6 +48,7 @@ typedef	struct		s_ps
 	t_dlist		*stack_b;
 	char		options;
 	int			total_ops;
+	int			op_sleep;
 }					t_ps;
 
 /*

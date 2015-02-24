@@ -25,31 +25,44 @@ static void			fill_stack(t_dlist *stack, char *av)
 	dlist_push_back(stack, nb);
 }
 
-static void			recover_options(t_ps *ps, char *av)
+static void			set_options(t_ps *ps, char opt)
 {
-	if (!(ft_strcmp(av, "-v")))
+	if (opt == 'v')
 		ps->options |= OPT_VERBOSE;
-	else if (!(ft_strcmp(av, "-c")))
+	else if (opt == 'c')
 		ps->options |= OPT_COLOR;
-	else if (!(ft_strcmp(av, "-i")))
+	else if (opt == 'i')
 		ps->options |= OPT_INTERACTIVE;
-	else if (!(ft_strcmp(av, "-t")))
+	else if (opt == 't')
+	{
 		ps->options |= OPT_TIME;
-	else
-		ft_printf("%s: invalid option\n", av);
+		if (!ft_str_isint(optarg))
+			error_msg_exit("-t: invalid argument");
+		ps->op_sleep = ft_atoi(optarg);
+	}
+	else if (opt == '?')
+	{
+		if (optopt == 't')
+			ft_printf("Option -%c requires an argument.\n", optopt);
+		else
+			ft_printf("Unknown option `-%c'.\n", optopt);
+	}
 }
 
 void				parse(t_ps *ps, int ac, char *av[])
 {
+	int		opt;
 	int		i;
 
-	i = 0;
+	opterr = 0;
+	while ((opt = getopt(ac, av, "vcit:")) != -1)
+	{
+		set_options(ps, opt);
+	}
+	i = optind;
 	while (i < ac)
 	{
-		if (av[i][0] == '-' && !ft_isdigit(av[i][1]))
-			recover_options(ps, av[i]);
-		else
-			fill_stack(ps->stack_a, av[i]);
+		fill_stack(ps->stack_a, av[i]);
 		i++;
 	}
 }
