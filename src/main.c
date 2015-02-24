@@ -2,55 +2,56 @@
 
 //--DBG--//
 
-void			ft_print_dlist(t_dlist *dlist)
+void			print_stack(t_dlist *dlist)
 {
-	t_dlist_node	*node;
+	t_dlist_node	*cursor;
+	int				*nb;
 
-	node = dlist->last;
-	while (node)
+	cursor = dlist->last;
+	while (cursor)
 	{
-		int *nb;
-		nb = node->value;
+		nb = (int *)cursor->value;
 		ft_putnbr(*nb);
-		ft_putstr("  ");
-		node = node->prev;
+		ft_putstr(" ");
+		cursor = cursor->prev;
 	}
-	write(1, "\n", 1);
+	ft_putchar('\n');
 }
 
-void			DBG(t_ps *ps)
+void			display_stacks(t_ps *ps)
 {
 	ft_putstr("a: ");
-	ft_print_dlist(ps->stack_a);
+	print_stack(ps->stack_a);
 	ft_putstr("b: ");
-	ft_print_dlist(ps->stack_b);
+	print_stack(ps->stack_b);
 }
 
-void			test_ops(t_op ops[11], t_ps *ps)
+void			interactive_mode(t_op ops[11], t_ps *ps)
 {
 	char	*line;
 	int		i;
 	char	**tab;
+	char	**tmp;
 
 	line = NULL;
 	while (get_next_line(1, &line) == 1)
 	{
-		tab = ft_strsplit(line, ' '); // not freed
+		tab = ft_strsplit(line, ' ');
+		tmp = tab;
 		while (*tab)
 		{
 			i = 0;
 			while (i < 11)
 			{
 				if (!(strcmp(*tab, ops[i].name)))
-				{
 					ops[i].f(ps);
-				}
 				i++;
 			}
 			tab++;
 		}
-		DBG(ps);
+		display_stacks(ps);
 		free(line);
+		free_tab(&tmp);
 	}
 }
 
@@ -80,7 +81,7 @@ int				main(int ac, char *av[])
 	ps.stack_b = dlist_create();
 	parse(&ps, ++av);
 	if (ps.options & OPT_INTERACTIVE)
-		test_ops(ops, &ps); //
+		interactive_mode(ops, &ps); //
 	//else
 	//	algo();
 	return (0);
