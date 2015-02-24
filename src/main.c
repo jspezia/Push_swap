@@ -25,10 +25,10 @@ int				main(int ac, char *av[])
 	};
 
 	if (ac == 1)
-		error_msg_exit("./push_swap <int> <int> <...>");
+		error_msg_exit("./push_swap [-vcit] <int> <int> <...>");
 	ps.stack_a = dlist_create();
 	ps.stack_b = dlist_create();
-	parse(&ps, --ac, ++av);
+	parse(&ps, ac, av);
 	if (ps.options & OPT_INTERACTIVE)
 		resolve(ops, &ps, &algos[IM]);
 	else
