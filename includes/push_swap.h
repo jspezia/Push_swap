@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/23 14:49:56 by jspezia           #+#    #+#             */
-/*   Updated: 2015/02/24 11:36:55 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/02/24 11:41:13 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,28 @@ typedef struct		s_op
 /*
 **		ops
 */
-void		sa(t_ps *ps);
-void		sb(t_ps *ps);
-void		ss(t_ps *ps);
-void		pa(t_ps *ps);
-void		pb(t_ps *ps);
-void		ra(t_ps *ps);
-void		rb(t_ps *ps);
-void		rr(t_ps *ps);
-void		rra(t_ps *ps);
-void		rrb(t_ps *ps);
-void		rrr(t_ps *ps);
+void			sa(t_ps *ps);
+void			sb(t_ps *ps);
+void			ss(t_ps *ps);
+void			pa(t_ps *ps);
+void			pb(t_ps *ps);
+void			ra(t_ps *ps);
+void			rb(t_ps *ps);
+void			rr(t_ps *ps);
+void			rra(t_ps *ps);
+void			rrb(t_ps *ps);
+void			rrr(t_ps *ps);
 
 /*
 **		parser.c
 */
-void		parse(t_ps *ps, int ac, char *av[]);
+void			parse(t_ps *ps, int ac, char *av[]);
+
+/*
+**		print.c
+*/
+void			print_stack(t_dlist *dlist);
+void			display_stacks(t_ps *ps);
+
 
 #endif

@@ -6,6 +6,7 @@ LIB_PATH		=	libft/
 INCLUDES		=	-I $(LIB_PATH)./includes -I ./includes
 SRCS			=	src/main.c				\
 					src/parser.c			\
+					src/print.c				\
 					src/swap.c				\
 					src/push.c				\
 					src/rotate.c			\
