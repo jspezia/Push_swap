@@ -1,30 +1,30 @@
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
 
-#include "libft.h"
-#include "dlist.h"
-#include <stdlib.h>
-#include <unistd.h>
+# include "libft.h"
+# include "dlist.h"
+# include <stdlib.h>
+# include <unistd.h>
 
-#include <stdio.h> // !!!
+# include <stdio.h> // !!!
 
 /*
 **		COLOR
 */
-# define RED		"31"
-# define GREEN		"32"
-# define YELLOW		"33"
-# define BLUE		"34"
-# define PINK		"35"
-# define GRBL		"36"
-# define GREY		"37"
-# define NO			"0"
-# define C(X)		"\033["X"m"
-# define CC(X)		"\033[3"X"m"
-# define CB(X)		"\x1B[48;1;"X"m"
-# define CBNO		"\x1B[0m"
+# define RED			"31"
+# define GREEN			"32"
+# define YELLOW			"33"
+# define BLUE			"34"
+# define PINK			"35"
+# define GRBL			"36"
+# define GREY			"37"
+# define NO				"0"
+# define C(X)			"\033["X"m"
+# define CC(X)			"\033[3"X"m"
+# define CB(X)			"\x1B[48;1;"X"m"
+# define CBNO			"\x1B[0m"
 
-enum				opts
+enum
 {
 	OPT_VERBOSE = 1 << 0,
 	OPT_COLOR = 1 << 1,
@@ -33,8 +33,8 @@ enum				opts
 	OPT_ALGO = 1 << 4
 };
 
-# define MAX_OPS	1000000
-# define OP_SLEEP	1
+# define MAX_OPS		1000000
+# define OP_SLEEP		1
 
 # define FIRST(X)		(X->first)
 # define LAST(X)		(X->last)
