@@ -110,6 +110,7 @@ enum
 {
 	BBS,
 	FF,
+	UP,
 	IM,
 	ALGOS_LEN
 };
@@ -117,6 +118,7 @@ enum
 void			bubble_sort(t_op ops[OPS_LEN], t_ps *ps);
 void			fifty_fifty(t_op ops[OPS_LEN], t_ps *ps);
 void			interactive_mode(t_op ops[OPS_LEN], t_ps *ps);
+void			up_down(t_op ops[OPS_LEN], t_ps *ps);
 
 /*
 **		resolve.c

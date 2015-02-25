@@ -15,7 +15,8 @@ SRCS			=	src/main.c									\
 					src/reverse.c								\
 					src/interactive_mode.c						\
 					src/algo_bubble_sort.c						\
-					src/algo_fifty_fifty.c
+					src/algo_fifty_fifty.c 						\
+					src/up_down.c
 OBJS			=	$(SRCS:src/%.c=obj/%.o)
 
 # COLORS
