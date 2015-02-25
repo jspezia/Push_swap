@@ -39,7 +39,6 @@ void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 void			resolve(t_op ops[OPS_LEN], t_ps *ps, t_algo *algo)
 {
 	ps->total_ops = 0;
-
 	algo->f(ops, ps);
 	if (ps->total_ops == MAX_OPS)
 		ft_putendl("KO -- MAX_OPS");
