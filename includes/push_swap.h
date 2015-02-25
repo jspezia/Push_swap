@@ -38,7 +38,7 @@ enum
 # define USAGE_OPTS		" [-hvci] [-a algo] [-t delay] --"
 # define USAGE_ARGS		" <int> <int> <...>"
 
-# define MAX_OPS		1000000
+# define MAX_OPS		10000000
 # define OP_SLEEP		1
 
 # define FIRST(X)		(X->first)
