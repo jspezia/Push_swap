@@ -43,32 +43,8 @@ void			fifty_fifty(t_op ops[OPS_LEN], t_ps *ps)
 				OP(SB);
 		}
 		else
-		{
-			// if (!is_stack_sorted(ps->stack_a))
-			// 	OP(RR);
-			// else
-				OP(RB);
-		}
-		// node_a = FIRST(ps->stack_a);
-		// node_b = FIRST(ps->stack_b);
-		// if (NEXT_VAL(node_a) == min_a && NEXT_VAL(node_b) == min_b)
-		//  	OP(RR);
-		// else if (NEXT_VAL(node_a) == min_a)
-		// 	OP(RA);
-		// else if (NEXT_VAL(node_b) == min_b)
-		//  	OP(RB);
-		// else if (CURR_VAL(node_a) > NEXT_VAL(node_a) && CURR_VAL(node_b) > NEXT_VAL(node_b))
-		// 	OP(SS);
-		// else if (CURR_VAL(node_a) > NEXT_VAL(node_a))
-		// 	OP(SA);
-		// else if (CURR_VAL(node_b) > NEXT_VAL(node_b))
-		// 	OP(SB);
-		// else if (!is_stack_sorted(ps->stack_a))
-		// 	OP(RR);
-		// else
-		// 	OP(RRs);
+			OP(RR);
 	}
-	ft_putendl("stack_b sorted !");
 	while (!is_stack_sorted(ps->stack_a))
 	{
 		node_a = FIRST(ps->stack_a);
@@ -79,7 +55,6 @@ void			fifty_fifty(t_op ops[OPS_LEN], t_ps *ps)
 		else
 			OP(RA);
 	}
-	ft_putendl("stack_a sorted !");
 	node_b = FIRST(ps->stack_b);
 	while (node_b)
 	{

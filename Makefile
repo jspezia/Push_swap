@@ -1,9 +1,11 @@
 CC				=	gcc -O2 -g
-FLAGS			=	-Wall -Wextra -Werror
+FLAGS			=	#-Wall -Wextra -Werror
 NAME			=	push_swap
 LIB				=	libft/libft.a
 LIB_PATH		=	libft/
-INCLUDES		=	-I $(LIB_PATH)./includes -I ./includes
+INCLUDES		=	-I $(LIB_PATH)./includes -I ./includes -I /usr/X11/include
+DIR_LIBS		=	/usr/X11/lib
+LDFLAGS			=	-L$(DIR_LIBS) -lXext -lX11 -lmlx
 SRCS			=	src/main.c									\
 					src/parser.c								\
 					src/options.c								\
@@ -17,6 +19,11 @@ SRCS			=	src/main.c									\
 					src/interactive_mode.c						\
 					src/algo_bubble_sort.c						\
 					src/algo_fifty_fifty.c
+SRCS			+=	src/mlx_my_pixel_put_to_image.c				\
+					src/mlx_draw_line.c							\
+					src/mlx_image.c								\
+					src/mlx_draw_ps.c							\
+					src/mlx.c
 OBJS			=	$(SRCS:src/%.c=obj/%.o)
 
 # COLORS
@@ -34,7 +41,7 @@ OK				=	$(C_OK)OK$(C_NO)
 all: obj $(NAME)
 
 $(NAME): $(LIB) $(OBJS)
-	@$(CC) $(FLAGS) -o $@ $^ -L $(LIB_PATH) -lft
+	@$(CC) $(FLAGS) -o $@ $^ $(LDFLAGS) -L $(LIB_PATH) -lft
 	@echo "Compiling" [ $(NAME) ] $(SUCCESS)
 
 $(LIB):
