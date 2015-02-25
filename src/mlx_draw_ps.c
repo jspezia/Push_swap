@@ -19,7 +19,7 @@ static void		draw_stack(t_dlist *stack, t_env *e, int pos, int color)
 			y = 0;
 			while (y < h * FACTOR)
 			{
-				my_pixel_put_to_image(e->img, pos + index * X_SIZE + x, y, color);
+				my_pixel_put_to_image(e->img, pos + index * X_SIZE + x, W_HEIGHT - y, color);
 				y++;
 			}
 			x++;
