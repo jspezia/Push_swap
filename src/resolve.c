@@ -8,16 +8,14 @@ t_bool			is_resolved(t_ps *ps)
 int				find_min(t_dlist *stack)
 {
 	int				min;
-	int				value;
-	t_dlist_node	*node;
+	t_dlist_node	*cursor;
 
-	node = stack->first;
-	min = *(int *)node->value;
-	while (node)
+	cursor = FIRST(stack);
+	min = CURR_VAL(cursor);
+	while (cursor)
 	{
-		value = (*(int *)node->value);
-		min = (value < min) ? value : min;
-		node = node->next;
+		min = fmin(min, CURR_VAL(cursor));
+		cursor = cursor->next;
 	}
 	return (min);
 }
