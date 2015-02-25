@@ -5,7 +5,7 @@ static void		print_prompt(void)
 	ft_putstr("$> ");
 }
 
-static void		recover_op(char *op_name, t_op ops[OPS_LEN], t_ps *ps)
+static void		recover_and_call_op(char *op_name, t_op ops[OPS_LEN], t_ps *ps)
 {
 	int		i;
 
@@ -13,7 +13,7 @@ static void		recover_op(char *op_name, t_op ops[OPS_LEN], t_ps *ps)
 	while (i < OPS_LEN)
 	{
 		if (!(strcmp(op_name, ops[i].name)))
-			call_op(i, ops, ps);
+			OP(i);
 		i++;
 	}
 }
@@ -36,7 +36,7 @@ void			interactive_mode(t_op ops[OPS_LEN], t_ps *ps)
 		tmp = tab;
 		while (*tab)
 		{
-			recover_op(*tab, ops, ps);
+			recover_and_call_op(*tab, ops, ps);
 			tab++;
 		}
 		free(line);

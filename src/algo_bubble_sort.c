@@ -9,11 +9,9 @@ void			bubble_sort(t_op ops[OPS_LEN], t_ps *ps)
 	while (!is_resolved(ps) && ps->total_ops < MAX_OPS)
 	{
 		cursor = ps->stack_a->first;
-		if (NEXT_VAL(cursor) == min)
-			call_op(RA, ops, ps);
-		else if (CURR_VAL(cursor) > NEXT_VAL(cursor))
-			call_op(SA, ops, ps);
+		if (NEXT_VAL(cursor) == min || !(CURR_VAL(cursor) > NEXT_VAL(cursor)))
+			OP(RA);
 		else
-			call_op(RA, ops, ps);
+			OP(SA);
 	}
 }
