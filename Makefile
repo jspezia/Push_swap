@@ -14,8 +14,8 @@ SRCS			=	src/main.c									\
 					src/rotate.c								\
 					src/reverse.c								\
 					src/interactive_mode.c						\
-					src/fifty_fifty.c							\
-					src/bubble_sort.c
+					src/algo_bubble_sort.c						\
+					src/algo_fifty_fifty.c
 OBJS			=	$(SRCS:src/%.c=obj/%.o)
 
 # COLORS
@@ -42,7 +42,7 @@ $(LIB):
 obj:
 	@mkdir -p obj
 
-obj/%.o: src/%.c
+obj/%.o: src/%.c ./includes/push_swap.h
 	@$(CC) $(FLAGS) -c -o $@ $< $(INCLUDES)
 	@echo "Linking" [ $< ] $(OK)
 

@@ -55,7 +55,10 @@ static void		set_options(t_ps *ps, t_algo algos[ALGOS_LEN], char opt)
 	else if (opt == 'c')
 		ps->options |= OPT_COLOR;
 	else if (opt == 'i')
+	{
+		ps->algo = IM;
 		ps->options |= OPT_INTERACTIVE;
+	}
 	else if (opt == 't')
 	{
 		ps->options |= OPT_TIME;
@@ -65,7 +68,7 @@ static void		set_options(t_ps *ps, t_algo algos[ALGOS_LEN], char opt)
 	}
 	else if (opt == '?')
 	{
-		if (optopt == 't')
+		if (optopt == 't' || optopt == 'a')
 			ft_printf("Option -%c requires an argument.\n", optopt);
 		else
 			ft_printf("Unknown option `-%c'.\n", optopt);

@@ -25,7 +25,7 @@ int				main(int ac, char *av[])
 	};
 
 	if (ac == 1)
-		error_msg_exit("./push_swap [-vci] [-a]<algo> [-t]<delay> <int> <int> <...>");
+		error_msg_exit(USAGE);
 	ps.stack_a = dlist_create();
 	ps.stack_b = dlist_create();
 	parse(&ps, algos, ac, av);

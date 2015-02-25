@@ -33,6 +33,10 @@ enum
 	OPT_ALGO = 1 << 4
 };
 
+# define USAGE			"./push_swap" USAGE_OPTS USAGE_ARGS
+# define USAGE_OPTS		" [-vci] [-a <algo>] [-t <delay>]"
+# define USAGE_ARGS		" <int> <int> <...>"
+
 # define MAX_OPS		1000000
 # define OP_SLEEP		1
 
@@ -42,6 +46,8 @@ enum
 # define CURR_VAL(X)	(*(int *)X->value)
 # define NEXT_VAL(X)	(*(int *)X->next->value)
 # define PREV_VAL(X)	(*(int *)X->prev->value)
+
+# define OP(X)			(call_op(X, ops, ps))
 
 typedef	struct		s_ps
 {
