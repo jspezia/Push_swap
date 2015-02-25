@@ -12,7 +12,7 @@ static void		recover_and_call_op(char *op_name, t_op ops[OPS_LEN], t_ps *ps)
 	i = 0;
 	while (i < OPS_LEN)
 	{
-		if (!(strcmp(op_name, ops[i].name)))
+		if (ft_strequ(op_name, ops[i].name))
 			OP(i);
 		i++;
 	}
@@ -30,7 +30,7 @@ void			interactive_mode(t_op ops[OPS_LEN], t_ps *ps)
 	print_prompt();
 	while (!is_resolved(ps) && get_next_line(1, &line) == 1)
 	{
-		if (!ft_strcmp(line, "exit"))
+		if (ft_strequ(line, "exit"))
 			exit(0);
 		tab = ft_strsplit(line, ' ');
 		tmp = tab;

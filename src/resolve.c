@@ -11,7 +11,7 @@ int				find_min(t_dlist *stack)
 	t_dlist_node	*cursor;
 
 	cursor = FIRST(stack);
-	min = CURR_VAL(cursor);
+	min = cursor ? CURR_VAL(cursor) : 0;
 	while (cursor)
 	{
 		min = fmin(min, CURR_VAL(cursor));
@@ -22,24 +22,24 @@ int				find_min(t_dlist *stack)
 
 void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 {
+	if (ps->total_ops++ > MAX_OPS)
+		error_msg_exit("KO -- MAX_OPS");
 	if (ps->options & OPT_TIME)
 		sleep(ps->op_sleep);
 	ops[op].f(ps);
-	ps->total_ops++;
 	if (ps->options & OPT_VERBOSE)
 	{
 		if (!(ps->options & OPT_INTERACTIVE))
 			ft_putendl(ops[op].name);
 		display_stacks(ps);
 	}
+	printf("%s ", ops[op].name); // trick
 }
 
 void			resolve(t_op ops[OPS_LEN], t_ps *ps, t_algo *algo)
 {
-	ps->total_ops = 0;
 	algo->f(ops, ps);
-	if (ps->total_ops == MAX_OPS)
-		ft_putendl("KO -- MAX_OPS");
-	else
-		ft_printf("Sorted in "C(GREEN)"%d"C(NO)" ops!\n", ps->total_ops);
+	printf("\n"); // trick end
+	if (is_resolved(ps))
+		ft_printf("Sorted in "C(GREEN)"%d"C(NO)" ops!\n", ps->total_ops); // not to print
 }

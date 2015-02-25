@@ -35,7 +35,7 @@ enum
 };
 
 # define USAGE			"./push_swap" USAGE_OPTS USAGE_ARGS
-# define USAGE_OPTS		" [-vci] [-a <algo>] [-t <delay>]"
+# define USAGE_OPTS		" [-hvci] [-a algo] [-t delay] --"
 # define USAGE_ARGS		" <int> <int> <...>"
 
 # define MAX_OPS		1000000
@@ -49,6 +49,8 @@ enum
 # define PREV_VAL(X)	(*(int *)X->prev->value)
 
 # define OP(X)			(call_op(X, ops, ps))
+
+# define OPT_STR		"hvcia:t:"
 
 typedef	struct		s_ps
 {
@@ -136,6 +138,11 @@ t_bool			is_stack_reverse_sorted(t_dlist *stack);
 **		parser.c
 */
 void			parse(t_ps *ps, t_algo algos[ALGOS_LEN], int ac, char *av[]);
+
+/*
+**		options.c
+*/
+void			set_options(t_ps *ps, t_algo algos[ALGOS_LEN], char opt);
 
 /*
 **		print.c
