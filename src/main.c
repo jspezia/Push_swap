@@ -49,6 +49,7 @@ int				main(int ac, char *av[])
 	{
 		{"bbs", &bubble_sort},
 		{"ff", &fifty_fifty},
+		{"up", &up_down},
 		{"im", &interactive_mode}
 	};
 

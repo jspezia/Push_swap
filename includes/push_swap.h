@@ -39,7 +39,7 @@ enum
 # define USAGE_OPTS		" [-hvci] [-a algo] [-t delay] --"
 # define USAGE_ARGS		" <int> <int> <...>"
 
-# define MAX_OPS		1000000
+# define MAX_OPS		10000000
 # define OP_SLEEP		1
 
 # define FIRST(X)		(X->first)
@@ -113,6 +113,7 @@ enum
 {
 	BBS,
 	FF,
+	UP,
 	IM,
 	ALGOS_LEN
 };
@@ -120,6 +121,7 @@ enum
 void			bubble_sort(t_op ops[OPS_LEN], t_ps *ps);
 void			fifty_fifty(t_op ops[OPS_LEN], t_ps *ps);
 void			interactive_mode(t_op ops[OPS_LEN], t_ps *ps);
+void			up_down(t_op ops[OPS_LEN], t_ps *ps);
 
 /*
 **		resolve.c

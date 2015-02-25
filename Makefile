@@ -18,7 +18,8 @@ SRCS			=	src/main.c									\
 					src/reverse.c								\
 					src/interactive_mode.c						\
 					src/algo_bubble_sort.c						\
-					src/algo_fifty_fifty.c
+					src/algo_fifty_fifty.c						\
+					src/up_down.c
 SRCS			+=	src/mlx_my_pixel_put_to_image.c				\
 					src/mlx_draw_line.c							\
 					src/mlx_image.c								\
