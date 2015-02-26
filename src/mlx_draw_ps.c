@@ -25,7 +25,7 @@ static void		draw_stack(t_stack *stack, t_ps *ps, t_env *e, int pos)
 			{
 				int posx = index * w + x;
 				int posy = pos + STACK_H - y;
-				my_pixel_put_to_image(e->img, posx, posy, color);
+				my_pixel_put_to_image_osx(e->img, posx, posy, color);
 				y++;
 			}
 			x++;

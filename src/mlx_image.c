@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/18 10:34:16 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/25 19:47:32 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/02/26 13:54:01 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,21 @@
 
 void			clear_image(t_img *img)
 {
-	size_t		x;
-	size_t		y;
+	ft_bzero(img->addr, W_HEIGHT * img->lsize);
+	// size_t		x;
+	// size_t		y;
 
-	y = 0;
-	while (y < W_HEIGHT)
-	{
-		x = 0;
-		while (x < W_WIDTH)
-		{
-			my_pixel_put_to_image(img, x, y, 0x000000);
-			x++;
-		}
-		y++;
-	}
+	// y = 0;
+	// while (y < W_HEIGHT)
+	// {
+	// 	x = 0;
+	// 	while (x < W_WIDTH)
+	// 	{
+	// 		my_pixel_put_to_image(img, x, y, 0x000000);
+	// 		x++;
+	// 	}
+	// 	y++;
+	// }
 }
 
 t_img			*create_new_image(t_env *e, int width, int height)
