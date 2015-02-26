@@ -14,7 +14,7 @@ static t_bool	already_exists_in_stack(t_dlist *stack, int nb)
 	return (FALSE);
 }
 
-static void		fill_stack(t_dlist *stack, char *av)
+static int		fill_stack(t_dlist *stack, char *av)
 {
 	int		*nb;
 
@@ -23,12 +23,23 @@ static void		fill_stack(t_dlist *stack, char *av)
 	nb = (int *)malloc(sizeof(int));
 	*nb = ft_atoi(av);
 	dlist_push_back(stack, nb);
+	return (*nb);
+}
+
+static void		recover_range(t_ps *ps, int nb)
+{
+	static t_bool	first = TRUE;
+
+	ps->range_min = first ? nb : fmin(ps->range_min, nb);
+	ps->range_max = first ? nb : fmax(ps->range_max, nb);
+	first = FALSE;
 }
 
 void			parse(t_ps *ps, t_algo algos[ALGOS_LEN], int ac, char *av[])
 {
 	int		opt;
 	int		i;
+	int		nb;
 
 	opterr = 0;
 	while ((opt = getopt(ac, av, OPT_STR)) != -1)
@@ -38,7 +49,9 @@ void			parse(t_ps *ps, t_algo algos[ALGOS_LEN], int ac, char *av[])
 		error_msg_exit("Missing <int> arguments.");
 	while (i < ac)
 	{
-		fill_stack(ps->stack_a, av[i]);
+		nb = fill_stack(ps->stack_a, av[i]);
+		recover_range(ps, nb);
 		i++;
 	}
+	printf("Range: [%d, %d]\n", ps->range_min, ps->range_max);
 }

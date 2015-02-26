@@ -61,6 +61,8 @@ typedef	struct		s_ps
 	char		options;
 	int			total_ops;
 	int			op_sleep;
+	int			range_min;
+	int			range_max;
 }					t_ps;
 
 /*
