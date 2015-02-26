@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/16 16:22:33 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/26 11:38:49 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/02/26 12:39:39 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_env		*init_env(t_ps *ps)
 		perror("[MLX]: Connexion to server X failed.");
 		exit(-1);
 	}
-	if (!(e->win = mlx_new_window(e->mlx, W_WIDTH, W_HEIGHT, "-- TITLE --")))
+	if (!(e->win = mlx_new_window(e->mlx, W_WIDTH, W_HEIGHT, "--PUSH_SWAP--")))
 	{
 		perror("[MLX]: New window creation failed.");
 		exit(-1);
