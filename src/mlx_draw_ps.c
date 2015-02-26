@@ -10,7 +10,7 @@ static void		draw_stack(t_stack *stack, t_ps *ps, t_env *e, int pos)
 	t_dlist_node	*cursor;
 	int				color;
 
-	cursor = FIRST(stack);
+	cursor = LAST(stack);
 	index = 0;
 	w = (double)STACK_W / ps->total_elem;
 	while (cursor)
@@ -31,7 +31,7 @@ static void		draw_stack(t_stack *stack, t_ps *ps, t_env *e, int pos)
 			x++;
 		}
 		index++;
-		cursor = cursor->next;
+		cursor = cursor->prev;
 	}
 }
 

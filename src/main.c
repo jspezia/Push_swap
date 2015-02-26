@@ -20,6 +20,8 @@ const t_algo	g_algos[ALGOS_LEN] =
 	{"bbs", &bubble_sort},
 	{"ff", &fifty_fifty},
 	{"up", &up_down},
+	{"se", &select_sort},
+	{"wa", &waves_sort},
 	{"im", &interactive_mode}
 };
 

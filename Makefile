@@ -19,7 +19,8 @@ SRCS			=	src/main.c									\
 					src/interactive_mode.c						\
 					src/algo_bubble_sort.c						\
 					src/algo_fifty_fifty.c						\
-					src/algo_up_down.c
+					src/algo_up_down.c							\
+					src/algo_waves.c
 SRCS			+=	src/mlx_env.c								\
 					src/mlx_my_pixel_put_to_image.c				\
 					src/mlx_draw_line.c							\
