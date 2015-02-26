@@ -40,7 +40,6 @@ void			mlx_redraw(t_ps *ps, char *op)
 	t_env			*e;
 
 	e = mlx_env_instance(NULL);
-	// manage_keys(e);
 	clear_image(e->img);
 	draw_stack(ps->stack_a, ps, e, 0);
 	draw_stack(ps->stack_b, ps, e, STACK_H);

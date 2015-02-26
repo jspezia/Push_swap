@@ -38,16 +38,17 @@ typedef struct		s_env
 	void		*win;
 	t_img		*img;
 	t_keys		*keys;
-	t_ps		*ps;
 	int			*palette;
 }					t_env;
+
+void	mlx_redraw(t_ps *ps, char *op);
 
 /*
 **		env.c
 */
 t_env	*mlx_env_instance(t_env *env);
 void	free_env(t_env *e);
-t_env	*init_env(t_ps *ps);
+t_env	*init_env(void);
 
 void	clear_image(t_img *img);
 t_img	*create_new_image(t_env *e, int width, int height);

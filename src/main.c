@@ -23,25 +23,37 @@ static t_algo	g_algos[ALGOS_LEN] =
 	{"im", &interactive_mode}
 };
 
-void			init_ps(t_ps *ps)
+static void		free_all(t_ps *ps, t_env *e)
 {
-	t_env	*e;
+	if ((e = mlx_env_instance(NULL)))
+		free_env(e);
+	//delete stacks
+	free(ps);
+}
 
-	e = init_env(ps);
+static t_ps		*init_ps(void)
+{
+	t_ps	*ps;
+
+	if (!(ps = (t_ps *)ft_memalloc(sizeof(t_ps))))
+		exit(-1);
+	ps->stack_a = dlist_create();
+	ps->stack_b = dlist_create();
+	return (ps);
 }
 
 int				main(int ac, char *av[])
 {
-	t_ps	ps;
+	t_ps	*ps;
+	t_env	*e;
 
 	if (ac < 2)
 		error_msg_exit(USAGE);
-	ft_bzero(&ps, sizeof(t_ps));
-	ps.stack_a = dlist_create();
-	ps.stack_b = dlist_create();
-	parse(&ps, g_algos, ac, av);
-	if (ps.options & OPT_GRAPHIC)
-		init_ps(&ps);
-	resolve(g_ops, &ps, &g_algos[ps.algo]);
+	ps = init_ps();
+	parse(ps, g_algos, ac, av);
+	if (OPT(OPT_GRAPHIC))
+		e = init_env();
+	resolve(g_ops, ps, &g_algos[ps->algo]);
+	free_all(ps, e);
 	return (0);
 }
