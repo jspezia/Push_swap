@@ -20,11 +20,12 @@ SRCS			=	src/main.c									\
 					src/algo_bubble_sort.c						\
 					src/algo_fifty_fifty.c						\
 					src/up_down.c
-SRCS			+=	src/mlx_my_pixel_put_to_image.c				\
+SRCS			+=	src/mlx_env.c								\
+					src/mlx_my_pixel_put_to_image.c				\
 					src/mlx_draw_line.c							\
 					src/mlx_image.c								\
 					src/mlx_draw_ps.c							\
-					src/mlx.c
+					src/mlx_keys.c
 OBJS			=	$(SRCS:src/%.c=obj/%.o)
 
 # COLORS

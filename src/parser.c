@@ -53,5 +53,7 @@ void			parse(t_ps *ps, t_algo algos[ALGOS_LEN], int ac, char *av[])
 		recover_range(ps, nb);
 		i++;
 	}
-	printf("Range: [%d, %d]\n", ps->range_min, ps->range_max);
+	ps->total_elem = COUNT(ps->stack_a);
+	ps->range = ps->range_max - ps->range_min + 1;
+	// printf("Range: %d [%d, %d], N: %d\n", ps->range, ps->range_min, ps->range_max, ps->total_elem);
 }

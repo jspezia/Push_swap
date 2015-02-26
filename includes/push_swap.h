@@ -4,6 +4,7 @@
 # include "libft.h"
 # include "dlist.h"
 # include "ps_mlx.h"
+# include "keys.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
@@ -32,11 +33,12 @@ enum
 	OPT_COLOR = 1 << 1,
 	OPT_INTERACTIVE = 1 << 2,
 	OPT_TIME = 1 << 3,
-	OPT_ALGO = 1 << 4
+	OPT_ALGO = 1 << 4,
+	OPT_GRAPHIC = 1 << 5
 };
 
 # define USAGE			"./push_swap" USAGE_OPTS USAGE_ARGS
-# define USAGE_OPTS		" [-hvci] [-a algo] [-t delay] --"
+# define USAGE_OPTS		" [-hvcig] [-a algo] [-t delay] --"
 # define USAGE_ARGS		" <int> <int> <...>"
 
 # define MAX_OPS		10000000
@@ -51,7 +53,11 @@ enum
 
 # define OP(X)			(call_op(X, ops, ps))
 
-# define OPT_STR		"hvcia:t:"
+
+# define OPT_STR		"hvciga:t:"
+# define OPT(X)			(ps->options & X)
+
+typedef t_dlist		t_stack;
 
 typedef	struct		s_ps
 {
@@ -63,6 +69,8 @@ typedef	struct		s_ps
 	int			op_sleep;
 	int			range_min;
 	int			range_max;
+	int			range;
+	size_t		total_elem;
 }					t_ps;
 
 /*

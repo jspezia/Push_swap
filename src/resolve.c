@@ -24,16 +24,17 @@ void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 {
 	if (ps->total_ops++ > MAX_OPS)
 		error_msg_exit("KO -- MAX_OPS");
-	if (ps->options & OPT_TIME)
-		sleep(ps->op_sleep);
+	if (OPT(OPT_TIME))
+		usleep(ps->op_sleep);
 	ops[op].f(ps);
-	if (ps->options & OPT_VERBOSE)
+	if (OPT(OPT_VERBOSE))
 	{
-		if (!(ps->options & OPT_INTERACTIVE))
+		if (!(OPT(OPT_INTERACTIVE)))
 			ft_putendl(ops[op].name);
 		display_stacks(ps);
 	}
-	mlx_redraw(ps);
+	if (OPT(OPT_GRAPHIC))
+		mlx_redraw(ps, ops[op].name);
 	// printf("%s ", ops[op].name); // trick
 }
 

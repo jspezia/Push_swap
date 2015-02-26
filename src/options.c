@@ -6,12 +6,13 @@ static void		display_help(void)
 	ft_putendl(C(YELLOW)"USAGE"C(NO)"\n\t"USAGE"\n");
 	ft_putendl(C(YELLOW)"OPTIONS"C(NO));
 	ft_putendl("\t-h\t\tDisplay help.");
-	ft_putendl("\t-a algo\t\tLet you specifie an algo {bbs, ff, ...}.");
+	ft_putendl("\t-a algo\t\tLet you specifie an algo {bbs, ff, up, ...}.");
 	ft_putendl("\t-i\t\tInteractive mode.");
-	ft_putendl("\t-t delay	Let you add a delay in seconds between each op.");
+	ft_putendl("\t-g\t\tGraphic display.");
+	ft_putendl("\t-t delay	Let you add a delay in milliseconds between each op.");
 	ft_putendl("\t-v\t\tVerbose. Display stack state at each step.");
 	ft_putendl("\t--\t\tStop options parser, in order to not treat negative values as options.");
-	ft_putendl(C(YELLOW)"SUGGESTED"C(NO)"\n\t./push_swap -v -t1 -- <int> <int> <...>");
+	ft_putendl(C(YELLOW)"SUGGESTED"C(NO)"\n\t./push_swap -g -t200 -- <int> <int> <...>");
 	exit(1);
 }
 
@@ -65,8 +66,10 @@ void			set_options(t_ps *ps, t_algo algos[ALGOS_LEN], char opt)
 		ps->options |= OPT_TIME;
 		if (!ft_str_isint(optarg) || ft_atoi(optarg) < 0)
 			error_msg_exit("-t: invalid argument");
-		ps->op_sleep = ft_atoi(optarg);
+		ps->op_sleep = ft_atoi(optarg) * 1000;
 	}
+	else if (opt == 'g')
+		ps->options |= OPT_GRAPHIC;
 	else if (opt == '?')
 		handle_options_errors(optopt);
 }
