@@ -10,8 +10,8 @@
 # define W_WIDTH	1000
 # define W_HEIGHT	600
 
-# define STACK_W	W_WIDTH
-# define STACK_H	W_HEIGHT / 2
+# define STACK_W	(W_WIDTH)
+# define STACK_H	(W_HEIGHT / 2)
 
 # define FACTOR		1
 # define X_SIZE		4
@@ -42,6 +42,7 @@ typedef struct		s_env
 	t_img		*img;
 	t_keys		*keys;
 	t_ps		*ps;
+	int			*palette;
 }					t_env;
 
 /*

@@ -5,6 +5,7 @@
 # include "dlist.h"
 # include "ps_mlx.h"
 # include "keys.h"
+# include "color.h"
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>

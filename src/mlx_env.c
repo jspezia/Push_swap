@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/16 16:22:33 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/26 11:14:19 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/02/26 11:38:49 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ void		free_env(t_env *e)
 {
 	free(e->img);
 	free(e->keys);
+	free(e->palette);
 	free(e);
 }
 
@@ -49,5 +50,6 @@ t_env		*init_env(t_ps *ps)
 	if (!(e->keys = init_keys()))
 		exit(-1);
 	e->ps = ps;
+	e->palette = gen_gradient_palette(hex_to_rgb(STACK_A_COL1), hex_to_rgb(STACK_A_COL2), PALETTE_SIZE);
 	return (mlx_env_instance(e));
 }

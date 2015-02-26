@@ -26,6 +26,9 @@ SRCS			+=	src/mlx_env.c								\
 					src/mlx_image.c								\
 					src/mlx_draw_ps.c							\
 					src/mlx_keys.c
+SRCS			+=	src/color_calc.c							\
+					src/color_convert.c							\
+					src/color_gradient.c
 OBJS			=	$(SRCS:src/%.c=obj/%.o)
 
 # COLORS
