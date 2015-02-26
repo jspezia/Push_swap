@@ -68,7 +68,7 @@ enum
 # define STACK_COL1		COL_RED
 # define STACK_COL2		COL_BLUE
 # define G_MODE(X)		(ps->graphic_mode == X)
-
+# define EXIT_DELAY		15
 /*
 **		OPS
 */
