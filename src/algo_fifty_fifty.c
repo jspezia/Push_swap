@@ -16,8 +16,8 @@ void			fill_stack_b(t_ps *ps)
 
 void			fifty_fifty(t_ps *ps)
 {
-	t_dlist_node	*node_a;
-	t_dlist_node	*node_b;
+	t_stack_node	*node_a;
+	t_stack_node	*node_b;
 	int				min_a;
 	int				min_b;
 
@@ -81,30 +81,3 @@ void			fifty_fifty(t_ps *ps)
 	while (!is_stack_sorted(ps->stack_a))
 		OP(RA);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -98,7 +98,7 @@ enum
 	OPS_LEN
 };
 
-extern t_op		g_ops[OPS_LEN];
+extern const t_op		g_ops[OPS_LEN];
 
 void			sa(t_ps *ps);
 void			sb(t_ps *ps);
@@ -148,7 +148,7 @@ enum
 	ALGOS_LEN
 };
 
-extern t_algo	g_algos[ALGOS_LEN];
+extern const t_algo	g_algos[ALGOS_LEN];
 
 void			bubble_sort(t_ps *ps);
 void			fifty_fifty(t_ps *ps);

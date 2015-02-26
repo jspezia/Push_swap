@@ -1,8 +1,10 @@
 #include "push_swap.h"
 
-void			print_stack(t_dlist *dlist)
+//not compile --> COLORS
+
+void			print_stack(t_stack *dlist)
 {
-	t_dlist_node	*cursor;
+	t_stack_node	*cursor;
 
 	cursor = dlist->last;
 	while (cursor)

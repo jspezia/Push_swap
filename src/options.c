@@ -1,5 +1,7 @@
 #include "push_swap.h"
 
+//not compile --> COLORS
+
 static void		display_help(void)
 {
 	ft_putendl(C(YELLOW)"NAME"C(NO)"\n\tpush_swap\n");

@@ -1,7 +1,6 @@
 #include "push_swap.h"
 
-//const
-t_op		g_ops[OPS_LEN] =
+const t_op		g_ops[OPS_LEN] =
 {
 	{"sa", &sa},
 	{"sb", &sb},
@@ -16,8 +15,7 @@ t_op		g_ops[OPS_LEN] =
 	{"rrr", &rrr}
 };
 
-//const
-t_algo		g_algos[ALGOS_LEN] =
+const t_algo	g_algos[ALGOS_LEN] =
 {
 	{"bbs", &bubble_sort},
 	{"ff", &fifty_fifty},

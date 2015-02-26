@@ -1,7 +1,5 @@
 #include "push_swap.h"
 
-extern t_algo	g_algos[ALGOS_LEN];
-
 static t_bool	already_exists_in_stack(t_stack *stack, int nb)
 {
 	t_stack_node	*cursor;
@@ -57,5 +55,4 @@ void			parse(t_ps *ps, int ac, char *av[])
 	}
 	ps->total_elem = COUNT(ps->stack_a);
 	ps->range = ps->range_max - ps->range_min + 1;
-	// printf("Range: %d [%d, %d], N: %d\n", ps->range, ps->range_min, ps->range_max, ps->total_elem);
 }
