@@ -5,20 +5,20 @@ static void		print_prompt(void)
 	ft_putstr("$> ");
 }
 
-static void		recover_and_call_op(char *op_name, t_op ops[OPS_LEN], t_ps *ps)
+static void		recover_and_call_op(char *op_name, t_ps *ps)
 {
 	int		i;
 
 	i = 0;
 	while (i < OPS_LEN)
 	{
-		if (ft_strequ(op_name, ops[i].name))
+		if (ft_strequ(op_name, g_ops[i].name))
 			OP(i);
 		i++;
 	}
 }
 
-void			interactive_mode(t_op ops[OPS_LEN], t_ps *ps)
+void			interactive_mode(t_ps *ps)
 {
 	char	*line;
 	char	**tab;
@@ -36,7 +36,7 @@ void			interactive_mode(t_op ops[OPS_LEN], t_ps *ps)
 		tmp = tab;
 		while (*tab)
 		{
-			recover_and_call_op(*tab, ops, ps);
+			recover_and_call_op(*tab, ps);
 			tab++;
 		}
 		free(line);

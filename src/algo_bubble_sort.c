@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void			bubble_sort(t_op ops[OPS_LEN], t_ps *ps)
+void			bubble_sort(t_ps *ps)
 {
 	t_dlist_node	*cursor;
 	int				min;

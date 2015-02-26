@@ -1,6 +1,7 @@
 #include "push_swap.h"
 
-static t_op		g_ops[OPS_LEN] =
+//const
+t_op		g_ops[OPS_LEN] =
 {
 	{"sa", &sa},
 	{"sb", &sb},
@@ -15,7 +16,8 @@ static t_op		g_ops[OPS_LEN] =
 	{"rrr", &rrr}
 };
 
-static t_algo	g_algos[ALGOS_LEN] =
+//const
+t_algo		g_algos[ALGOS_LEN] =
 {
 	{"bbs", &bubble_sort},
 	{"ff", &fifty_fifty},
@@ -51,10 +53,10 @@ int				main(int ac, char *av[])
 	if (ac < 2)
 		error_msg_exit(USAGE);
 	ps = init_ps();
-	parse(ps, g_algos, ac, av);
+	parse(ps, ac, av);
 	if (OPT(OPT_GRAPHIC))
 		e = init_env();
-	resolve(g_ops, ps, &g_algos[ps->algo]);
+	resolve(ps);
 	free_all(ps, e);
 	return (0);
 }
