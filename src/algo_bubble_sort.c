@@ -16,7 +16,7 @@ void			bubble_sort(t_ps *ps)
 	}
 }
 
-void			select_sort(t_op ops[OPS_LEN], t_ps *ps)
+void			select_sort(t_ps *ps)
 {
 	t_dlist_node	*cursor_a;
 	t_dlist_node	*cursor_b;

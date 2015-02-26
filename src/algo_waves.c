@@ -1,8 +1,8 @@
 #include "push_swap.h"
 
-int			compt_waves(t_dlist *stack)
+int			compt_waves(t_stack *stack)
 {
-	t_dlist_node 	*cursor;
+	t_stack_node 	*cursor;
 	int				i;
 
 	cursor = stack->first;
@@ -16,9 +16,9 @@ int			compt_waves(t_dlist *stack)
 	return (i);
 }
 
-int			compt_waves_reverse(t_dlist *stack)
+int			compt_waves_reverse(t_stack *stack)
 {
-	t_dlist_node 	*cursor;
+	t_stack_node 	*cursor;
 	int				i;
 
 	i = 0;
@@ -34,10 +34,10 @@ int			compt_waves_reverse(t_dlist *stack)
 	return (i);
 }
 
-void		waves_sort(t_op ops[OPS_LEN], t_ps *ps)
+void		waves_sort(t_ps *ps)
 {
-	t_dlist_node	*node_a;
-	t_dlist_node	*node_b;
+	t_stack_node	*node_a;
+	t_stack_node	*node_b;
 
 	int				i;
 	int				waves_a;
@@ -49,12 +49,11 @@ void		waves_sort(t_op ops[OPS_LEN], t_ps *ps)
 	{
 		while (i != (int)(ps->total_elem) / 610 + 1)
 		{
-			up(ops, ps, ps->range_min);
+			up(ps, ps->range_min);
 			i++;
 			waves_a = compt_waves(ps->stack_a);
 			ft_printf("%d waves, i = %d, %d ps->total_ops\n", waves_a, i, ps->total_ops);
 		}
-
 		while (waves_a > waves_b)
 		{
 			OP(PB);
@@ -97,9 +96,6 @@ void		waves_sort(t_op ops[OPS_LEN], t_ps *ps)
 				nb_waves = compt_waves_reverse(ps->stack_b);
 			}
 		}
-
-
-
 		waves_a = compt_waves(ps->stack_a);
 		waves_b = compt_waves_reverse(ps->stack_b);
 		ft_printf("%d waves_a,  %d waves_b\n", waves_a, waves_b);
