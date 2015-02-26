@@ -40,11 +40,19 @@ void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 
 void			resolve(t_op ops[OPS_LEN], t_ps *ps, t_algo *algo)
 {
+	char	*tmp;
+
 	if (OPT(OPT_GRAPHIC))
 		mlx_redraw(ps, "Welcome");
 	algo->f(ops, ps);
 	// printf("\n"); // trick end
 	if (is_resolved(ps))
 		ft_printf("Sorted in "C(GREEN)"%d"C(NO)" ops!\n", ps->total_ops); // not to print
+	if (OPT(OPT_GRAPHIC))
+	{
+		tmp = ft_strjoin3("Sorted in ", ft_itoa(ps->total_ops), " ops!");
+		mlx_redraw(ps, tmp);
+		free(tmp);
+	}
 	sleep(200);
 }
