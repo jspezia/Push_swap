@@ -40,7 +40,8 @@ void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 
 void			resolve(t_op ops[OPS_LEN], t_ps *ps, t_algo *algo)
 {
-	mlx_redraw(ps, "Welcome");
+	if (OPT(OPT_GRAPHIC))
+		mlx_redraw(ps, "Welcome");
 	algo->f(ops, ps);
 	// printf("\n"); // trick end
 	if (is_resolved(ps))
