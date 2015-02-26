@@ -126,13 +126,20 @@ enum
 	FF,
 	UP,
 	IM,
+	SE,
+	WA,
 	ALGOS_LEN
 };
 
 void			bubble_sort(t_op ops[OPS_LEN], t_ps *ps);
+void			select_sort(t_op ops[OPS_LEN], t_ps *ps);
 void			fifty_fifty(t_op ops[OPS_LEN], t_ps *ps);
 void			interactive_mode(t_op ops[OPS_LEN], t_ps *ps);
 void			up_down(t_op ops[OPS_LEN], t_ps *ps);
+void			waves_sort(t_op ops[OPS_LEN], t_ps *ps);
+void			up(t_op ops[OPS_LEN], t_ps *ps, int min);
+
+
 
 /*
 **		resolve.c

@@ -43,6 +43,8 @@ int				main(int ac, char *av[])
 		{"bbs", &bubble_sort},
 		{"ff", &fifty_fifty},
 		{"up", &up_down},
+		{"se", &select_sort},
+		{"wa", &waves_sort},
 		{"im", &interactive_mode}
 	};
 
