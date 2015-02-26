@@ -27,7 +27,8 @@ static void		free_all(t_ps *ps, t_env *e)
 {
 	if ((e = mlx_env_instance(NULL)))
 		free_env(e);
-	//delete stacks
+	dlist_clear_destroy(ps->stack_a);
+	dlist_clear_destroy(ps->stack_b);
 	free(ps);
 }
 
