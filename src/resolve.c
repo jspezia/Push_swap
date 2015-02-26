@@ -41,7 +41,7 @@ void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 		if (G_MODE(0)
 			|| (G_MODE(1) && !(op_index % (ps->total_elem / 30)))
 			|| (G_MODE(2) && CURR_VAL(FIRST(ps->stack_a)) == ps->range_min))
-		mlx_redraw(ps, ops[op].name);
+			mlx_redraw(ps, ops[op].name);
 	}
 }
 

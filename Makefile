@@ -55,7 +55,7 @@ $(LIB):
 obj:
 	@mkdir -p obj
 
-obj/%.o: src/%.c ./includes/push_swap.h
+obj/%.o: src/%.c ./includes/*.h
 	@$(CC) $(FLAGS) -c -o $@ $< $(INCLUDES)
 	@echo "Linking" [ $< ] $(OK)
 

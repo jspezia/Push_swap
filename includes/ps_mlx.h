@@ -7,14 +7,11 @@
 # include "libft.h"
 # include "keys.h"
 
-# define W_WIDTH	1000
-# define W_HEIGHT	600
+# define W_WIDTH	2000
+# define W_HEIGHT	200
 
 # define STACK_W	(W_WIDTH)
 # define STACK_H	(W_HEIGHT / 2)
-
-# define FACTOR		1
-# define X_SIZE		4
 
 typedef struct		s_img
 {
