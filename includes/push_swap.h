@@ -72,7 +72,8 @@ enum
 /*
 **		OPS
 */
-# define OP(X)			(call_op(X, ops, ps))
+
+# define OP(X)			(call_op(X, ps))
 # define MAX_OPS		1000000000
 
 typedef struct		s_op
@@ -97,6 +98,8 @@ enum
 	OPS_LEN
 };
 
+extern const t_op		g_ops[OPS_LEN];
+
 void			sa(t_ps *ps);
 void			sb(t_ps *ps);
 void			ss(t_ps *ps);
@@ -109,12 +112,13 @@ void			rra(t_ps *ps);
 void			rrb(t_ps *ps);
 void			rrr(t_ps *ps);
 
-typedef t_dlist		t_stack;
+typedef t_dlist			t_stack;
+typedef t_dlist_node	t_stack_node;
 
 typedef	struct		s_ps
 {
-	t_dlist		*stack_a;
-	t_dlist		*stack_b;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
 	int			algo;
 	char		options;
 	int			total_ops;
@@ -132,7 +136,7 @@ typedef	struct		s_ps
 typedef struct		s_algo
 {
 	char		*name;
-	void		(*f)(t_op ops[OPS_LEN], t_ps *ps);
+	void		(*f)(t_ps *ps);
 }					t_algo;
 
 enum
@@ -146,44 +150,42 @@ enum
 	ALGOS_LEN
 };
 
-void			bubble_sort(t_op ops[OPS_LEN], t_ps *ps);
-void			select_sort(t_op ops[OPS_LEN], t_ps *ps);
-void			fifty_fifty(t_op ops[OPS_LEN], t_ps *ps);
-void			interactive_mode(t_op ops[OPS_LEN], t_ps *ps);
-void			up_down(t_op ops[OPS_LEN], t_ps *ps);
-void			waves_sort(t_op ops[OPS_LEN], t_ps *ps);
-void			up(t_op ops[OPS_LEN], t_ps *ps, int min);
 
+extern const t_algo	g_algos[ALGOS_LEN];
 
+void			bubble_sort(t_ps *ps);
+void			fifty_fifty(t_ps *ps);
+void			interactive_mode(t_ps *ps);
+void			up_down(t_ps *ps);
 
 /*
 **		resolve.c
 */
 t_bool			is_resolved(t_ps *ps);
-int				find_min(t_dlist *stack);
-void			resolve(t_op ops[OPS_LEN], t_ps *ps, t_algo *algo);
-void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps);
+int				find_min(t_stack *stack);
+void			call_op(int op, t_ps *ps);
+void			resolve(t_ps *ps);
 
 /*
 **		check_sort.c
 */
-t_bool			is_stack_sorted(t_dlist *stack);
-t_bool			is_stack_reverse_sorted(t_dlist *stack);
+t_bool			is_stack_sorted(t_stack *stack);
+t_bool			is_stack_reverse_sorted(t_stack *stack);
 
 /*
 **		parser.c
 */
-void			parse(t_ps *ps, t_algo algos[ALGOS_LEN], int ac, char *av[]);
+void			parse(t_ps *ps, int ac, char *av[]);
 
 /*
 **		options.c
 */
-void			set_options(t_ps *ps, t_algo algos[ALGOS_LEN], char opt);
+void			set_options(t_ps *ps, char opt);
 
 /*
 **		print.c
 */
-void			print_stack(t_dlist *dlist);
+void			print_stack(t_stack *dlist);
 void			display_stacks(t_ps *ps);
 
 #endif

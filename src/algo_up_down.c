@@ -1,6 +1,7 @@
 #include "push_swap.h"
 
-void	up(t_op ops[OPS_LEN], t_ps *ps, int min)
+
+static	void	up(t_ps *ps, int min)
 {
 	t_dlist_node	*node_a;
 	t_dlist_node	*node_b;
@@ -51,11 +52,11 @@ void	up(t_op ops[OPS_LEN], t_ps *ps, int min)
 	}
 }
 
-void			up_down(t_op ops[OPS_LEN], t_ps *ps)
+void			up_down(t_ps *ps)
 {
 	int				min;
 
 	min = find_min(ps->stack_a);
 	while (!is_resolved(ps) && ps->total_ops < MAX_OPS)
-		up(ops, ps, min);
+		up(ps, min);
 }

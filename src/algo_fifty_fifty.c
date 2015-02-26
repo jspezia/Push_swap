@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void			fill_stack_b(t_op ops[OPS_LEN], t_ps *ps)
+void			fill_stack_b(t_ps *ps)
 {
 	int		count;
 	int		count_a;
@@ -14,14 +14,14 @@ void			fill_stack_b(t_op ops[OPS_LEN], t_ps *ps)
 	}
 }
 
-void			fifty_fifty(t_op ops[OPS_LEN], t_ps *ps)
+void			fifty_fifty(t_ps *ps)
 {
-	t_dlist_node	*node_a;
-	t_dlist_node	*node_b;
+	t_stack_node	*node_a;
+	t_stack_node	*node_b;
 	int				min_a;
 	int				min_b;
 
-	fill_stack_b(ops, ps);
+	fill_stack_b(ps);
 	min_a = FIRST(ps->stack_a) ? find_min(ps->stack_a) : 0;
 	min_b = FIRST(ps->stack_b) ? find_min(ps->stack_b) : 0;
 	while (!is_stack_sorted(ps->stack_b))
@@ -81,30 +81,3 @@ void			fifty_fifty(t_op ops[OPS_LEN], t_ps *ps)
 	while (!is_stack_sorted(ps->stack_a))
 		OP(RA);
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

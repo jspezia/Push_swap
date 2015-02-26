@@ -1,5 +1,7 @@
 #include "push_swap.h"
 
+//not compile --> COLORS
+
 static void		display_help(void)
 {
 	ft_putendl(C(YELLOW)"NAME"C(NO)"\n\tpush_swap\n");
@@ -22,14 +24,14 @@ static void		set_graphic_mode(t_ps *ps, char *optarg)
 	ps->options |= OPT_GRAPHIC;
 }
 
-static void		set_algo(t_ps *ps, t_algo algos[ALGOS_LEN], char *optarg)
+static void		set_algo(t_ps *ps, char *optarg)
 {
 	int		i;
 
 	i = 0;
 	while (i < ALGOS_LEN)
 	{
-		if (!ft_strcmp(optarg, algos[i].name))
+		if (!ft_strcmp(optarg, g_algos[i].name))
 		{
 			ps->algo = i;
 			if (i == IM)
@@ -52,10 +54,10 @@ static void		handle_options_errors(char optopt)
 	exit(-1);
 }
 
-void			set_options(t_ps *ps, t_algo algos[ALGOS_LEN], char opt)
+void			set_options(t_ps *ps, char opt)
 {
 	if (opt == 'a')
-		set_algo(ps, algos, optarg);
+		set_algo(ps, optarg);
 	else if (opt == 'h')
 		display_help();
 	else if (opt == 'v')

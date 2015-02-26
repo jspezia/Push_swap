@@ -1,8 +1,8 @@
 #include "push_swap.h"
 
-static t_bool	already_exists_in_stack(t_dlist *stack, int nb)
+static t_bool	already_exists_in_stack(t_stack *stack, int nb)
 {
-	t_dlist_node	*cursor;
+	t_stack_node	*cursor;
 
 	cursor = stack->first;
 	while (cursor)
@@ -14,7 +14,7 @@ static t_bool	already_exists_in_stack(t_dlist *stack, int nb)
 	return (FALSE);
 }
 
-static int		fill_stack(t_dlist *stack, char *av)
+static int		fill_stack(t_stack *stack, char *av)
 {
 	int		*nb;
 
@@ -35,7 +35,7 @@ static void		recover_range(t_ps *ps, int nb)
 	first = FALSE;
 }
 
-void			parse(t_ps *ps, t_algo algos[ALGOS_LEN], int ac, char *av[])
+void			parse(t_ps *ps, int ac, char *av[])
 {
 	int		opt;
 	int		i;
@@ -43,7 +43,7 @@ void			parse(t_ps *ps, t_algo algos[ALGOS_LEN], int ac, char *av[])
 
 	opterr = 0;
 	while ((opt = getopt(ac, av, OPT_STR)) != -1)
-		set_options(ps, algos, opt);
+		set_options(ps, opt);
 	i = optind;
 	if (i == ac)
 		error_msg_exit("Missing <int> arguments.");
@@ -55,5 +55,4 @@ void			parse(t_ps *ps, t_algo algos[ALGOS_LEN], int ac, char *av[])
 	}
 	ps->total_elem = COUNT(ps->stack_a);
 	ps->range = ps->range_max - ps->range_min + 1;
-	// printf("Range: %d [%d, %d], N: %d\n", ps->range, ps->range_min, ps->range_max, ps->total_elem);
 }

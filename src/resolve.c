@@ -5,10 +5,10 @@ t_bool			is_resolved(t_ps *ps)
 	return ((!ps->stack_b->count) && is_stack_sorted(ps->stack_a));
 }
 
-int				find_min(t_dlist *stack)
+int				find_min(t_stack *stack)
 {
 	int				min;
-	t_dlist_node	*cursor;
+	t_stack_node	*cursor;
 
 	cursor = FIRST(stack);
 	min = cursor ? CURR_VAL(cursor) : 0;
@@ -20,7 +20,7 @@ int				find_min(t_dlist *stack)
 	return (min);
 }
 
-void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
+void			call_op(int op, t_ps *ps)
 {
 	static size_t	op_index = 0;
 
@@ -29,11 +29,11 @@ void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 		error_msg_exit("KO -- MAX_OPS");
 	if (OPT(OPT_TIME))
 		usleep(ps->op_sleep);
-	ops[op].f(ps);
+	g_ops[op].f(ps);
 	if (OPT(OPT_VERBOSE))
 	{
 		if (!(OPT(OPT_INTERACTIVE)))
-			ft_putendl(ops[op].name);
+			ft_putendl(g_ops[op].name);
 		display_stacks(ps);
 	}
 	if (OPT(OPT_GRAPHIC))
@@ -41,17 +41,17 @@ void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 		if (G_MODE(0)
 			|| (G_MODE(1) && !(op_index % (ps->total_elem / 30)))
 			|| (G_MODE(2) && CURR_VAL(FIRST(ps->stack_a)) == ps->range_min))
-			mlx_redraw(ps, ops[op].name);
+			mlx_redraw(ps, g_ops[op].name);
 	}
 }
 
-void			resolve(t_op ops[OPS_LEN], t_ps *ps, t_algo *algo)
+void			resolve(t_ps *ps)
 {
 	char	*tmp;
 
 	if (OPT(OPT_GRAPHIC))
 		mlx_redraw(ps, "Welcome");
-	algo->f(ops, ps);
+	g_algos[ps->algo].f(ps);
 	// printf("\n"); // trick end
 	if (is_resolved(ps))
 	{
