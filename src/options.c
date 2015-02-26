@@ -16,6 +16,12 @@ static void		display_help(void)
 	exit(1);
 }
 
+static void		set_graphic_mode(t_ps *ps, char *optarg)
+{
+	ps->graphic_mode = optarg ? ft_atoi(optarg) : 0;
+	ps->options |= OPT_GRAPHIC;
+}
+
 static void		set_algo(t_ps *ps, t_algo algos[ALGOS_LEN], char *optarg)
 {
 	int		i;
@@ -69,7 +75,7 @@ void			set_options(t_ps *ps, t_algo algos[ALGOS_LEN], char opt)
 		ps->op_sleep = ft_atoi(optarg) * 1000;
 	}
 	else if (opt == 'g')
-		ps->options |= OPT_GRAPHIC;
+		set_graphic_mode(ps, optarg);
 	else if (opt == '?')
 		handle_options_errors(optopt);
 }

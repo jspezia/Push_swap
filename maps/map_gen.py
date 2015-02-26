@@ -3,4 +3,12 @@
 import sys;
 import random;
 
-print ' '.join([str(a) for a in random.sample(xrange(sys.argv[1], sys.argv[2]), sys.argv[3])]);
+def main():
+	range_min = (int)(sys.argv[1]);
+	range_max = (int)(sys.argv[2]);
+	n_elem = (int)(sys.argv[3]);
+
+	print ' '.join([str(a) for a in random.sample(xrange(range_min, range_max), n_elem)]);
+
+if __name__ == "__main__":
+    main()

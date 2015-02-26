@@ -39,10 +39,10 @@ enum
 };
 
 # define USAGE			"./push_swap" USAGE_OPTS USAGE_ARGS
-# define USAGE_OPTS		" [-hvcig] [-a algo] [-t delay] --"
+# define USAGE_OPTS		" [-hvci] [-g [mode]] [-a algo] [-t delay] --"
 # define USAGE_ARGS		" <int> <int> <...>"
 
-# define MAX_OPS		10000000
+# define MAX_OPS		1000000000
 # define OP_SLEEP		1
 
 # define FIRST(X)		(X->first)
@@ -52,10 +52,12 @@ enum
 # define NEXT_VAL(X)	(*(int *)X->next->value)
 # define PREV_VAL(X)	(*(int *)X->prev->value)
 
+# define G_MODE(X)		(ps->graphic_mode == X)
+
 # define OP(X)			(call_op(X, ops, ps))
 
 
-# define OPT_STR		"hvciga:t:"
+# define OPT_STR		"hvcig::a:t:"
 # define OPT(X)			(ps->options & X)
 
 typedef t_dlist		t_stack;
@@ -68,6 +70,7 @@ typedef	struct		s_ps
 	char		options;
 	int			total_ops;
 	int			op_sleep;
+	int			graphic_mode;
 	int			range_min;
 	int			range_max;
 	int			range;
