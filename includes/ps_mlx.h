@@ -7,14 +7,11 @@
 # include "libft.h"
 # include "keys.h"
 
-# define W_WIDTH	1000
-# define W_HEIGHT	600
+# define W_WIDTH	2000
+# define W_HEIGHT	200
 
 # define STACK_W	(W_WIDTH)
 # define STACK_H	(W_HEIGHT / 2)
-
-# define FACTOR		1
-# define X_SIZE		4
 
 typedef struct		s_img
 {
@@ -41,16 +38,17 @@ typedef struct		s_env
 	void		*win;
 	t_img		*img;
 	t_keys		*keys;
-	t_ps		*ps;
 	int			*palette;
 }					t_env;
+
+void	mlx_redraw(t_ps *ps, char *op);
 
 /*
 **		env.c
 */
 t_env	*mlx_env_instance(t_env *env);
 void	free_env(t_env *e);
-t_env	*init_env(t_ps *ps);
+t_env	*init_env(void);
 
 void	clear_image(t_img *img);
 t_img	*create_new_image(t_env *e, int width, int height);

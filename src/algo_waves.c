@@ -24,6 +24,7 @@ int			compt_waves_reverse(t_dlist *stack)
 	i = 0;
 	if (!(cursor = stack->first))
 		return (i);
+	i++;
 	while (cursor->next)
 	{
 		if (CURR_VAL(cursor) < NEXT_VAL(cursor))
@@ -46,13 +47,13 @@ void		waves_sort(t_op ops[OPS_LEN], t_ps *ps)
 	waves_b = 0;
 	while (!is_resolved(ps) && ps->total_ops < MAX_OPS)
 	{
-		// while (i != 5)
-		// {
-		// 	up(ops, ps, ps->range_min);
-		// 	i++;
+		while (i != (int)(ps->total_elem) / 610 + 1)
+		{
+			up(ops, ps, ps->range_min);
+			i++;
 			waves_a = compt_waves(ps->stack_a);
-		// 	ft_printf("%d waves,  %d ps->total_ops\n", waves_a, ps->total_ops);
-		// }
+			ft_printf("%d waves, i = %d, %d ps->total_ops\n", waves_a, i, ps->total_ops);
+		}
 
 		while (waves_a > waves_b)
 		{
@@ -77,28 +78,24 @@ void		waves_sort(t_op ops[OPS_LEN], t_ps *ps)
 		// 	node_b = FIRST(ps->stack_b);
 		// }
 
-
+		int		nb_waves;
 		node_b = FIRST(ps->stack_b);
 		node_a = LAST(ps->stack_a);
 		while (node_b)
 		{
-			if (CURR_VAL(node_b) > CURR_VAL(node_a))
+			nb_waves = compt_waves_reverse(ps->stack_b);
+			while (nb_waves != waves_b + 1)
 			{
-				ft_putendl(node_b > node_a);
-				OP(PA);
+				if (CURR_VAL(node_b) > CURR_VAL(node_a))
+					OP(PA);
+				else if (CURR_VAL(node_a) > CURR_VAL(ps->stack_a->first))
+					OP(PA);
+				else
+					OP(RRA);
+				node_b = FIRST(ps->stack_b);
+				node_a = LAST(ps->stack_a);
+				nb_waves = compt_waves_reverse(ps->stack_b);
 			}
-			else if (CURR_VAL(node_b) < CURR_VAL(node_a))
-			{
-				ft_putendl(node_b < node_a);
-				OP(RRA);
-			}
-			else if (CURR_VAL(node_a) > CURR_VAL(FIRST(ps->stack_a)))
-			{
-				ft_putendl(node_b > FIRST(node_a));
-				OP(PA);
-			}
-			node_a = LAST(ps->stack_a);
-			node_b = FIRST(ps->stack_b);
 		}
 
 

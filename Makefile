@@ -1,5 +1,5 @@
 CC				=	gcc -O2 -g
-FLAGS			=	#-Wall -Wextra -Werror
+FLAGS			=	-Wall -Wextra -Werror
 NAME			=	push_swap
 LIB				=	libft/libft.a
 LIB_PATH		=	libft/
@@ -56,7 +56,7 @@ $(LIB):
 obj:
 	@mkdir -p obj
 
-obj/%.o: src/%.c ./includes/push_swap.h
+obj/%.o: src/%.c ./includes/*.h
 	@$(CC) $(FLAGS) -c -o $@ $< $(INCLUDES)
 	@echo "Linking" [ $< ] $(OK)
 

@@ -41,7 +41,7 @@ void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 		if (G_MODE(0)
 			|| (G_MODE(1) && !(op_index % (ps->total_elem / 30)))
 			|| (G_MODE(2) && CURR_VAL(FIRST(ps->stack_a)) == ps->range_min))
-		mlx_redraw(ps, ops[op].name);
+			mlx_redraw(ps, ops[op].name);
 	}
 }
 
@@ -54,12 +54,16 @@ void			resolve(t_op ops[OPS_LEN], t_ps *ps, t_algo *algo)
 	algo->f(ops, ps);
 	// printf("\n"); // trick end
 	if (is_resolved(ps))
-		ft_printf("Sorted in "C(GREEN)"%d"C(NO)" ops!\n", ps->total_ops); // not to print
-	if (OPT(OPT_GRAPHIC))
 	{
-		tmp = ft_strjoin3("Sorted in ", ft_itoa(ps->total_ops), " ops!");
-		mlx_redraw(ps, tmp);
-		free(tmp);
+		ft_printf("Sorted in "C(GREEN)"%d"C(NO)" ops!\n", ps->total_ops); // not to print
+		if (OPT(OPT_GRAPHIC))
+		{
+			tmp = ft_strjoin3("Sorted in ", ft_itoa(ps->total_ops), " ops!");
+			mlx_redraw(ps, tmp);
+			free(tmp);
+			sleep(EXIT_DELAY);
+		}
 	}
-	sleep(200);
+	else
+		ft_putendl("Failed sorting!");
 }

@@ -28,6 +28,12 @@
 # define CB(X)			"\x1B[48;1;"X"m"
 # define CBNO			"\x1B[0m"
 
+/*
+**		OPTIONS
+*/
+# define OPT_STR		"hvcig::a:t:"
+# define OPT(X)			(ps->options & X)
+
 enum
 {
 	OPT_VERBOSE = 1 << 0,
@@ -38,13 +44,16 @@ enum
 	OPT_GRAPHIC = 1 << 5
 };
 
+/*
+**		USAGE
+*/
 # define USAGE			"./push_swap" USAGE_OPTS USAGE_ARGS
 # define USAGE_OPTS		" [-hvci] [-g [mode]] [-a algo] [-t delay] --"
 # define USAGE_ARGS		" <int> <int> <...>"
 
-# define MAX_OPS		1000000000
-# define OP_SLEEP		1
-
+/*
+**		STACK MACROS
+*/
 # define FIRST(X)		(X->first)
 # define LAST(X)		(X->last)
 # define COUNT(X)		(X->count)
@@ -52,34 +61,20 @@ enum
 # define NEXT_VAL(X)	(*(int *)X->next->value)
 # define PREV_VAL(X)	(*(int *)X->prev->value)
 
-# define G_MODE(X)		(ps->graphic_mode == X)
-
-# define OP(X)			(call_op(X, ops, ps))
-
-
-# define OPT_STR		"hvcig::a:t:"
-# define OPT(X)			(ps->options & X)
-
-typedef t_dlist		t_stack;
-
-typedef	struct		s_ps
-{
-	t_dlist		*stack_a;
-	t_dlist		*stack_b;
-	int			algo;
-	char		options;
-	int			total_ops;
-	int			op_sleep;
-	int			graphic_mode;
-	int			range_min;
-	int			range_max;
-	int			range;
-	size_t		total_elem;
-}					t_ps;
-
 /*
-**		ops
+**		GRAPHIC MODE
 */
+# define PALETTE_SIZE	300
+# define STACK_COL1		COL_RED
+# define STACK_COL2		COL_BLUE
+# define G_MODE(X)		(ps->graphic_mode == X)
+# define EXIT_DELAY		15
+/*
+**		OPS
+*/
+# define OP(X)			(call_op(X, ops, ps))
+# define MAX_OPS		1000000000
+
 typedef struct		s_op
 {
 	char		*name;
@@ -114,8 +109,25 @@ void			rra(t_ps *ps);
 void			rrb(t_ps *ps);
 void			rrr(t_ps *ps);
 
+typedef t_dlist		t_stack;
+
+typedef	struct		s_ps
+{
+	t_dlist		*stack_a;
+	t_dlist		*stack_b;
+	int			algo;
+	char		options;
+	int			total_ops;
+	int			op_sleep;
+	int			graphic_mode;
+	int			range_min;
+	int			range_max;
+	int			range;
+	size_t		total_elem;
+}					t_ps;
+
 /*
-**		algos
+**		ALGO
 */
 typedef struct		s_algo
 {

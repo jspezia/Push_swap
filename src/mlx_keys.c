@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 17:52:18 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/26 11:01:23 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/02/26 18:04:32 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,11 +47,9 @@ void		manage_keys(t_env *e)
 {
 	if (e->keys->up == TRUE)
 	{
-		e->ps->op_sleep++;
 	}
 	if (e->keys->down == TRUE)
 	{
-		e->ps->op_sleep--;
 	}
 	if (e->keys->right == TRUE)
 	{
