@@ -22,6 +22,9 @@ int				find_min(t_dlist *stack)
 
 void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 {
+	static size_t	op_index = 0;
+
+	op_index++;
 	if (ps->total_ops++ > MAX_OPS)
 		error_msg_exit("KO -- MAX_OPS");
 	if (OPT(OPT_TIME))
@@ -34,8 +37,12 @@ void			call_op(int op, t_op ops[OPS_LEN], t_ps *ps)
 		display_stacks(ps);
 	}
 	if (OPT(OPT_GRAPHIC))
+	{
+		if (G_MODE(0)
+			|| (G_MODE(1) && !(op_index % (ps->total_elem / 30)))
+			|| (G_MODE(2) && CURR_VAL(FIRST(ps->stack_a)) == ps->range_min))
 		mlx_redraw(ps, ops[op].name);
-	// printf("%s ", ops[op].name); // trick
+	}
 }
 
 void			resolve(t_op ops[OPS_LEN], t_ps *ps, t_algo *algo)
