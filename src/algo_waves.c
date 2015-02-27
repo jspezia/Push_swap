@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-int			compt_waves(t_stack *stack)
+static int		compt_waves(t_stack *stack)
 {
 	t_stack_node	*cursor;
 	int				i;
@@ -16,7 +16,7 @@ int			compt_waves(t_stack *stack)
 	return (i);
 }
 
-int			compt_waves_reverse(t_stack *stack)
+static int		compt_waves_reverse(t_stack *stack)
 {
 	t_stack_node	*cursor;
 	int				i;
@@ -34,10 +34,38 @@ int			compt_waves_reverse(t_stack *stack)
 	return (i);
 }
 
-void		waves_sort(t_ps *ps)
+static void		fill_stack_b(t_ps *ps)
 {
 	t_stack_node	*node_a;
+	t_stack_node	*node_a_last;
 	t_stack_node	*node_b;
+
+	node_a = FIRST(ps->stack_a);
+	node_a_last = LAST(ps->stack_a);
+	node_b = FIRST(ps->stack_b);
+	while (node_b)
+	{
+		if (CURR_VAL(node_b) < CURR_VAL(node_a) &&
+			CURR_VAL(node_b) > CURR_VAL(node_a_last))
+			OP(PA);
+		else if (CURR_VAL(node_b) < CURR_VAL(node_a) &&
+			CURR_VAL(node_a) < CURR_VAL(node_a_last))
+			OP(PA);
+		else if (CURR_VAL(node_b) > CURR_VAL(node_a) &&
+			CURR_VAL(node_a) < CURR_VAL(node_a_last)
+			&& CURR_VAL(node_b) > CURR_VAL(node_a_last))
+			OP(PA);
+		else
+			OP(RRA);
+		node_b = FIRST(ps->stack_b);
+		node_a = FIRST(ps->stack_a);
+		node_a_last = LAST(ps->stack_a);
+	}
+}
+
+void			waves_sort(t_ps *ps)
+{
+	t_stack_node	*node_a;
 	int				waves_a;
 	int				waves_b;
 
@@ -51,22 +79,8 @@ void		waves_sort(t_ps *ps)
 			waves_a = compt_waves(ps->stack_a);
 			waves_b = compt_waves_reverse(ps->stack_b);
 		}
-		node_b = FIRST(ps->stack_b);
+		fill_stack_b(ps);
 		node_a = FIRST(ps->stack_a);
-		while (node_b)
-		{
-			if (CURR_VAL(node_b) < CURR_VAL(node_a) && CURR_VAL(node_b) > CURR_VAL(ps->stack_a->last))
-				OP(PA);
-			else if (CURR_VAL(node_b) < CURR_VAL(node_a) && CURR_VAL(node_a) < CURR_VAL(ps->stack_a->last))
-				OP(PA);
-			else if (CURR_VAL(node_b) > CURR_VAL(node_a) && CURR_VAL(node_a) < CURR_VAL(ps->stack_a->last)
-				&& CURR_VAL(node_b) > CURR_VAL(ps->stack_a->last))
-				OP(PA);
-			else
-				OP(RRA);
-			node_b = FIRST(ps->stack_b);
-			node_a = FIRST(ps->stack_a);
-		}
 		waves_a = compt_waves(ps->stack_a);
 		waves_b = compt_waves_reverse(ps->stack_b);
 		node_a = FIRST(ps->stack_a);

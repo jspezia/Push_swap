@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-void			fill_stack_b(t_ps *ps)
+static void		fill_stack_b(t_ps *ps)
 {
 	int		count;
 	int		count_a;
