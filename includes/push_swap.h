@@ -48,7 +48,7 @@ enum
 **		USAGE
 */
 # define USAGE			"./push_swap" USAGE_OPTS USAGE_ARGS
-# define USAGE_OPTS		" [-hvci] [-g [mode]] [-a algo] [-t delay] --"
+# define USAGE_OPTS		" [-hv] [-g [mode]] [-a algo] [-t delay] --"
 # define USAGE_ARGS		" <int> <int> <...>"
 
 /*
@@ -68,7 +68,7 @@ enum
 # define STACK_COL1		COL_RED
 # define STACK_COL2		COL_BLUE
 # define G_MODE(X)		(ps->graphic_mode == X)
-# define EXIT_DELAY		15
+# define EXIT_DELAY		10
 /*
 **		OPS
 */

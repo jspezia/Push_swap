@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   mlx_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/16 16:22:33 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/26 18:04:49 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/03/02 17:51:59 by jspezia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ t_env		*init_env(void)
 		exit(-1);
 	if (!(e->keys = init_keys()))
 		exit(-1);
-	e->palette = gen_gradient_palette(hex_to_rgb(STACK_COL1), hex_to_rgb(STACK_COL2), PALETTE_SIZE);
+	e->palette = gen_gradient_palette(hex_to_rgb(STACK_COL1),
+		hex_to_rgb(STACK_COL2), PALETTE_SIZE);
 	return (mlx_env_instance(e));
 }

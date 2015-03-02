@@ -39,6 +39,23 @@ static int		min_position(t_stack *stack)
 	return (position);
 }
 
+static void		select_node(int position, t_ps *ps)
+{
+	while (position != 0)
+	{
+		if (position > 0)
+		{
+			OP(RA);
+			position--;
+		}
+		else if (position < 0)
+		{
+			OP(RRA);
+			position++;
+		}
+	}
+}
+
 void			select_sort(t_ps *ps)
 {
 	t_stack_node		*node_a;
@@ -49,19 +66,7 @@ void			select_sort(t_ps *ps)
 	while (node_a)
 	{
 		position = min_position(ps->stack_a);
-		while (position != 0)
-		{
-			if (position > 0)
-			{
-				OP(RA);
-				position--;
-			}
-			else if (position < 0)
-			{
-				OP(RRA);
-				position++;
-			}
-		}
+		select_node(position, ps);
 		OP(PB);
 		node_a = FIRST(ps->stack_a);
 	}

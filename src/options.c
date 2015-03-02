@@ -1,20 +1,26 @@
 #include "push_swap.h"
 
-//not compile --> COLORS
-
 static void		display_help(void)
 {
-	ft_putendl(C(YELLOW)"NAME"C(NO)"\n\tpush_swap\n");
-	ft_putendl(C(YELLOW)"USAGE"C(NO)"\n\t"USAGE"\n");
-	ft_putendl(C(YELLOW)"OPTIONS"C(NO));
+	char		*usage;
+
+	usage = "[-hv] [-g [mode]] [-a algo] [-t delay] -- <int> <int> <...>\n";
+	usage = ft_strjoin("./push_swap", usage);
+	ft_putendl("\033[""33""m""NAME""\033[""0""m""\n\tpush_swap\n");
+	ft_putstr("\033[""33""m""USAGE""\033[""0""m""\n\t");
+	ft_putendl(usage);
+	ft_putendl("\033[""33""m""OPTIONS""\033[""0""m");
 	ft_putendl("\t-h\t\tDisplay help.");
-	ft_putendl("\t-a algo\t\tLet you specifie an algo {bbs, ff, up, ...}.");
-	ft_putendl("\t-i\t\tInteractive mode.");
-	ft_putendl("\t-g\t\tGraphic display.");
-	ft_putendl("\t-t delay	Let you add a delay in milliseconds between each op.");
+	ft_putendl("\t-a algo\t\tLet you specifie an algo {bbs, ff, up, se, wa}.");
+	ft_putendl("\t-a im\t\tInteractive mode.");
+	ft_putendl("\t-g{0, 1, 2}\tGraphic display.");
+	ft_putstr("\t-t{delay}\t");
+	ft_putendl("Let you add a delay in milliseconds between each op.");
 	ft_putendl("\t-v\t\tVerbose. Display stack state at each step.");
-	ft_putendl("\t--\t\tStop options parser, in order to not treat negative values as options.");
-	ft_putendl(C(YELLOW)"SUGGESTED"C(NO)"\n\t./push_swap -g -t200 -- <int> <int> <...>");
+	ft_putstr("\t--\t\tStop options parser, ");
+	ft_putendl("in order to not treat negative values as options.");
+	ft_putendl("\033[""33""m""SUGGESTED""\033[""0""m""\n");
+	ft_putendl("\t./push_swap -g0 -t200 -- <int> <int> <...>");
 	exit(1);
 }
 
