@@ -38,10 +38,11 @@ void			call_op(int op, t_ps *ps)
 	}
 	if (OPT(OPT_GRAPHIC))
 	{
-			if (FIRST(ps->stack_a) && (G_MODE(0)
-				|| (G_MODE(1) && !(op_index % (ps->total_elem / 30)))
-				|| (G_MODE(2) && CURR_VAL(FIRST(ps->stack_a)) == ps->range_min)))
-				mlx_redraw(ps, g_ops[op].name);
+		if (FIRST(ps->stack_a) && (G_MODE(0)
+			|| (G_MODE(1) && !(op_index % (ps->total_elem / 30)))
+			|| (G_MODE(2)
+				&& CURR_VAL(FIRST(ps->stack_a)) == ps->range_min)))
+			mlx_redraw(ps, g_ops[op].name);
 	}
 }
 
@@ -54,7 +55,8 @@ void			resolve(t_ps *ps)
 	g_algos[ps->algo].f(ps);
 	if (is_resolved(ps))
 	{
-		ft_printf("Sorted in ""\033[""32""m""%d""\033[""0""m"" ops!\n", ps->total_ops);
+		ft_printf("Sorted in ""\033[""32""m""%d""\033[""0""m"" ops!\n",
+			ps->total_ops);
 		if (OPT(OPT_GRAPHIC))
 		{
 			tmp = ft_strjoin3("Sorted in ", ft_itoa(ps->total_ops), " ops!");

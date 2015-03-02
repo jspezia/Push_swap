@@ -11,7 +11,7 @@ static void		display_help(void)
 	ft_putendl(usage);
 	ft_putendl("\033[""33""m""OPTIONS""\033[""0""m");
 	ft_putendl("\t-h\t\tDisplay help.");
-	ft_putendl("\t-a algo\t\tLet you specifie an algo {bbs, ff, up, se, wa}.");
+	ft_putendl("\t-a algo\t\tLet you specifie an algo {bbs, ff, up, se, me}.");
 	ft_putendl("\t-a im\t\tInteractive mode.");
 	ft_putendl("\t-g{0, 1, 2}\tGraphic display.");
 	ft_putstr("\t-t{delay}\t");

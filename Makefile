@@ -20,7 +20,7 @@ SRCS			=	src/main.c									\
 					src/algo_bubble_sort.c						\
 					src/algo_fifty_fifty.c						\
 					src/algo_select_sort.c						\
-					src/algo_waves.c							\
+					src/algo_merge.c							\
 					src/algo_up_down.c
 SRCS			+=	src/mlx_env.c								\
 					src/mlx_my_pixel_put_to_image.c				\

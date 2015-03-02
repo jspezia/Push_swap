@@ -146,7 +146,7 @@ enum
 	UP,
 	IM,
 	SE,
-	WA,
+	ME,
 	ALGOS_LEN
 };
 
@@ -156,7 +156,7 @@ void			bubble_sort(t_ps *ps);
 void			select_sort(t_ps *ps);
 void			fifty_fifty(t_ps *ps);
 void			interactive_mode(t_ps *ps);
-void			waves_sort(t_ps *ps);
+void			merge_sort(t_ps *ps);
 void			up_down(t_ps *ps);
 
 void			up(t_ps *ps, int min);

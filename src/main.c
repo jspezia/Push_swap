@@ -21,7 +21,7 @@ const t_algo	g_algos[ALGOS_LEN] =
 	{"ff", &fifty_fifty},
 	{"up", &up_down},
 	{"se", &select_sort},
-	{"wa", &waves_sort},
+	{"me", &merge_sort},
 	{"im", &interactive_mode}
 };
 

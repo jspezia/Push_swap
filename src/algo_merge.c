@@ -63,7 +63,7 @@ static void		fill_stack_b(t_ps *ps)
 	}
 }
 
-void			waves_sort(t_ps *ps)
+void			merge_sort(t_ps *ps)
 {
 	t_stack_node	*node_a;
 	int				waves_a;
