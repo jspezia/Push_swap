@@ -48,7 +48,7 @@ enum
 **		USAGE
 */
 # define USAGE			"./push_swap" USAGE_OPTS USAGE_ARGS
-# define USAGE_OPTS		" [-hv] [-g [mode]] [-a algo] [-t delay] --"
+# define USAGE_OPTS		" [-hvci] [-g [mode]] [-a algo] [-t delay] --"
 # define USAGE_ARGS		" <int> <int> <...>"
 
 /*

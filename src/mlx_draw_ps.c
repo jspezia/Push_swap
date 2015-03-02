@@ -1,35 +1,65 @@
 #include "push_swap.h"
 
+static void		draw_a(double h, t_env *e, double w, int index)
+{
+	double		x;
+	double		y;
+	int			color;
+
+	color = e->palette[(int)((h / STACK_H) * PALETTE_SIZE)];
+	x = 0;
+	while (x < w)
+	{
+		y = 0;
+		while (y < h)
+		{
+			my_pixel_put_to_image_osx(e->img, (index * w + x),
+				(STACK_H - y), color);
+			y++;
+		}
+		x++;
+	}
+}
+
+static void		draw_b(double h, t_env *e, double w, int index)
+{
+	double		x;
+	double		y;
+	int			color;
+
+	color = e->palette[(int)((h / STACK_H) * PALETTE_SIZE)];
+	x = 0;
+	while (x < w)
+	{
+		y = 0;
+		while (y < h)
+		{
+			my_pixel_put_to_image_osx(e->img, (index * w + x),
+				(W_HEIGHT - y), color);
+			y++;
+		}
+		x++;
+	}
+}
+
 static void		draw_stack(t_stack *stack, t_ps *ps, t_env *e, int pos)
 {
 	size_t			index;
-	double			x;
-	double			y;
 	double			w;
 	double			h;
 	t_dlist_node	*cursor;
-	int				color;
 
 	cursor = LAST(stack);
 	index = 0;
 	w = (double)STACK_W / ps->total_elem;
 	while (cursor)
 	{
-		h = ((double)STACK_H / ps->range) * (double)(CURR_VAL(cursor) - ps->range_min);
-		color = e->palette[(int)((h / STACK_H) * PALETTE_SIZE)];
-		x = 0;
-		while (x < w)
-		{
-			y = 0;
-			while (y < h)
-			{
-				int posx = index * w + x;
-				int posy = pos + STACK_H - y;
-				my_pixel_put_to_image_osx(e->img, posx, posy, color);
-				y++;
-			}
-			x++;
-		}
+		h = ((double)STACK_H / ps->range)
+		* (double)(CURR_VAL(cursor) - ps->range_min);
+		if (pos == 0)
+			draw_a(h, e, w, index);
+		else
+			draw_b(h, e, w, index);
 		index++;
 		cursor = cursor->prev;
 	}

@@ -54,7 +54,7 @@ void			resolve(t_ps *ps)
 	g_algos[ps->algo].f(ps);
 	if (is_resolved(ps))
 	{
-		ft_printf("Sorted in "C(GREEN)"%d"C(NO)" ops!\n", ps->total_ops);
+		ft_printf("Sorted in ""\033[""32""m""%d""\033[""0""m"" ops!\n", ps->total_ops);
 		if (OPT(OPT_GRAPHIC))
 		{
 			tmp = ft_strjoin3("Sorted in ", ft_itoa(ps->total_ops), " ops!");

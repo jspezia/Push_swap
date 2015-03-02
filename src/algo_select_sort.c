@@ -63,7 +63,7 @@ void			select_sort(t_ps *ps)
 	int					position;
 
 	node_a = FIRST(ps->stack_a);
-	while (node_a)
+	while (node_a->next)
 	{
 		position = min_position(ps->stack_a);
 		select_node(position, ps);
