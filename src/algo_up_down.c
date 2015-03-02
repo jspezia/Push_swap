@@ -1,5 +1,44 @@
 #include "push_swap.h"
 
+static void		loop(t_ps *ps, int min, t_stack_node *n_a, t_stack_node *n_b)
+{
+	if (n_b && CURR_VAL(n_b) < CURR_VAL(n_a) && NEXT_VAL(n_a) != min)
+	{
+		while (n_b && CURR_VAL(n_b) < CURR_VAL(n_a) && CURR_VAL(n_a) != min)
+		{
+			OP(PA);
+			OP(RA);
+			n_b = FIRST(ps->stack_b);
+		}
+	}
+	else if (n_b && CURR_VAL(n_b) > CURR_VAL(n_a) && NEXT_VAL(n_a)
+		&& NEXT_VAL(n_a) != min && CURR_VAL(n_a) > NEXT_VAL(n_a))
+		OP(PB);
+	else if (n_a->next && NEXT_VAL(n_a) != min
+		&& (CURR_VAL(n_a) > NEXT_VAL(n_a)))
+	{
+		if (!n_b || CURR_VAL(n_a) > CURR_VAL(n_b))
+			OP(PB);
+		else
+			OP(RA);
+	}
+	else
+		OP(RA);
+}
+
+static void		ran_b(t_ps *ps)
+{
+	t_stack_node	*node_b;
+
+	node_b = FIRST(ps->stack_b);
+	while (node_b)
+	{
+		OP(PA);
+		OP(RA);
+		node_b = FIRST(ps->stack_b);
+	}
+}
+
 void			up(t_ps *ps, int min)
 {
 	t_stack_node	*node_a;
@@ -13,35 +52,11 @@ void			up(t_ps *ps, int min)
 	node_b = FIRST(ps->stack_b);
 	while (CURR_VAL(node_a) != min)
 	{
-		if (node_b && CURR_VAL(node_b) < CURR_VAL(node_a) && NEXT_VAL(node_a) != min)
-		{
-			while (node_b && CURR_VAL(node_b) < CURR_VAL(node_a) && CURR_VAL(node_a) != min)
-			{
-				OP(PA);
-				OP(RA);
-				node_b = FIRST(ps->stack_b);
-			}
-		}
-		else if (node_b && CURR_VAL(node_b) > CURR_VAL(node_a) && NEXT_VAL(node_a) && NEXT_VAL(node_a) != min && CURR_VAL(node_a) > NEXT_VAL(node_a))
-			OP(PB);
-		else if (node_a->next && NEXT_VAL(node_a) != min && (CURR_VAL(node_a) > NEXT_VAL(node_a)))
-		{
-			if (!node_b || CURR_VAL(node_a) > CURR_VAL(node_b))
-				OP(PB);
-			else
-				OP(RA);
-		}
-		else
-			OP(RA);
+		loop(ps, min, node_a, node_b);
 		node_a = FIRST(ps->stack_a);
 		node_b = FIRST(ps->stack_b);
 	}
-	while (node_b)
-	{
-		OP(PA);
-		OP(RA);
-		node_b = FIRST(ps->stack_b);
-	}
+	ran_b(ps);
 	node_a = FIRST(ps->stack_a);
 	while (CURR_VAL(node_a) != min)
 	{

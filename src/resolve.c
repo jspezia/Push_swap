@@ -52,10 +52,9 @@ void			resolve(t_ps *ps)
 	if (OPT(OPT_GRAPHIC))
 		mlx_redraw(ps, "Welcome");
 	g_algos[ps->algo].f(ps);
-	// printf("\n"); // trick end
 	if (is_resolved(ps))
 	{
-		ft_printf("Sorted in "C(GREEN)"%d"C(NO)" ops!\n", ps->total_ops); // not to print
+		ft_printf("Sorted in "C(GREEN)"%d"C(NO)" ops!\n", ps->total_ops);
 		if (OPT(OPT_GRAPHIC))
 		{
 			tmp = ft_strjoin3("Sorted in ", ft_itoa(ps->total_ops), " ops!");

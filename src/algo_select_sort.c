@@ -72,24 +72,3 @@ void			select_sort(t_ps *ps)
 		node_b = FIRST(ps->stack_b);
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
