@@ -34,7 +34,7 @@ static int		compt_waves_reverse(t_stack *stack)
 	return (i);
 }
 
-static void		fill_stack_b(t_ps *ps)
+static void		fill_stack_a(t_ps *ps)
 {
 	t_stack_node	*node_a;
 	t_stack_node	*node_a_last;
@@ -79,15 +79,14 @@ void			merge_sort(t_ps *ps)
 			waves_a = compt_waves(ps->stack_a);
 			waves_b = compt_waves_reverse(ps->stack_b);
 		}
-		fill_stack_b(ps);
-		node_a = FIRST(ps->stack_a);
-		waves_a = compt_waves(ps->stack_a);
-		waves_b = compt_waves_reverse(ps->stack_b);
+		fill_stack_a(ps);
 		node_a = FIRST(ps->stack_a);
 		while (CURR_VAL(node_a) > CURR_VAL(ps->stack_a->last))
 		{
 			OP(RRA);
 			node_a = FIRST(ps->stack_a);
 		}
+		waves_a = compt_waves(ps->stack_a);
+		waves_b = compt_waves_reverse(ps->stack_b);
 	}
 }
