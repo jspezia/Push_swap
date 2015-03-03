@@ -77,11 +77,11 @@ enum
 # define OP(X)			(call_op(X, ps))
 # define MAX_OPS		1000000000
 
-typedef struct		s_op					*
-{											*
-	char		*name;						*
-	void		(*f)(t_ps *ps);				*
-}					t_op;					*
+typedef struct		s_op					//*
+{											//*
+	char		*name;						//*
+	void		(*f)(t_ps *ps);				//*
+}					t_op;					//*
 
 enum
 {
