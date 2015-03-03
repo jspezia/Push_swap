@@ -50,6 +50,7 @@ int				main(int ac, char *av[])
 	t_ps	*ps;
 	t_env	*e;
 
+	e = NULL;
 	if (ac < 2)
 		error_msg_exit(USAGE);
 	ps = init_ps();
