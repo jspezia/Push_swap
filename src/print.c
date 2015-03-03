@@ -1,10 +1,10 @@
 #include "push_swap.h"
 
-void			print_stack(t_stack *dlist)
+void			print_stack(t_stack *stack)
 {
 	t_stack_node	*cursor;
 
-	cursor = dlist->last;
+	cursor = LAST(stack);
 	while (cursor)
 	{
 		ft_printf("%d ", CURR_VAL(cursor));

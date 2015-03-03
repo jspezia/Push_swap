@@ -14,16 +14,18 @@ static t_bool	already_exists_in_stack(t_stack *stack, int nb)
 	return (FALSE);
 }
 
-static int		fill_stack(t_stack *stack, char *av)
+static t_bool	already_exists_in_tab(int *tab, int size, int value)
 {
-	int		*nb;
+	int		i;
 
-	if (!ft_str_isint(av) || already_exists_in_stack(stack, ft_atoi(av)))
-		error_msg_exit("Error");
-	nb = (int *)malloc(sizeof(int));
-	*nb = ft_atoi(av);
-	dlist_push_back(stack, nb);
-	return (*nb);
+	i = 0;
+	while (i < size)
+	{
+		if (tab[i] == value)
+			return (TRUE);
+		i++;
+	}
+	return (FALSE);
 }
 
 static void		recover_range(t_ps *ps, int nb)
@@ -35,24 +37,40 @@ static void		recover_range(t_ps *ps, int nb)
 	first = FALSE;
 }
 
+static int		*parse_int_values(t_ps *ps, int ac, char **av)
+{
+	int		i;
+	int		*tab;
+
+	if (!(tab = (int *)ft_memalloc(sizeof(int) * ac)))
+		error_msg_exit("Allocation failed!");
+	i = 0;
+	while (i < ac)
+	{
+		if (!ft_str_isint(av[i])
+			|| already_exists_in_tab(tab, ac, ft_atoi(av[i])))
+			error_msg_exit("Error");
+		tab[i] = ft_atoi(av[i]);
+		printf("%s-%d ", av[i], tab[i]);
+		recover_range(ps, tab[i]);
+		i++;
+	}
+	printf("\n");
+	return (tab);
+}
+
 void			parse(t_ps *ps, int ac, char *av[])
 {
 	int		opt;
-	int		i;
 	int		nb;
 
 	opterr = 0;
 	while ((opt = getopt(ac, av, OPT_STR)) != -1)
 		set_options(ps, opt);
-	i = optind;
-	if (i == ac)
+	ac -= optind;
+	if (!ac)
 		error_msg_exit("Missing <int> arguments.");
-	while (i < ac)
-	{
-		nb = fill_stack(ps->stack_a, av[i]);
-		recover_range(ps, nb);
-		i++;
-	}
-	ps->total_elem = COUNT(ps->stack_a);
+	ps->origin_data = parse_int_values(ps, ac, av + optind);	
+	ps->total_elem = ac;
 	ps->range = ps->range_max - ps->range_min + 1;
 }

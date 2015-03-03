@@ -27,11 +27,11 @@ const t_algo	g_algos[ALGOS_LEN] =
 
 static void		free_all(t_ps *ps, t_env *e)
 {
-	if ((e = mlx_env_instance(NULL)))
-		free_env(e);
-	dlist_clear_destroy(ps->stack_a);
-	dlist_clear_destroy(ps->stack_b);
-	free(ps);
+	// if ((e = mlx_env_instance(NULL)))
+	// 	free_env(e);
+	// dlist_clear_destroy(ps->stack_a);
+	// dlist_clear_destroy(ps->stack_b);
+	// free(ps);
 }
 
 static t_ps		*init_ps(void)
@@ -40,8 +40,7 @@ static t_ps		*init_ps(void)
 
 	if (!(ps = (t_ps *)ft_memalloc(sizeof(t_ps))))
 		exit(-1);
-	ps->stack_a = dlist_create();
-	ps->stack_b = dlist_create();
+	ps->algo = -1;
 	return (ps);
 }
 

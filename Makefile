@@ -1,11 +1,11 @@
-CC				=	gcc -O2 -g
-FLAGS			=	-Wall -Wextra -Werror
+CC				=	gcc -g
+FLAGS			=	#-Wall -Wextra -Werror
 NAME			=	push_swap
 LIB				=	libft/libft.a
 LIB_PATH		=	libft/
-INCLUDES		=	-I $(LIB_PATH)./includes -I ./includes -I /usr/X11/include
+INCLUDES		=	-I $(LIB_PATH)./includes -I ./includes -I /usr/X11/include -I ../minilibx/
 DIR_LIBS		=	/usr/X11/lib
-LDFLAGS			=	-L$(DIR_LIBS) -lXext -lX11 -lmlx
+LDFLAGS			=	-L$(DIR_LIBS) -lXext -lX11 -L ../minilibx/ -lmlx
 SRCS			=	src/main.c									\
 					src/parser.c								\
 					src/options.c								\

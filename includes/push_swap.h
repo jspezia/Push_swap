@@ -119,7 +119,9 @@ typedef	struct		s_ps
 {
 	t_stack		*stack_a;
 	t_stack		*stack_b;
+	int			*origin_data;
 	int			algo;
+	int			final_algo;
 	char		options;
 	int			total_ops;
 	int			op_sleep;
@@ -144,9 +146,9 @@ enum
 	BBS,
 	FF,
 	UP,
-	IM,
 	SE,
 	ME,
+	IM,
 	ALGOS_LEN
 };
 
