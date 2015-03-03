@@ -9,8 +9,7 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <math.h>
-
-# include <stdio.h> // !!!
+# include "struct_op.h"
 
 /*
 **		COLOR
@@ -77,12 +76,6 @@ enum
 # define OP(X)			(call_op(X, ps))
 # define MAX_OPS		1000000000
 
-typedef struct		s_op					//*
-{											//*
-	char		*name;						//*
-	void		(*f)(t_ps *ps);				//*
-}					t_op;					//*
-
 enum
 {
 	SA,
@@ -101,44 +94,44 @@ enum
 
 extern const t_op		g_ops[OPS_LEN];
 
-void			sa(struct s_ps *ps);
-void			sb(struct s_ps *ps);
-void			ss(struct s_ps *ps);
-void			pa(struct s_ps *ps);
-void			pb(struct s_ps *ps);
-void			ra(struct s_ps *ps);
-void			rb(struct s_ps *ps);
-void			rr(struct s_ps *ps);
-void			rra(struct s_ps *ps);
-void			rrb(struct s_ps *ps);
-void			rrr(struct s_ps *ps);
-
 typedef t_dlist			t_stack;
 typedef t_dlist_node	t_stack_node;
 
-typedef	struct		s_ps
+typedef	struct			s_ps
 {
-	t_stack		*stack_a;
-	t_stack		*stack_b;
-	int			algo;
-	char		options;
-	int			total_ops;
-	int			op_sleep;
-	int			graphic_mode;
-	int			range_min;
-	int			range_max;
-	int			range;
-	size_t		total_elem;
-}					t_ps;
+	t_stack	*stack_a;
+	t_stack	*stack_b;
+	int		algo;
+	char	options;
+	int		total_ops;
+	int		op_sleep;
+	int		graphic_mode;
+	int		range_min;
+	int		range_max;
+	int		range;
+	size_t	total_elem;
+}						t_ps;
+
+void					sa(t_ps *ps);
+void					sb(t_ps *ps);
+void					ss(t_ps *ps);
+void					pa(t_ps *ps);
+void					pb(t_ps *ps);
+void					ra(t_ps *ps);
+void					rb(t_ps *ps);
+void					rr(t_ps *ps);
+void					rra(t_ps *ps);
+void					rrb(t_ps *ps);
+void					rrr(t_ps *ps);
 
 /*
 **		ALGO
 */
-typedef struct		s_algo
+typedef struct			s_algo
 {
-	char		*name;
-	void		(*f)(t_ps *ps);
-}					t_algo;
+	char	*name;
+	void	(*f)(t_ps *ps);
+}						t_algo;
 
 enum
 {
@@ -151,45 +144,45 @@ enum
 	ALGOS_LEN
 };
 
-extern const t_algo	g_algos[ALGOS_LEN];
+extern const t_algo		g_algos[ALGOS_LEN];
 
-void			bubble_sort(t_ps *ps);
-void			select_sort(t_ps *ps);
-void			fifty_fifty(t_ps *ps);
-void			interactive_mode(t_ps *ps);
-void			merge_sort(t_ps *ps);
-void			up_down(t_ps *ps);
+void					bubble_sort(t_ps *ps);
+void					select_sort(t_ps *ps);
+void					fifty_fifty(t_ps *ps);
+void					interactive_mode(t_ps *ps);
+void					merge_sort(t_ps *ps);
+void					up_down(t_ps *ps);
 
-void			up(t_ps *ps, int min);
+void					up(t_ps *ps, int min);
 
 /*
 **		resolve.c
 */
-t_bool			is_resolved(t_ps *ps);
-int				find_min(t_stack *stack);
-void			call_op(int op, t_ps *ps);
-void			resolve(t_ps *ps);
+t_bool					is_resolved(t_ps *ps);
+int						find_min(t_stack *stack);
+void					call_op(int op, t_ps *ps);
+void					resolve(t_ps *ps);
 
 /*
 **		check_sort.c
 */
-t_bool			is_stack_sorted(t_stack *stack);
-t_bool			is_stack_reverse_sorted(t_stack *stack);
+t_bool					is_stack_sorted(t_stack *stack);
+t_bool					is_stack_reverse_sorted(t_stack *stack);
 
 /*
 **		parser.c
 */
-void			parse(t_ps *ps, int ac, char *av[]);
+void					parse(t_ps *ps, int ac, char *av[]);
 
 /*
 **		options.c
 */
-void			set_options(t_ps *ps, char opt);
+void					set_options(t_ps *ps, char opt);
 
 /*
 **		print.c
 */
-void			print_stack(t_stack *dlist);
-void			display_stacks(t_ps *ps);
+void					print_stack(t_stack *dlist);
+void					display_stacks(t_ps *ps);
 
 #endif

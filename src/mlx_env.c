@@ -6,7 +6,7 @@
 /*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2013/12/16 16:22:33 by ycribier          #+#    #+#             */
-/*   Updated: 2015/03/02 17:51:59 by jspezia          ###   ########.fr       */
+/*   Updated: 2015/03/03 17:02:58 by jspezia          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,12 +37,12 @@ t_env		*init_env(void)
 		exit(-1);
 	if ((e->mlx = mlx_init()) == NULL)
 	{
-		perror("[MLX]: Connexion to server X failed.");
+		ft_perror("[MLX]: Connexion to server X failed.");
 		exit(-1);
 	}
 	if (!(e->win = mlx_new_window(e->mlx, W_WIDTH, W_HEIGHT, "--PUSH_SWAP--")))
 	{
-		perror("[MLX]: New window creation failed.");
+		ft_perror("[MLX]: New window creation failed.");
 		exit(-1);
 	}
 	if (!(e->img = create_new_image(e, W_WIDTH, W_HEIGHT)))
