@@ -69,6 +69,7 @@ enum
 # define STACK_COL2		COL_BLUE
 # define G_MODE(X)		(ps->graphic_mode == X)
 # define EXIT_DELAY		10
+
 /*
 **		OPS
 */
@@ -76,11 +77,11 @@ enum
 # define OP(X)			(call_op(X, ps))
 # define MAX_OPS		1000000000
 
-typedef struct		s_op
-{
-	char		*name;
-	void		(*f)(t_ps *ps);
-}					t_op;
+typedef struct		s_op					*
+{											*
+	char		*name;						*
+	void		(*f)(t_ps *ps);				*
+}					t_op;					*
 
 enum
 {
@@ -100,17 +101,17 @@ enum
 
 extern const t_op		g_ops[OPS_LEN];
 
-void			sa(t_ps *ps);
-void			sb(t_ps *ps);
-void			ss(t_ps *ps);
-void			pa(t_ps *ps);
-void			pb(t_ps *ps);
-void			ra(t_ps *ps);
-void			rb(t_ps *ps);
-void			rr(t_ps *ps);
-void			rra(t_ps *ps);
-void			rrb(t_ps *ps);
-void			rrr(t_ps *ps);
+void			sa(struct s_ps *ps);
+void			sb(struct s_ps *ps);
+void			ss(struct s_ps *ps);
+void			pa(struct s_ps *ps);
+void			pb(struct s_ps *ps);
+void			ra(struct s_ps *ps);
+void			rb(struct s_ps *ps);
+void			rr(struct s_ps *ps);
+void			rra(struct s_ps *ps);
+void			rrb(struct s_ps *ps);
+void			rrr(struct s_ps *ps);
 
 typedef t_dlist			t_stack;
 typedef t_dlist_node	t_stack_node;
