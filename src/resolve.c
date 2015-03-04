@@ -73,6 +73,7 @@ void			execute(t_ps *ps)
 	// ft_printf("Executing algo: %s\n", g_algos[ps->algo].name);
 	push_stack(ps);
 	ps->total_ops = 0;
+	ft_printf("%d\n", ps->algo);
 	g_algos[ps->algo].f(ps);
 }
 

@@ -59,6 +59,5 @@ int				main(int ac, char *av[])
 		e = init_env();
 	resolve(ps);
 	free_all(ps, e);
-	sleep(500);
 	return (0);
 }
