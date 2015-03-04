@@ -48,8 +48,8 @@ static void		fill_stack_a(t_ps *ps)
 		if (CURR_VAL(node_b) < CURR_VAL(node_a) &&
 			CURR_VAL(node_b) > CURR_VAL(node_a_last))
 			OP(PA);
-		else if (CURR_VAL(node_b) < CURR_VAL(node_a) &&
-			CURR_VAL(node_a) < CURR_VAL(node_a_last))
+		else if ((CURR_VAL(node_b) < CURR_VAL(node_a) &&
+			CURR_VAL(node_a) < CURR_VAL(node_a_last)) || !node_a->next)
 			OP(PA);
 		else if (CURR_VAL(node_b) > CURR_VAL(node_a) &&
 			CURR_VAL(node_a) < CURR_VAL(node_a_last)
