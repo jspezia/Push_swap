@@ -38,6 +38,7 @@ static void		set_algo(t_ps *ps, char *optarg)
 		{
 			ps->algo = i;
 			ps->options |= OPT_ALGO;
+			ps->options |= OPT_RESULT;
 			return ;
 		}
 		i++;
