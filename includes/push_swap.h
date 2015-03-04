@@ -154,6 +154,7 @@ void					merge_sort(t_ps *ps);
 void					up_down(t_ps *ps);
 
 void					up(t_ps *ps, int min);
+void					select_node(int position, t_ps *ps);
 
 /*
 **		stack.c
