@@ -21,9 +21,9 @@ void			call_op(int op, t_ps *ps)
 			ft_putendl(g_ops[op].name);
 		display_stacks(ps);
 	}
-	else
+	else if (!OPT(OPT_INTERACTIVE))
 		ft_printf("%s ", g_ops[op].name);
-	if (OPT(OPT_GRAPHIC)&& (OPT(OPT_RESULT) || OPT(OPT_INTERACTIVE)))
+	if (OPT(OPT_GRAPHIC) && (OPT(OPT_RESULT) || OPT(OPT_INTERACTIVE)))
 	{
 		if (FIRST(ps->stack_a) && (G_MODE(0)
 			|| (G_MODE(1) && !(op_index % (ps->total_elem / 30)))
@@ -41,33 +41,10 @@ void			execute(t_ps *ps)
 	g_algos[ps->algo].f(ps);
 }
 
-void			resolve(t_ps *ps)
+static void		display_result(t_ps *ps)
 {
-	size_t		tmp_total_ops;
 	char		*tmp;
-	int			final_algo;
 
-	if (ps->algo != -1)
-		execute(ps);
-	else
-	{
-		ps->algo = ps->total_elem > 500 ? SE : 0;
-		tmp_total_ops = 0;
-		while (ps->algo < ALGOS_LEN) // No IM
-		{
-			execute(ps);
-			if (is_resolved(ps) &&
-				(!tmp_total_ops || ps->total_ops < tmp_total_ops))
-			{
-				final_algo = ps->algo;
-				tmp_total_ops = ps->total_ops;
-			}
-			ps->algo++;
-		}
-		ps->algo = final_algo;
-		ps->options |= OPT_RESULT;
-		execute(ps);
-	}
 	if (is_resolved(ps))
 	{
 		if (OPT(OPT_VERBOSE))
@@ -84,4 +61,33 @@ void			resolve(t_ps *ps)
 	}
 	else
 		ft_putendl("Failed sorting!");
+}
+
+void			resolve(t_ps *ps)
+{
+	size_t		tmp_total_ops;
+	int			final_algo;
+
+	if (ps->algo != -1)
+		execute(ps);
+	else
+	{
+		ps->algo = ps->total_elem > 500 ? SE : 0;
+		tmp_total_ops = 0;
+		while (ps->algo < ALGOS_LEN)
+		{
+			execute(ps);
+			if (is_resolved(ps) &&
+				(!tmp_total_ops || ps->total_ops < tmp_total_ops))
+			{
+				final_algo = ps->algo;
+				tmp_total_ops = ps->total_ops;
+			}
+			ps->algo++;
+		}
+		ps->algo = final_algo;
+		ps->options |= OPT_RESULT;
+		execute(ps);
+	}
+	display_result(ps);
 }

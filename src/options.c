@@ -11,8 +11,9 @@ static void		display_help(void)
 	ft_putendl(usage);
 	ft_putendl("\033[33mOPTIONS\033[0m");
 	ft_putendl("\t-h\t\tDisplay help.");
-	ft_putendl("\t-a algo\t\tLet you specifie an algo {bbs, ff, up, se, me}.");
-	ft_putendl("\t-a im\t\tInteractive mode.");
+	ft_putendl("\t-c\t\tDisplay operations count.");
+	ft_putendl("\t-a{algo}\t\tLet you specifie an algo {bbs, ff, up, se, me}.");
+	ft_putendl("\t-i \t\tInteractive mode.");
 	ft_putendl("\t-g{0, 1, 2}\tGraphic display.");
 	ft_putstr("\t-t{delay}\t");
 	ft_putendl("Let you add a delay in milliseconds between each op.");
@@ -67,7 +68,7 @@ void			set_options(t_ps *ps, char opt)
 	else if (opt == 'v')
 		ps->options |= OPT_VERBOSE;
 	else if (opt == 'c')
-		ps->options |= OPT_COLOR;
+		ps->options |= OPT_COUNT;
 	else if (opt == 'i')
 		ps->options |= OPT_INTERACTIVE;
 	else if (opt == 't')

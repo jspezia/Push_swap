@@ -36,7 +36,7 @@
 enum
 {
 	OPT_VERBOSE = 1 << 0,
-	OPT_COLOR = 1 << 1,
+	OPT_COUNT = 1 << 1,
 	OPT_INTERACTIVE = 1 << 2,
 	OPT_TIME = 1 << 3,
 	OPT_ALGO = 1 << 4,
