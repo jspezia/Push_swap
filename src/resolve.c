@@ -49,7 +49,7 @@ void			display_result(t_ps *ps)
 
 	if (is_resolved(ps))
 	{
-		if (!OPT(OPT_VERBOSE))
+		if (!OPT(OPT_VERBOSE) && ps->total_ops)
 			ft_putendl("");
 		if (OPT(OPT_VERBOSE) || OPT(OPT_COUNT))
 			ft_printf("Sorted in \033[32m%d\033[0m ops!\n", ps->total_ops);
