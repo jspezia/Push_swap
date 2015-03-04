@@ -166,6 +166,7 @@ void					push_stack(t_ps *ps);
 */
 t_bool					is_resolved(t_ps *ps);
 void					call_op(int op, t_ps *ps);
+void					display_result(t_ps *ps);
 void					resolve(t_ps *ps);
 
 /*
