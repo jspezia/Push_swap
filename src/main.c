@@ -58,6 +58,7 @@ int				main(int ac, char *av[])
 	parse(ps, ac, av);
 	if (OPT(OPT_GRAPHIC))
 		e = init_env();
+	(void)e;
 	if (OPT(OPT_INTERACTIVE))
 		interactive_mode(ps);
 	else

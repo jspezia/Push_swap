@@ -47,7 +47,7 @@ static void		execute(t_ps *ps)
 
 void			resolve(t_ps *ps)
 {
-	size_t		tmp_total_ops;
+	int			tmp_total_ops;
 	int			final_algo;
 
 	if (ps->algo != -1)
