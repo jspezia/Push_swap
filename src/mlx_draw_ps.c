@@ -56,6 +56,7 @@ static void		draw_stack(t_stack *stack, t_ps *ps, t_env *e, int pos)
 	{
 		h = ((double)STACK_H / ps->range)
 		* (double)(CURR_VAL(cursor) - ps->range_min);
+		h = !h ? 1 : h;
 		if (pos == 0)
 			draw_a(h, e, w, index);
 		else

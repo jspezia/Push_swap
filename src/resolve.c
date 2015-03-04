@@ -11,7 +11,7 @@ void			call_op(int op, t_ps *ps)
 
 	op_index++;
 	ps->total_ops++;
-	if (OPT(OPT_TIME))
+	if (OPT(OPT_RESULT) && OPT(OPT_TIME))
 		usleep(ps->op_sleep);
 	g_ops[op].f(ps);
 	if (OPT(OPT_RESULT))
@@ -70,6 +70,8 @@ void			resolve(t_ps *ps)
 	size_t		tmp_total_ops;
 	int			final_algo;
 
+	// if (OPT(OPT_GRAPHIC))
+	// 	mlx_redraw(ps, "WELCOME");
 	if (ps->algo != -1)
 		execute(ps);
 	else
