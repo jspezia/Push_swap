@@ -85,6 +85,8 @@ void			fifty_fifty(t_ps *ps)
 	int				min_a;
 	int				min_b;
 
+	if (is_stack_sorted(ps->stack_a))
+		return ;
 	fill_stack_b(ps);
 	min_a = FIRST(ps->stack_a) ? find_min(ps->stack_a) : 0;
 	min_b = FIRST(ps->stack_b) ? find_min(ps->stack_b) : 0;
