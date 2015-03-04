@@ -22,11 +22,11 @@ void			call_op(int op, t_ps *ps)
 				ft_putendl(g_ops[op].name);
 			display_stacks(ps);
 		}
-		else
+		else if (!OPT(OPT_INTERACTIVE))
 			ft_printf("%s ", g_ops[op].name);
 		if (OPT(OPT_GRAPHIC))
 		{
-			if (FIRST(ps->stack_a) && (G_MODE(0)
+			if ((G_MODE(0)
 				|| (G_MODE(1) && !(op_index % (ps->total_elem / 30)))
 				|| (G_MODE(2)
 					&& CURR_VAL(FIRST(ps->stack_a)) == ps->range_min)))
@@ -35,34 +35,14 @@ void			call_op(int op, t_ps *ps)
 	}
 }
 
-void			execute(t_ps *ps)
+static void		execute(t_ps *ps)
 {
 	// ft_printf("Executing algo: %s\n", g_algos[ps->algo].name);
 	push_stack(ps);
 	ps->total_ops = 0;
+	if (OPT(OPT_GRAPHIC) && OPT(OPT_RESULT))
+		mlx_redraw(ps, "WELCOME");
 	g_algos[ps->algo].f(ps);
-}
-
-void			display_result(t_ps *ps)
-{
-	char		*tmp;
-
-	if (is_resolved(ps))
-	{
-		if (!OPT(OPT_VERBOSE) && ps->total_ops)
-			ft_putendl("");
-		if (OPT(OPT_VERBOSE) || OPT(OPT_COUNT))
-			ft_printf("Sorted in \033[32m%d\033[0m ops!\n", ps->total_ops);
-		if (OPT(OPT_GRAPHIC))
-		{
-			tmp = ft_strjoin3("Sorted in ", ft_itoa(ps->total_ops), " ops!");
-			mlx_redraw(ps, tmp);
-			free(tmp);
-			sleep(EXIT_DELAY);
-		}
-	}
-	else
-		ft_putendl("Failed sorting!");
 }
 
 void			resolve(t_ps *ps)
@@ -70,8 +50,7 @@ void			resolve(t_ps *ps)
 	size_t		tmp_total_ops;
 	int			final_algo;
 
-	// if (OPT(OPT_GRAPHIC))
-	// 	mlx_redraw(ps, "WELCOME");
+
 	if (ps->algo != -1)
 		execute(ps);
 	else

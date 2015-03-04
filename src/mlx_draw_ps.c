@@ -14,7 +14,7 @@ static void		draw_a(double h, t_env *e, double w, int index)
 		while (y < h)
 		{
 			my_pixel_put_to_image_osx(e->img, (index * w + x),
-				(STACK_H - y), color);
+				STACK_H - y - 1, color);
 			y++;
 		}
 		x++;
@@ -35,7 +35,7 @@ static void		draw_b(double h, t_env *e, double w, int index)
 		while (y < h)
 		{
 			my_pixel_put_to_image_osx(e->img, (index * w + x),
-				(W_HEIGHT - y), color);
+				W_HEIGHT - y - 1, color);
 			y++;
 		}
 		x++;

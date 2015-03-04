@@ -23,8 +23,16 @@ static void		display_help(void)
 
 static void		set_graphic_mode(t_ps *ps, char *optarg)
 {
-	ps->graphic_mode = optarg ? ft_atoi(optarg) : 0;
-	ps->options |= OPT_GRAPHIC;
+	if (ft_str_isint(optarg) && ft_atoi(optarg) >= 0)
+	{
+		ps->graphic_mode = optarg ? ft_atoi(optarg) : 0;
+		ps->options |= OPT_GRAPHIC;
+	}
+	else
+	{
+		ft_printf("-%c [%s]: invalid argument\n", optopt, optarg);
+		exit(-1);
+	}
 }
 
 static void		set_algo(t_ps *ps, char *optarg)
@@ -67,7 +75,10 @@ void			set_options(t_ps *ps, char opt)
 	else if (opt == 'c')
 		ps->options |= OPT_COUNT;
 	else if (opt == 'i')
+	{
 		ps->options |= OPT_INTERACTIVE;
+		ps->options |= OPT_RESULT;
+	}
 	else if (opt == 't')
 	{
 		ps->options |= OPT_TIME;

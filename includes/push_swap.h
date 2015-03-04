@@ -30,7 +30,7 @@
 /*
 **		OPTIONS
 */
-# define OPT_STR		"hvcig::a:t:"
+# define OPT_STR		"hvcig:a:t:"
 # define OPT(X)			(ps->options & X)
 
 enum
@@ -48,7 +48,7 @@ enum
 **		USAGE
 */
 # define USAGE			"./push_swap" USAGE_OPTS USAGE_ARGS
-# define USAGE_OPTS		" [-hvci] [-g [mode]] [-a algo] [-t delay] --"
+# define USAGE_OPTS		" [-hvci] [-g mode] [-a algo] [-t delay] --"
 # define USAGE_ARGS		" <int> <int> <...>"
 
 /*
@@ -166,7 +166,6 @@ void					push_stack(t_ps *ps);
 */
 t_bool					is_resolved(t_ps *ps);
 void					call_op(int op, t_ps *ps);
-void					display_result(t_ps *ps);
 void					resolve(t_ps *ps);
 
 /*
@@ -190,5 +189,6 @@ void					set_options(t_ps *ps, char opt);
 */
 void					print_stack(t_stack *dlist);
 void					display_stacks(t_ps *ps);
+void					display_result(t_ps *ps);
 
 #endif
