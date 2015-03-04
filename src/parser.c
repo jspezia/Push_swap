@@ -46,7 +46,6 @@ static int		*parse_int_values(t_ps *ps, int ac, char **av)
 void			parse(t_ps *ps, int ac, char *av[])
 {
 	int		opt;
-	int		nb;
 
 	opterr = 0;
 	while ((opt = getopt(ac, av, OPT_STR)) != -1)

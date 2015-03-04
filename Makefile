@@ -1,5 +1,5 @@
 CC				=	gcc -g
-FLAGS			=	#-Wall -Wextra -Werror
+FLAGS			=	-Wall -Wextra -Werror
 NAME			=	push_swap
 LIB				=	libft/libft.a
 LIB_PATH		=	libft/

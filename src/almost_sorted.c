@@ -42,6 +42,7 @@ static int			position_sw(t_ps *ps)
 		ptn++;
 		node = node->next;
 	}
+	return (0);
 }
 
 void				solve_if_almost_sorted(t_ps *ps)
