@@ -27,9 +27,8 @@ void			call_op(int op, t_ps *ps)
 		if (OPT(OPT_GRAPHIC))
 		{
 			if ((G_MODE(0)
-				|| (G_MODE(1) && !(op_index % (ps->total_elem / 30)))
-				|| (G_MODE(2)
-					&& CURR_VAL(FIRST(ps->stack_a)) == ps->range_min)))
+				|| (G_MODE(1) && !(op_index % (ps->total_elem / 30 + 1)))
+				|| (G_MODE(2) && CURR_VAL(FIRST(ps->stack_a)) == ps->range_min)))
 				mlx_redraw(ps, g_ops[op].name);
 		}
 	}
@@ -37,7 +36,6 @@ void			call_op(int op, t_ps *ps)
 
 static void		execute(t_ps *ps)
 {
-	// ft_printf("Executing algo: %s\n", g_algos[ps->algo].name);
 	push_stack(ps);
 	ps->total_ops = 0;
 	if (OPT(OPT_GRAPHIC) && OPT(OPT_RESULT))
@@ -49,7 +47,6 @@ void			resolve(t_ps *ps)
 {
 	size_t		tmp_total_ops;
 	int			final_algo;
-
 
 	if (ps->algo != -1)
 		execute(ps);
