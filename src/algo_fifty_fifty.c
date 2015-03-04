@@ -59,7 +59,7 @@ static void		fusion_a_b(t_ps *ps, int min_a)
 
 	node_b = FIRST(ps->stack_b);
 	node_a = FIRST(ps->stack_a);
-	if (CURR_VAL(node_a) > CURR_VAL(node_b))
+	if (CURR_VAL(node_a) > CURR_VAL(node_b) || !node_a->next)
 		OP(PA);
 	else if (CURR_VAL(node_a) < CURR_VAL(node_b))
 	{
