@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static void		reverse(t_dlist *stack)
+static void		reverse(t_stack *stack)
 {
 	if (stack->count)
 		dlist_push_front(stack, dlist_pop_back(stack));

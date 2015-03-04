@@ -2,9 +2,9 @@
 
 static void		display_help(void)
 {
-
 	ft_putendl("\033[33mNAME\033[0m\n\tpush_swap");
-	ft_putendl("\033[33mUSAGE\033[0m\n\t"USAGE);
+	ft_putstr("\033[33mUSAGE\033[0m\n\t");
+	ft_putendl(USAGE);
 	ft_putendl("\033[33mOPTIONS\033[0m");
 	ft_putendl("\t-h\t\tDisplay help.");
 	ft_putendl("\t-c\t\tDisplay operations count.");
@@ -23,8 +23,16 @@ static void		display_help(void)
 
 static void		set_graphic_mode(t_ps *ps, char *optarg)
 {
-	ps->graphic_mode = optarg ? ft_atoi(optarg) : 0;
-	ps->options |= OPT_GRAPHIC;
+	if (ft_str_isint(optarg) && ft_atoi(optarg) >= 0)
+	{
+		ps->graphic_mode = optarg ? ft_atoi(optarg) : 0;
+		ps->options |= OPT_GRAPHIC;
+	}
+	else
+	{
+		ft_printf("-%c [%s]: invalid argument\n", optopt, optarg);
+		exit(-1);
+	}
 }
 
 static void		set_algo(t_ps *ps, char *optarg)
@@ -37,8 +45,7 @@ static void		set_algo(t_ps *ps, char *optarg)
 		if (!ft_strcmp(optarg, g_algos[i].name))
 		{
 			ps->algo = i;
-			ps->options |= OPT_ALGO;
-			ps->options |= OPT_RESULT;
+			ps->options |= OPT_ALGO | OPT_EXEC;
 			return ;
 		}
 		i++;
@@ -67,7 +74,7 @@ void			set_options(t_ps *ps, char opt)
 	else if (opt == 'c')
 		ps->options |= OPT_COUNT;
 	else if (opt == 'i')
-		ps->options |= OPT_INTERACTIVE;
+		ps->options |= OPT_INTERACTIVE | OPT_EXEC;
 	else if (opt == 't')
 	{
 		ps->options |= OPT_TIME;

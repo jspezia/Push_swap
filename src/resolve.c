@@ -5,64 +5,44 @@ t_bool			is_resolved(t_ps *ps)
 	return ((!ps->stack_b->count) && is_stack_sorted(ps->stack_a));
 }
 
-void			call_op(int op, t_ps *ps)
+static void		print_op(t_ps *ps, int op)
 {
-	static size_t	op_index = 0;
-
-	op_index++;
-	ps->total_ops++;
-	if (OPT(OPT_RESULT) && OPT(OPT_TIME))
-		usleep(ps->op_sleep);
-	g_ops[op].f(ps);
-	if (OPT(OPT_RESULT))
+	if (OPT(OPT_EXEC))
 	{
 		if (OPT(OPT_VERBOSE))
 		{
 			if (!(OPT(OPT_INTERACTIVE)))
 				ft_putendl(g_ops[op].name);
-			display_stacks(ps);
+			print_stacks(ps);
 		}
-		else
+		else if (!OPT(OPT_INTERACTIVE) && !(OPT(OPT_GRAPHIC)))
 			ft_printf("%s ", g_ops[op].name);
 		if (OPT(OPT_GRAPHIC))
 		{
-			if (FIRST(ps->stack_a) && (G_MODE(0)
-				|| (G_MODE(1) && !(op_index % (ps->total_elem / 30 + 1)))
-				|| (G_MODE(2)
-					&& CURR_VAL(FIRST(ps->stack_a)) == ps->range_min)))
+			if ((G_MODE(0)
+			|| (G_MODE(1) && !(ps->total_ops % (ps->total_elem / 30 + 1)))
+			|| (G_MODE(2) && CURR_VAL(FIRST(ps->stack_a)) == ps->range_min)))
 				mlx_redraw(ps, g_ops[op].name);
 		}
 	}
 }
 
-void			execute(t_ps *ps)
+void			call_op(int op, t_ps *ps)
 {
-	// ft_printf("Executing algo: %s\n", g_algos[ps->algo].name);
-	push_stack(ps);
-	ps->total_ops = 0;
-	g_algos[ps->algo].f(ps);
+	ps->total_ops++;
+	if (OPT(OPT_EXEC) && OPT(OPT_TIME))
+		usleep(ps->op_sleep);
+	g_ops[op].f(ps);
+	print_op(ps, op);
 }
 
-void			display_result(t_ps *ps)
+static void		execute(t_ps *ps)
 {
-	char		*tmp;
-
-	if (is_resolved(ps))
-	{
-		if (!OPT(OPT_VERBOSE) && ps->total_ops)
-			ft_putendl("");
-		if (OPT(OPT_VERBOSE) || OPT(OPT_COUNT))
-			ft_printf("Sorted in \033[32m%d\033[0m ops!\n", ps->total_ops);
-		if (OPT(OPT_GRAPHIC))
-		{
-			tmp = ft_strjoin3("Sorted in ", ft_itoa(ps->total_ops), " ops!");
-			mlx_redraw(ps, tmp);
-			free(tmp);
-			sleep(EXIT_DELAY);
-		}
-	}
-	else
-		ft_putendl("Failed sorting!");
+	push_stack(ps);
+	ps->total_ops = 0;
+	if (OPT(OPT_GRAPHIC) && OPT(OPT_EXEC))
+		mlx_redraw(ps, "WELCOME");
+	g_algos[ps->algo].f(ps);
 }
 
 void			resolve(t_ps *ps)
@@ -70,8 +50,6 @@ void			resolve(t_ps *ps)
 	size_t		tmp_total_ops;
 	int			final_algo;
 
-	// if (OPT(OPT_GRAPHIC))
-	// 	mlx_redraw(ps, "WELCOME");
 	if (ps->algo != -1)
 		execute(ps);
 	else
@@ -90,8 +68,8 @@ void			resolve(t_ps *ps)
 			ps->algo++;
 		}
 		ps->algo = final_algo;
-		ps->options |= OPT_RESULT;
+		ps->options |= OPT_EXEC;
 		execute(ps);
 	}
-	display_result(ps);
+	print_result(ps);
 }
