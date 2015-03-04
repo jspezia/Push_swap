@@ -74,7 +74,7 @@ enum
 */
 
 # define OP(X)			(call_op(X, ps))
-# define MAX_OPS		1000000000
+# define MAX_OPS		500000
 
 enum
 {
@@ -112,7 +112,7 @@ typedef	struct			s_ps
 	int			range_max;
 	int			range;
 	size_t		total_elem;
-}					t_ps;
+}						t_ps;
 
 void					sa(t_ps *ps);
 void					sb(t_ps *ps);

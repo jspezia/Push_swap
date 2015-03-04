@@ -43,7 +43,7 @@ static void		fill_stack_a(t_ps *ps)
 	node_a = FIRST(ps->stack_a);
 	node_a_last = LAST(ps->stack_a);
 	node_b = FIRST(ps->stack_b);
-	while (node_b)
+	while (node_b && ps->total_ops < MAX_OPS)
 	{
 		if (CURR_VAL(node_b) < CURR_VAL(node_a) &&
 			CURR_VAL(node_b) > CURR_VAL(node_a_last))
@@ -73,7 +73,7 @@ void			merge_sort(t_ps *ps)
 	while (!is_resolved(ps) && ps->total_ops < MAX_OPS)
 	{
 		waves_a = compt_waves(ps->stack_a);
-		while (waves_a > waves_b)
+		while (waves_a + 1 > waves_b)
 		{
 			OP(PB);
 			waves_a = compt_waves(ps->stack_a);

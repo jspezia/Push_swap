@@ -1,19 +1,5 @@
 #include "push_swap.h"
 
-static t_bool	already_exists_in_stack(t_stack *stack, int nb)
-{
-	t_stack_node	*cursor;
-
-	cursor = stack->first;
-	while (cursor)
-	{
-		if (CURR_VAL(cursor) == nb)
-			return (TRUE);
-		cursor = cursor->next;
-	}
-	return (FALSE);
-}
-
 static t_bool	already_exists_in_tab(int *tab, int size, int value)
 {
 	int		i;
@@ -48,14 +34,14 @@ static int		*parse_int_values(t_ps *ps, int ac, char **av)
 	while (i < ac)
 	{
 		if (!ft_str_isint(av[i])
-			|| already_exists_in_tab(tab, ac, ft_atoi(av[i])))
+			|| already_exists_in_tab(tab, i, ft_atoi(av[i])))
 			error_msg_exit("Error");
 		tab[i] = ft_atoi(av[i]);
-		ft_printf("%s-%d ", av[i], tab[i]);
+		// ft_printf("%s-%d ", av[i], tab[i]);
 		recover_range(ps, tab[i]);
 		i++;
 	}
-	ft_printf("\n");
+	// ft_printf("\n");
 	return (tab);
 }
 
