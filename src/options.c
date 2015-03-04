@@ -3,7 +3,8 @@
 static void		display_help(void)
 {
 	ft_putendl("\033[33mNAME\033[0m\n\tpush_swap");
-	ft_putendl("\033[33mUSAGE\033[0m\n\t"USAGE);
+	ft_putstr("\033[33mUSAGE\033[0m\n\t");
+	ft_putendl(USAGE);
 	ft_putendl("\033[33mOPTIONS\033[0m");
 	ft_putendl("\t-h\t\tDisplay help.");
 	ft_putendl("\t-c\t\tDisplay operations count.");
