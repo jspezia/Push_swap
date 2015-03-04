@@ -40,7 +40,8 @@ enum
 	OPT_INTERACTIVE = 1 << 2,
 	OPT_TIME = 1 << 3,
 	OPT_ALGO = 1 << 4,
-	OPT_GRAPHIC = 1 << 5
+	OPT_GRAPHIC = 1 << 5,
+	OPT_RESULT = 1 << 6
 };
 
 /*

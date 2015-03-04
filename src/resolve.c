@@ -122,6 +122,9 @@ void			resolve(t_ps *ps)
 		}
 		ft_printf("FINAL ALGO: %s\n", g_algos[ps->final_algo].name);
 	}
+	ps->algo = ps->algo_final;
+	ps->options |= OPT_RESULT;
+	execute(ps);
 	if (is_resolved(ps))
 	{
 		ft_printf("Sorted in \033[32m%d\033[0m ops!\n", ps->total_ops);
