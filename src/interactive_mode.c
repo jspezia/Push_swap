@@ -52,5 +52,4 @@ void			interactive_mode(t_ps *ps)
 		free_tab(&tmp);
 		print_prompt();
 	}
-	print_result(ps);
 }

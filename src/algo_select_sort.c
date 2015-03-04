@@ -39,7 +39,7 @@ static int		min_position(t_stack *stack)
 	return (position);
 }
 
-static void		select_node(int position, t_ps *ps)
+void			select_node(int position, t_ps *ps)
 {
 	while (position != 0 && ps->total_ops < MAX_OPS)
 	{

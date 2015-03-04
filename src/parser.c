@@ -49,7 +49,6 @@ void			parse(t_ps *ps, int ac, char *av[])
 	int		nb;
 
 	opterr = 0;
-
 	while ((opt = getopt(ac, av, OPT_STR)) != -1)
 		set_options(ps, opt);
 	if (!OPT(OPT_VERBOSE) && !OPT(OPT_GRAPHIC) && !OPT(OPT_INTERACTIVE))

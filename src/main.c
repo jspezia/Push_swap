@@ -24,8 +24,10 @@ const t_algo	g_algos[ALGOS_LEN] =
 	{"me", &merge_sort},
 };
 
-static void		free_all(t_ps *ps, t_env *e)
+void			free_all(t_ps *ps)
 {
+	t_env	*e;
+
 	if ((e = mlx_env_instance(NULL)))
 		free_env(e);
 	dlist_destroy(ps->stack_a);
@@ -60,6 +62,7 @@ int				main(int ac, char *av[])
 		interactive_mode(ps);
 	else
 		resolve(ps);
-	free_all(ps, e);
+	print_result(ps);
+	free_all(ps);
 	return (0);
 }

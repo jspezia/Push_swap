@@ -56,6 +56,7 @@ void			resolve(t_ps *ps)
 	{
 		ps->algo = ps->total_elem > 500 ? SE : 0;
 		tmp_total_ops = 0;
+		solve_if_almost_sorted(ps);
 		while (ps->algo < ALGOS_LEN)
 		{
 			execute(ps);
@@ -71,5 +72,4 @@ void			resolve(t_ps *ps)
 		ps->options |= OPT_EXEC;
 		execute(ps);
 	}
-	print_result(ps);
 }

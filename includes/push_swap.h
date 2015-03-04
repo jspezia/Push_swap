@@ -156,6 +156,7 @@ void					up_down(t_ps *ps);
 
 void					up(t_ps *ps, int min);
 void					select_node(int position, t_ps *ps);
+void					solve_if_almost_sorted(t_ps *ps);
 
 /*
 **		stack.c
@@ -192,5 +193,10 @@ void					set_options(t_ps *ps, char opt);
 void					print_stack(t_stack *dlist);
 void					print_stacks(t_ps *ps);
 void					print_result(t_ps *ps);
+
+/*
+**		free.c
+*/
+void					free_all(t_ps *ps);
 
 #endif
