@@ -24,9 +24,11 @@ void			call_op(int op, t_ps *ps)
 {
 	static size_t	op_index = 0;
 
+
 	op_index++;
-	if (ps->total_ops++ > MAX_OPS)
-		error_msg_exit("KO -- MAX_OPS");
+	ps->total_ops++;
+	// if (gps->total_ops > MAX_OPS)
+		// error_msg_exit("KO -- MAX_OPS");
 	if (OPT(OPT_TIME))
 		usleep(ps->op_sleep);
 	g_ops[op].f(ps);
@@ -46,25 +48,90 @@ void			call_op(int op, t_ps *ps)
 	}
 }
 
+// void			resolve2(t_ps *ps)
+// {
+// 	char	*tmp;
+
+// 	if (OPT(OPT_GRAPHIC))
+// 		mlx_redraw(ps, "Welcome");
+// 	g_algos[ps->algo].f(ps);
+// 	if (is_resolved(ps))
+// 	{
+// 		ft_printf("Sorted in ""\033[""32""m""%d""\033[""0""m"" ops!\n",
+// 			ps->total_ops);
+// 		if (OPT(OPT_GRAPHIC))
+// 		{
+// 			tmp = ft_strjoin3("Sorted in ", ft_itoa(ps->total_ops), " ops!");
+// 			mlx_redraw(ps, tmp);
+// 			free(tmp);
+// 			sleep(EXIT_DELAY);
+// 		}
+// 	}
+// 	else
+// 		ft_putendl("Failed sorting!");
+// }
+
+
+void			push_stack(t_ps *ps)
+{
+	size_t	i;
+
+	if (ps->stack_a)
+	{
+		ft_putstr("Ahere\n");
+		dlist_destroy(ps->stack_a);
+	}
+	if (ps->stack_b)
+		dlist_destroy(ps->stack_b);
+	ps->stack_a = dlist_create();
+	ps->stack_b = dlist_create();
+	ft_putstr("here\n");
+	i = 0;
+	while (i < ps->total_elem)
+	{
+		ft_putnbr(ps->origin_data[i]);
+		i++;
+	}
+	ft_putstr("\n");
+	i = 0;
+	while (i < ps->total_elem)
+	{
+		dlist_push_back(ps->stack_a, &(ps->origin_data[i]));
+		i++;
+	}
+	display_stacks(ps);
+}
+
+void			execute(t_ps *ps)
+{
+	ft_printf("here algo: %d\n", ps->algo);
+	push_stack(ps);
+	ps->total_ops = 0;
+	g_algos[ps->algo].f(ps);
+	ft_printf("here\n");
+}
+
 void			resolve(t_ps *ps)
 {
-	char	*tmp;
+	size_t		tmp_total_ops;
 
-	if (OPT(OPT_GRAPHIC))
-		mlx_redraw(ps, "Welcome");
-	g_algos[ps->algo].f(ps);
-	if (is_resolved(ps))
-	{
-		ft_printf("Sorted in ""\033[""32""m""%d""\033[""0""m"" ops!\n",
-			ps->total_ops);
-		if (OPT(OPT_GRAPHIC))
-		{
-			tmp = ft_strjoin3("Sorted in ", ft_itoa(ps->total_ops), " ops!");
-			mlx_redraw(ps, tmp);
-			free(tmp);
-			sleep(EXIT_DELAY);
-		}
-	}
+	if (ps->algo != -1)
+		execute(ps);
 	else
-		ft_putendl("Failed sorting!");
+	{
+		ps->algo = ps->total_elem > 500 ? SE : 0;
+		tmp_total_ops = 0;
+		while (ps->algo < ALGOS_LEN - 1) // No IM
+		{
+			execute(ps);
+			if (is_resolved(ps) &&
+				(!tmp_total_ops || ps->total_ops < tmp_total_ops))
+			{
+				ps->final_algo = ps->algo;
+				tmp_total_ops = ps->total_ops;
+			}
+			ps->algo++;
+		}
+		ft_printf("FINAL ALGO: %d\n", ps->final_algo);
+	}
 }

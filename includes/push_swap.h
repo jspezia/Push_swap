@@ -99,18 +99,20 @@ typedef t_dlist_node	t_stack_node;
 
 typedef	struct			s_ps
 {
-	t_stack	*stack_a;
-	t_stack	*stack_b;
-	int		algo;
-	char	options;
-	int		total_ops;
-	int		op_sleep;
-	int		graphic_mode;
-	int		range_min;
-	int		range_max;
-	int		range;
-	size_t	total_elem;
-}						t_ps;
+	t_stack		*stack_a;
+	t_stack		*stack_b;
+	int			*origin_data;
+	int			algo;
+	int			final_algo;
+	char		options;
+	int			total_ops;
+	int			op_sleep;
+	int			graphic_mode;
+	int			range_min;
+	int			range_max;
+	int			range;
+	size_t		total_elem;
+}					t_ps;
 
 void					sa(t_ps *ps);
 void					sb(t_ps *ps);
@@ -123,7 +125,6 @@ void					rr(t_ps *ps);
 void					rra(t_ps *ps);
 void					rrb(t_ps *ps);
 void					rrr(t_ps *ps);
-
 /*
 **		ALGO
 */
@@ -138,9 +139,9 @@ enum
 	BBS,
 	FF,
 	UP,
-	IM,
 	SE,
 	ME,
+	IM,
 	ALGOS_LEN
 };
 

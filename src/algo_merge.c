@@ -73,7 +73,7 @@ void			merge_sort(t_ps *ps)
 	while (!is_resolved(ps) && ps->total_ops < MAX_OPS)
 	{
 		waves_a = compt_waves(ps->stack_a);
-		while (waves_a + 1 > waves_b)
+		while (waves_a > waves_b)
 		{
 			OP(PB);
 			waves_a = compt_waves(ps->stack_a);
