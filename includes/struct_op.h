@@ -4,7 +4,7 @@
 typedef struct		s_op
 {
 	char		*name;
-	void		(*f)(t_ps *ps);
+	void		(*f)(struct s_ps *ps);
 }					t_op;
 
 #endif

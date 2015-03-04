@@ -6,7 +6,7 @@
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/02/09 17:52:18 by ycribier          #+#    #+#             */
-/*   Updated: 2015/02/26 17:11:15 by ycribier         ###   ########.fr       */
+/*   Updated: 2015/03/04 16:39:56 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@
 # define SCROLL_UP		4
 # define SCROLL_DOWN	5
 
-typedef struct s_env	t_env;
+struct s_env;
 
 typedef struct			s_keys
 {
@@ -52,9 +52,9 @@ typedef struct			s_keys
 /*
 **		mlx_keys.c
 */
-int						key_press(int keycode, t_env *e);
-int						key_release(int keycode, t_env *e);
-void					manage_keys(t_env *e);
+int						key_press(int keycode, struct s_env *e);
+int						key_release(int keycode, struct s_env *e);
+void					manage_keys(struct s_env *e);
 t_keys					*init_keys(void);
 
 #endif

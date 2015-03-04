@@ -30,7 +30,7 @@ typedef struct	s_pt
 	int			y;
 }				t_pt;
 
-typedef struct s_ps	t_ps;
+struct s_ps;
 
 typedef struct	s_env
 {
@@ -41,7 +41,7 @@ typedef struct	s_env
 	int			*palette;
 }				t_env;
 
-void			mlx_redraw(t_ps *ps, char *op);
+void			mlx_redraw(struct s_ps *ps, char *op);
 
 /*
 **		env.c
