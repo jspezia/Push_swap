@@ -40,8 +40,6 @@ static void		set_algo(t_ps *ps, char *optarg)
 		if (!ft_strcmp(optarg, g_algos[i].name))
 		{
 			ps->algo = i;
-			if (i == IM)
-				ps->options |= OPT_INTERACTIVE;
 			ps->options |= OPT_ALGO;
 			return ;
 		}
@@ -71,10 +69,7 @@ void			set_options(t_ps *ps, char opt)
 	else if (opt == 'c')
 		ps->options |= OPT_COLOR;
 	else if (opt == 'i')
-	{
-		ps->algo = IM;
 		ps->options |= OPT_INTERACTIVE;
-	}
 	else if (opt == 't')
 	{
 		ps->options |= OPT_TIME;

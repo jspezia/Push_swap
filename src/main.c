@@ -22,7 +22,6 @@ const t_algo	g_algos[ALGOS_LEN] =
 	{"up", &up_down},
 	{"se", &select_sort},
 	{"me", &merge_sort},
-	{"im", &interactive_mode}
 };
 
 static void		free_all(t_ps *ps, t_env *e)
@@ -57,8 +56,10 @@ int				main(int ac, char *av[])
 	parse(ps, ac, av);
 	if (OPT(OPT_GRAPHIC))
 		e = init_env();
-	resolve(ps);
-	free_all(ps, e);
-	sleep(500);
+	if (OPT(OPT_INTERACTIVE))
+		interactive_mode(ps);
+	else
+		resolve(ps);
+	// free_all(ps, e);
 	return (0);
 }

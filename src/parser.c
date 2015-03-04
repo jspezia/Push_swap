@@ -37,11 +37,9 @@ static int		*parse_int_values(t_ps *ps, int ac, char **av)
 			|| already_exists_in_tab(tab, i, ft_atoi(av[i])))
 			error_msg_exit("Error");
 		tab[i] = ft_atoi(av[i]);
-		// ft_printf("%s-%d ", av[i], tab[i]);
 		recover_range(ps, tab[i]);
 		i++;
 	}
-	// ft_printf("\n");
 	return (tab);
 }
 

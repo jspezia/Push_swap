@@ -25,8 +25,10 @@ void			interactive_mode(t_ps *ps)
 	char	**tmp;
 
 	line = NULL;
-	ft_putendl("\033[""33""m""::Interactive mode::""\033[""0""m");
-	display_stacks(ps);
+	push_stack(ps);
+	ft_putendl("\033[33m::Interactive mode::\033[0m");
+	if (OPT(OPT_VERBOSE))
+		display_stacks(ps);
 	print_prompt();
 	while (!is_resolved(ps) && get_next_line(1, &line) == 1)
 	{
