@@ -10,7 +10,8 @@ static int		nb_elem_stack(t_stack *stack)
 	cursor = FIRST(stack);
 	value_origin = CURR_VAL(cursor);
 	cursor = cursor->next;
-	while (cursor && CURR_VAL(cursor) != value_origin)
+	while (cursor && CURR_VAL(cursor) != value_origin
+		&& ps->total_ops < MAX_OPS)
 	{
 		cursor = cursor->next;
 		i++;
@@ -29,7 +30,7 @@ static int		min_position(t_stack *stack)
 	nb_element = nb_elem_stack(stack);
 	cursor = FIRST(stack);
 	position = 0;
-	while (CURR_VAL(cursor) != min)
+	while (CURR_VAL(cursor) != min && ps->total_ops < MAX_OPS)
 	{
 		position++;
 		cursor = cursor->next;
@@ -41,7 +42,7 @@ static int		min_position(t_stack *stack)
 
 static void		select_node(int position, t_ps *ps)
 {
-	while (position != 0)
+	while (position != 0 && ps->total_ops < MAX_OPS)
 	{
 		if (position > 0)
 		{

@@ -7,7 +7,7 @@ static void		fill_stack_b(t_ps *ps)
 
 	count = 0;
 	count_a = COUNT(ps->stack_a);
-	while (count < count_a / 2)
+	while (count < count_a / 2 && ps->total_ops < MAX_OPS)
 	{
 		OP(PB);
 		count++;
@@ -59,7 +59,8 @@ static void		fusion_a_b(t_ps *ps, int min_a)
 
 	node_b = FIRST(ps->stack_b);
 	node_a = FIRST(ps->stack_a);
-	if (CURR_VAL(node_a) > CURR_VAL(node_b) || !node_a->next)
+	if ((CURR_VAL(node_a) > CURR_VAL(node_b) || !node_a->next)
+		&& ps->total_ops < MAX_OPS)
 		OP(PA);
 	else if (CURR_VAL(node_a) < CURR_VAL(node_b))
 	{
@@ -68,7 +69,7 @@ static void		fusion_a_b(t_ps *ps, int min_a)
 		min_a = find_min(ps->stack_a);
 		if (NEXT_VAL(node_a) == min_a && !(CURR_VAL(node_a) > CURR_VAL(node_b)))
 		{
-			while (node_b)
+			while (node_b && ps->total_ops < MAX_OPS)
 			{
 				OP(RA);
 				OP(PA);

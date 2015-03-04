@@ -81,7 +81,8 @@ void			merge_sort(t_ps *ps)
 		}
 		fill_stack_a(ps);
 		node_a = FIRST(ps->stack_a);
-		while (CURR_VAL(node_a) > CURR_VAL(ps->stack_a->last))
+		while (CURR_VAL(node_a) > CURR_VAL(ps->stack_a->last)
+			&& ps->total_ops < MAX_OPS)
 		{
 			OP(RRA);
 			node_a = FIRST(ps->stack_a);
