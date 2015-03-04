@@ -5,21 +5,6 @@ t_bool			is_resolved(t_ps *ps)
 	return ((!ps->stack_b->count) && is_stack_sorted(ps->stack_a));
 }
 
-int				find_min(t_stack *stack)
-{
-	int				min;
-	t_stack_node	*cursor;
-
-	cursor = FIRST(stack);
-	min = cursor ? CURR_VAL(cursor) : 0;
-	while (cursor)
-	{
-		min = fmin(min, CURR_VAL(cursor));
-		cursor = cursor->next;
-	}
-	return (min);
-}
-
 void			call_op(int op, t_ps *ps)
 {
 	static size_t	op_index = 0;
@@ -29,42 +14,22 @@ void			call_op(int op, t_ps *ps)
 	if (OPT(OPT_TIME))
 		usleep(ps->op_sleep);
 	g_ops[op].f(ps);
-	if (OPT(OPT_RESULT))
+
+	if (OPT(OPT_VERBOSE) && (OPT(OPT_RESULT) || OPT(OPT_INTERACTIVE)))
 	{
-		if (OPT(OPT_VERBOSE))
-		{
-			if (!(OPT(OPT_INTERACTIVE)))
-				ft_putendl(g_ops[op].name);
-			display_stacks(ps);
-		}
-		else
-			ft_printf("%s ", g_ops[op].name);
-		if (OPT(OPT_GRAPHIC))
-		{
-			if (FIRST(ps->stack_a) && (G_MODE(0)
-				|| (G_MODE(1) && !(op_index % (ps->total_elem / 30)))
-				|| (G_MODE(2)
-					&& CURR_VAL(FIRST(ps->stack_a)) == ps->range_min)))
-				mlx_redraw(ps, g_ops[op].name);
-		}
+		if (!(OPT(OPT_INTERACTIVE)))
+			ft_putendl(g_ops[op].name);
+		display_stacks(ps);
 	}
-}
-
-void			push_stack(t_ps *ps)
-{
-	size_t	i;
-
-	if (ps->stack_a)
-		dlist_destroy(ps->stack_a);
-	if (ps->stack_b)
-		dlist_destroy(ps->stack_b);
-	ps->stack_a = dlist_create();
-	ps->stack_b = dlist_create();
-	i = 0;
-	while (i < ps->total_elem)
+	else
+		ft_printf("%s ", g_ops[op].name);
+	if (OPT(OPT_GRAPHIC)&& (OPT(OPT_RESULT) || OPT(OPT_INTERACTIVE)))
 	{
-		dlist_push_back(ps->stack_a, &(ps->origin_data[i]));
-		i++;
+		if (FIRST(ps->stack_a) && (G_MODE(0)
+			|| (G_MODE(1) && !(op_index % (ps->total_elem / 30)))
+			|| (G_MODE(2)
+				&& CURR_VAL(FIRST(ps->stack_a)) == ps->range_min)))
+			mlx_redraw(ps, g_ops[op].name);
 	}
 }
 
@@ -89,7 +54,7 @@ void			resolve(t_ps *ps)
 	{
 		ps->algo = ps->total_elem > 500 ? SE : 0;
 		tmp_total_ops = 0;
-		while (ps->algo < ALGOS_LEN - 1) // No IM
+		while (ps->algo < ALGOS_LEN) // No IM
 		{
 			execute(ps);
 			if (is_resolved(ps) &&
@@ -100,11 +65,10 @@ void			resolve(t_ps *ps)
 			}
 			ps->algo++;
 		}
-		// ft_printf("FINAL ALGO: %s\n", g_algos[final_algo].name);
+		ps->algo = final_algo;
+		ps->options |= OPT_RESULT;
+		execute(ps);
 	}
-	ps->algo = final_algo;
-	ps->options |= OPT_RESULT;
-	execute(ps);
 	if (is_resolved(ps))
 	{
 		if (OPT(OPT_VERBOSE))

@@ -9,6 +9,7 @@ LDFLAGS			=	-L$(DIR_LIBS) -lXext -lX11 -lmlx
 SRCS			=	src/main.c									\
 					src/parser.c								\
 					src/options.c								\
+					src/stack.c									\
 					src/resolve.c								\
 					src/check_sort.c							\
 					src/print.c									\

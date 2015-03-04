@@ -141,7 +141,6 @@ enum
 	UP,
 	SE,
 	ME,
-	IM,
 	ALGOS_LEN
 };
 
@@ -157,10 +156,15 @@ void					up_down(t_ps *ps);
 void					up(t_ps *ps, int min);
 
 /*
+**		stack.c
+*/
+int						find_min(t_stack *stack);
+void					push_stack(t_ps *ps);
+
+/*
 **		resolve.c
 */
 t_bool					is_resolved(t_ps *ps);
-int						find_min(t_stack *stack);
 void					call_op(int op, t_ps *ps);
 void					resolve(t_ps *ps);
 
