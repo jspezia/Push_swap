@@ -13,7 +13,7 @@ void			print_stack(t_stack *stack)
 	ft_putchar('\n');
 }
 
-void			display_stacks(t_ps *ps)
+void			print_stacks(t_ps *ps)
 {
 	ft_putstr("\033[31ma: \033[0m");
 	print_stack(ps->stack_a);
@@ -21,15 +21,15 @@ void			display_stacks(t_ps *ps)
 	print_stack(ps->stack_b);
 }
 
-void			display_result(t_ps *ps)
+void			print_result(t_ps *ps)
 {
 	char		*tmp;
 
 	if (is_resolved(ps))
 	{
 		if (!OPT(OPT_VERBOSE) && ps->total_ops)
-			ft_putendl("");
-		if (OPT(OPT_VERBOSE) || OPT(OPT_COUNT))
+			ft_putendl("\b");
+		if (OPT(OPT_VERBOSE) || OPT(OPT_COUNT) || OPT(OPT_INTERACTIVE))
 			ft_printf("Sorted in \033[32m%d\033[0m ops!\n", ps->total_ops);
 		if (OPT(OPT_GRAPHIC))
 		{

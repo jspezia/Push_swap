@@ -2,7 +2,6 @@
 
 static void		display_help(void)
 {
-
 	ft_putendl("\033[33mNAME\033[0m\n\tpush_swap");
 	ft_putendl("\033[33mUSAGE\033[0m\n\t"USAGE);
 	ft_putendl("\033[33mOPTIONS\033[0m");
@@ -45,8 +44,7 @@ static void		set_algo(t_ps *ps, char *optarg)
 		if (!ft_strcmp(optarg, g_algos[i].name))
 		{
 			ps->algo = i;
-			ps->options |= OPT_ALGO;
-			ps->options |= OPT_RESULT;
+			ps->options |= OPT_ALGO | OPT_EXEC;
 			return ;
 		}
 		i++;
@@ -75,10 +73,7 @@ void			set_options(t_ps *ps, char opt)
 	else if (opt == 'c')
 		ps->options |= OPT_COUNT;
 	else if (opt == 'i')
-	{
-		ps->options |= OPT_INTERACTIVE;
-		ps->options |= OPT_RESULT;
-	}
+		ps->options |= OPT_INTERACTIVE | OPT_EXEC;
 	else if (opt == 't')
 	{
 		ps->options |= OPT_TIME;

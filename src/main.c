@@ -60,6 +60,6 @@ int				main(int ac, char *av[])
 		interactive_mode(ps);
 	else
 		resolve(ps);
-	// free_all(ps, e);
+	free_all(ps, e);
 	return (0);
 }

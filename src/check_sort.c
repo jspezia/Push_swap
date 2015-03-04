@@ -1,8 +1,8 @@
 #include "push_swap.h"
 
-t_bool			is_stack_sorted(t_dlist *stack)
+t_bool			is_stack_sorted(t_stack *stack)
 {
-	t_dlist_node	*cursor;
+	t_stack_node	*cursor;
 
 	cursor = stack->first;
 	while (cursor && cursor->next)
@@ -14,9 +14,9 @@ t_bool			is_stack_sorted(t_dlist *stack)
 	return (TRUE);
 }
 
-t_bool			is_stack_reverse_sorted(t_dlist *stack)
+t_bool			is_stack_reverse_sorted(t_stack *stack)
 {
-	t_dlist_node	*cursor;
+	t_stack_node	*cursor;
 
 	cursor = stack->first;
 	while (cursor && cursor->next)

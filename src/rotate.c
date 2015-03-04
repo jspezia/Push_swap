@@ -1,6 +1,6 @@
 #include "push_swap.h"
 
-static void		rotate(t_dlist *stack)
+static void		rotate(t_stack *stack)
 {
 	if (stack->count)
 		dlist_push_back(stack, dlist_pop_front(stack));
