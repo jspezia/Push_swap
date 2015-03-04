@@ -17,6 +17,8 @@ static t_bool		check_one_swap(t_ps *ps)
 		}
 		node = node->next;
 	}
+	if (!node->next && node->prev && CURR_VAL(node) > CURR_VAL(node->prev))
+		return (FALSE);
 	if (i != 1)
 		return (FALSE);
 	return (i);
