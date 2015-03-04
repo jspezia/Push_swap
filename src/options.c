@@ -2,17 +2,13 @@
 
 static void		display_help(void)
 {
-	char		*usage;
 
-	usage = "[-hv] [-g [mode]] [-a algo] [-t delay] -- <int> <int> <...>\n";
-	usage = ft_strjoin("./push_swap", usage);
-	ft_putendl("\033[33mNAME\033[0m\n\tpush_swap\n");
-	ft_putstr("\033[33mUSAGE\033[0m\n\t");
-	ft_putendl(usage);
+	ft_putendl("\033[33mNAME\033[0m\n\tpush_swap");
+	ft_putendl("\033[33mUSAGE\033[0m\n\t"USAGE);
 	ft_putendl("\033[33mOPTIONS\033[0m");
 	ft_putendl("\t-h\t\tDisplay help.");
 	ft_putendl("\t-c\t\tDisplay operations count.");
-	ft_putendl("\t-a{algo}\t\tLet you specifie an algo {bbs, ff, up, se, me}.");
+	ft_putendl("\t-a{algo}\tLet you specifie an algo {bbs, ff, up, se, me}.");
 	ft_putendl("\t-i \t\tInteractive mode.");
 	ft_putendl("\t-g{0, 1, 2}\tGraphic display.");
 	ft_putstr("\t-t{delay}\t");
