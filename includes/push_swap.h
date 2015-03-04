@@ -105,7 +105,7 @@ typedef	struct			s_ps
 	t_stack		*stack_b;
 	int			*origin_data;
 	int			algo;
-	char		options;
+	int			options;
 	int			total_ops;
 	int			op_sleep;
 	int			graphic_mode;

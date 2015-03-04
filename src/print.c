@@ -27,9 +27,9 @@ void			print_result(t_ps *ps)
 
 	if (is_resolved(ps))
 	{
-		if (!OPT(OPT_VERBOSE) && ps->total_ops)
+		if (OPT(OPT_PRINT_OPS) && ps->total_ops)
 			ft_putendl("\b");
-		if (OPT(OPT_VERBOSE) || OPT(OPT_COUNT) || OPT(OPT_INTERACTIVE))
+		if (!OPT(OPT_PRINT_OPS) || OPT(OPT_COUNT))
 			ft_printf("Sorted in \033[32m%d\033[0m ops!\n", ps->total_ops);
 		if (OPT(OPT_GRAPHIC))
 		{
