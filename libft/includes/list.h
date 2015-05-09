@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jspezia <jspezia@student.42.fr>            +#+  +:+       +#+        */
+/*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2014/02/19 16:27:03 by jspezia           #+#    #+#             */
-/*   Updated: 2015/01/24 18:55:32 by jspezia          ###   ########.fr       */
+/*   Created: 2014/02/19 16:27:03 by ycribier          #+#    #+#             */
+/*   Updated: 2015/01/28 19:02:34 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,5 +31,6 @@ void					list_destroy(t_list_node **begin);
 void					list_clear(t_list_node **begin);
 void					list_clear_destroy(t_list_node **begin);
 void					*list_remove(t_list_node **begin, t_list_node *node);
+void					list_remove_by_value(t_list_node **begin, void *value);
 
 #endif

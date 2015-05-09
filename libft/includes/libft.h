@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: ycribier <ycribier@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2013/11/20 20:09:01 by jspezia           #+#    #+#             */
-/*   Updated: 2015/02/23 18:14:43 by ycribier         ###   ########.fr       */
+/*   Created: 2013/11/20 20:09:01 by ycribier          #+#    #+#             */
+/*   Updated: 2015/02/25 14:41:00 by ycribier         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ typedef enum		e_bool
 }					t_bool;
 
 /*
-**	Get Next Line
+**	Get_next_line
 */
 # define BUFF_SIZE	4096
 
@@ -73,17 +73,20 @@ int					ft_strequ(char const *s1, char const *s2);
 int					ft_strnequ(char const *s1, char const *s2, size_t n);
 char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
-char				*ft_strjoin3(char const *s1, char const *s2,
-		char const *s3);
+char				*ft_strjoin3(char const *a, char const *b, char const *c);
 char				*ft_strtrim(char const *s);
 char				**ft_strsplit(char const *s, char c);
+char				**ft_strsplit_once(char const *s, char c);
+char				*ft_strreplace(char *src, char *from, char *to);
+
 int					ft_str_isdigit(char *str);
+int					ft_str_isint(char *str);
+
 int					ft_isalpha(int c);
 int					ft_isdigit(int c);
 int					ft_isalnum(int c);
 int					ft_isascii(int c);
 int					ft_isprint(int c);
-int					ft_str_isint(char *str);
 int					ft_tolower(int c);
 int					ft_toupper(int c);
 
@@ -140,13 +143,13 @@ int					decimal_to_octal(int n);
 int					octal_to_decimal(int n);
 
 /*
-**				Free
+**	Free
 */
 void				free_tab(char ***tab);
 void				free_ntab(char ***tab, int n);
 
 /*
-**				Error
+**	Error
 */
 void				ft_perror(const char *msg);
 void				error_msg(char *message);

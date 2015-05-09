@@ -2,10 +2,11 @@ CC				=	clang
 NAME			=	push_swap
 FLAGS			=	-Wall -Wextra -Werror
 FRAMEWORKS		=	-framework OpenGL -framework AppKit
+MLX_PATH		=	minilibx_macos/
 LIB_PATH		=	libft/
 LIB				=	$(LIB_PATH)libft.a
-LIB_LINK		=	-L $(LIB_PATH) -lft -L /usr/local/lib -lmlx
-INCLUDES		=	-I $(LIB_PATH)includes -I ./includes -I /usr/local/include
+LIB_LINK		=	-L $(LIB_PATH) -lft -L $(MLX_PATH) -lmlx # -L /usr/local/lib -lmlx
+INCLUDES		=	-I $(LIB_PATH)includes -I ./includes -I $(MLX_PATH) # -I /usr/local/include
 SRCS			=	src/main.c									\
 					src/parser.c								\
 					src/options.c								\
