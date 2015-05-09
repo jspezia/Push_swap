@@ -76,7 +76,7 @@ enum
 */
 
 # define OP(X)			(call_op(X, ps))
-# define MAX_OPS		500000
+# define MAX_OPS		10000000
 
 enum
 {
