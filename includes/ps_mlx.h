@@ -1,11 +1,10 @@
 #ifndef PS_MLX_H
 # define PS_MLX_H
 
-# include <mlx.h>
-# include <X11/Xutil.h>
-# include <stdlib.h>
 # include "libft.h"
 # include "keys.h"
+# include <mlx.h>
+# include <stdlib.h>
 
 # define W_WIDTH	2000
 # define W_HEIGHT	200
