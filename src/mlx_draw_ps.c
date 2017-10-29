@@ -76,4 +76,5 @@ void			mlx_redraw(t_ps *ps, char *op)
 	draw_stack(ps->stack_b, ps, e, STACK_H);
 	mlx_put_image_to_window(e->mlx, e->win, e->img->id, 0, 0);
 	mlx_string_put(e->mlx, e->win, 10, 20, 0xFFFFFF, op);
+	mlx_do_sync(e->mlx);
 }
