@@ -6,7 +6,7 @@
 # include <mlx.h>
 # include <stdlib.h>
 
-# define W_WIDTH	2000
+# define W_WIDTH	1000
 # define W_HEIGHT	200
 
 # define STACK_W	(W_WIDTH)
